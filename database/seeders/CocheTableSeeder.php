@@ -50,17 +50,26 @@ class CocheTableSeeder extends Seeder
             'anio_matriculacion' => 2017,
             'color'              => "#ffffff",
             'foto'               => "https://estaticos-cdn.sport.es/clip/925603db-c8a9-4d11-ac84-34b65ef974b8_alta-libre-aspect-ratio_default_0.jpg",
-            'logo'               => "https://assets.stickpng.com/images/580b585b2edbce24c47b2cf2.png",
+            'logo'               => "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png",
         ],
-        // [
-        //     'marca'              => "Volkswagen",
-        //     'modelo'             => "Golf GTI",
-        //     'precio'             => 26000,
-        //     'anio_matriculacion' => 2017,
-        //     'color'              => "ffffff",
-        //     'foto'               => "https://www.infomotori.com/content/uploads/2016/08/IMG-20160809-WA0049-728x415.jpg?x42035",
-        //     'logo'               => "https://assets.stickpng.com/images/580b585b2edbce24c47b2cf2.png",
-        // ]
+        [
+            'marca'              => "Chevrolet",
+            'modelo'             => "Camaro",
+            'precio'             => 23000,
+            'anio_matriculacion' => 2016,
+            'color'              => "#ffe600",
+            'foto'               => "https://images.hgmsites.net/hug/2013-chevrolet-camaro-1le-package_100396584_h.jpg",
+            'logo'               => "https://1000marcas.net/wp-content/uploads/2020/01/Chevrolet-logo.png",
+        ],
+        [
+            'marca'              => "Porsche",
+            'modelo'             => "911 Carrera",
+            'precio'             => 82000,
+            'anio_matriculacion' => 2015,
+            'color'              => "#d10000",
+            'foto'               => "https://s2.glbimg.com/NVHkTEmtnm66sY0Xi5UE4dbj0E0=/0x0:620x413/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/G/u/7VkAYvThWcGGSHAM8FQA/2019-09-03-911.jpg",
+            'logo'               => "https://logos-world.net/wp-content/uploads/2021/04/Porsche-Logo.png",
+        ]
     ];
 
         DB::table('coche')->insert($coches);

@@ -24,14 +24,14 @@ Route::get("/", [AuthenticatedSessionController::class, 'create']);
 
 // RUTAS PARA COCHE
 
-    Route::get("coches",                     [CocheController::class, "listar"])->name("coches.listado");
-    Route::get("coches/insertar",            [CocheController::class, "insertarCoche"])->name("coches.insertar");
-    Route::post("coches/guardar",            [CocheController::class, "guardar"])->name("coches.guardar");
-    Route::get("coches/borrar/{id}",         [CocheController::class, "borrar"])->name("coches.borrar");
-    Route::get("coches/editar/{id}",         [CocheController::class, "editar"])->name("coches.editar");
-    Route::post("coches",                    [CocheController::class, "actualizar"])->name("coches.actualizar");
-    Route::get("coches/accesorios/{idCoc}",  [CocheController::class, "accesorios"])->name("coches.accesorios");
-    Route::get("coches/imagen/{idCoc}",      [CocheController::class, "imagen"])->name("coches.imagen");
+    Route::get("coches",                    [CocheController::class, "listar"])->name("coches.listado");
+    Route::get("coches/insertar",           [CocheController::class, "insertarCoche"])->name("coches.insertar");
+    Route::post("coches/guardar",           [CocheController::class, "guardar"])->name("coches.guardar");
+    Route::get("coches/borrar/{id}",        [CocheController::class, "borrar"])->name("coches.borrar");
+    Route::get("coches/editar/{id}",        [CocheController::class, "editar"])->name("coches.editar");
+    Route::post("coches",                   [CocheController::class, "actualizar"])->name("coches.actualizar");
+    Route::get("coches/accesorios/{idCoc}", [CocheController::class, "accesorios"])->name("coches.accesorios");
+    Route::get("coches/imagen/{idCoc}",     [CocheController::class, "imagen"])->name("coches.imagen");
 
 // RUTAS PARA ACCESORIO
 
