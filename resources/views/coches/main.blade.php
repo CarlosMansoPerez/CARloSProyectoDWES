@@ -104,7 +104,7 @@
                                 {{-- ACCESORIOS --}}
                                 <div class="mt-4" style="position:relative;top:90%;left:40%;">
                                 
-                                    <a href="{{route('coches.accesorios', $coche->idCoc)}}" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold py-2 px-4 rounded ml-6" style="visibility: visible">VER ACCESORIOS</a>
+                                    <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold py-2 px-4 rounded ml-6" style="visibility: visible">VER ACCESORIOS</a>
 
                                 </div>
 

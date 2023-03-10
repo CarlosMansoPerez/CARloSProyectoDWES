@@ -19,7 +19,7 @@
     <p class="text-white font-bold font-sans text-2xl" style="position:absolute;left:5%;top:108%;">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
 
     @foreach($datos as $accesorio)
-
+<br id="accesorios">
             {{-- CARDS --}}
             <div class="rounded float-left mt-12 mb-7 shadow-lg my-8 bg-gray-200 hover:bg-gray-300 hover:scale-105 duration-700 text-center shadow-black" style="width: 15rem;height:19rem; margin-left: 5.5%;z-index:0;" >
 
