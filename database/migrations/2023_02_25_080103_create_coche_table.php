@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('coche', function (Blueprint $table) {
             $table->id("idCoc");
-            // $table->unsignedBigInteger("idUsu");
             $table->string("marca");
             $table->string("modelo");
             $table->integer("precio");
             $table->string("anio_matriculacion", 4);
-            $table->string("color", 6);
+            $table->string("color", 7);
             $table->text("foto");
+            $table->text("logo");
             $table->timestamps();
-
-            // $table->foreign("idUsu")->references("idUsu")->on("usuario")->onDelete("cascade");
 
         });
     }

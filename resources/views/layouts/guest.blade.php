@@ -15,14 +15,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-image:url('{{asset("/img/cocheFondo.jpg")}}');background-size:cover;height:200px;width:100%;background-position:0px;background-repeat:none">
             <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
+                <h1 class="hover:scale-105 duration-700 text-center text-red-700" style="position:absolute; top: -7%;left:45%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b class="font-serif text-black" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>            
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md px-6 py-8 bg-black shadow-md overflow-hidden sm:rounded-lg" style="position:absolute;top:15%;left:5%;height:25rem;">
                 {{ $slot }}
             </div>
         </div>

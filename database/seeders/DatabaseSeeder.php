@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $this->call(  [CocheTableSeeder::class, AccesorioTableSeeder::class ]);
+        $this->call(  [ UsuarioTableSeeder::class , CocheTableSeeder::class, AccesorioTableSeeder::class]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

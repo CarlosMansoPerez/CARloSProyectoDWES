@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('accesorio', function (Blueprint $table) {
             $table->id("idAcc");
-            // $table->unsignedBigInteger("idCoc");
+            $table->unsignedBigInteger("idCoc");
             $table->string("nombre");
             $table->string("precio");
+            $table->text("foto");
             $table->timestamps();
         });
     }
