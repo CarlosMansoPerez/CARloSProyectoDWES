@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CocheController;
 use App\Http\Controllers\AccesorioController;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
@@ -19,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get("/",                [AuthenticatedSessionController::class, "create"])->name("si");
 Route::get("/", [AuthenticatedSessionController::class, 'create']);
 
 // RUTAS PARA COCHE
@@ -45,6 +45,12 @@ Route::get("/", [AuthenticatedSessionController::class, 'create']);
 // RUTAS PARA EL PERFIL
 
     Route::view("perfil", "perfil.perfil")->name("perfil");
+
+// RUTAS PARA REGISTRO
+
+Route::get("usuario/registrar", [UsuarioController::class, "insertarUsuario"])->name("usuarios.insertar");
+Route::post("usuario/guardar",  [UsuarioController::class, "guardarUsuario"])->name("usuarios.guardar");
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

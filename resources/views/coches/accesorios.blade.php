@@ -1,8 +1,8 @@
 @extends("layouts.app")
 
 @section("main")
-{{-- {{dd($accesorios[0]);}} --}}
-    @empty($accesorios[0])
+
+    @if(count($accesorios) == 0)
 
         <div class="bg-red-300 text-center py-6 text-xl">
             <p id="accesoriosCoches">No hay accesorios disponibles para el <b>{{$coches->marca}} {{$coches->modelo}}</b></p>
@@ -17,7 +17,7 @@
     @foreach($accesorios as $accesorio)
 
             {{-- CARDS --}}
-            <div class="rounded float-left mt-12 mb-7 shadow-lg my-8 bg-gray-200 hover:bg-gray-300 hover:scale-105 duration-700 text-center shadow-black" style="width: 15rem;height:19rem; margin-left: 5.5%;z-index:0;" >
+            <div class="rounded float-left shadow-lg my-8 bg-gray-200 hover:bg-gray-300 hover:scale-105 duration-700 text-center shadow-black" style="width: 15rem;height:19rem; margin-left: 7.5%;z-index:0;" >
 
                 {{-- CABECERA --}}
                     <div class="font-bold text-2xl mb-1">
