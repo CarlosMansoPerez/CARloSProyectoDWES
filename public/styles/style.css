@@ -1,0 +1,476 @@
+*{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+}
+
+#bodyWelcome{
+    animation-name: desaparicionWeb;
+    animation-duration: 7s;
+    animation-direction: alternate;  
+    animation-fill-mode: forwards;
+}
+
+@keyframes desaparicionWeb{
+    from {opacity: 1;}
+    to {opacity: 0}
+}
+#container{
+    position: relative;
+}
+
+#bienvenida{
+    position: absolute;
+    top: 600px;
+    left: 30%;
+    font-size: 4rem;
+    display: block;
+    font-family: impact;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 18ch;
+    animation: typing 2s steps(18),
+                blink .5s infinite step-end alternate,
+                color 3s infinite alternate-reverse;
+    overflow: hidden;
+    z-index: 1;
+}
+
+@keyframes typing{
+    from {width: 0}
+}
+
+@keyframes blink{
+    50% {border-color: transparent}
+}
+
+@keyframes color{
+    50%{color: white}
+    100%{color: transparent}
+}
+
+#videoFondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h1{
+    margin-top: 0px;
+    background: black;
+    font-size: 30rem;
+    text-align: center;
+    font-family: Impact;
+    mix-blend-mode: multiply;
+    animation-name: Transicion;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;  
+    animation-fill-mode: forwards;
+}
+
+.letraPequeña{
+    font-family: 'Times New Roman';
+}
+
+
+/******************** INICIO *****************************/
+
+#bodyLanding{
+    animation-name: aparicionWeb;
+    animation-duration: 3s;
+    animation-direction: alternate;  
+    animation-fill-mode: forwards;
+}
+
+@keyframes aparicionWeb{
+    from {opacity: 0;}
+    to {opacity: 1}
+}
+
+#logo{
+    position: absolute;
+    width: 10%;
+    left: 0%;
+    top: 1%;
+    z-index: 1;
+    animation-name: transparencia;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;  
+    animation-fill-mode: forwards;
+}
+
+@keyframes transparencia{
+    50%{opacity: 0%}
+    100%{opacity: 100%}
+}
+
+#nav{
+    width: 100%;
+    height: 15vh;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-family: Impact;
+    
+}
+
+
+#titulo{
+    font-family: 'Times New Roman';
+    font-size: 5rem;
+    margin-left: -30%;
+
+}
+p b{
+    font-weight: bold;
+    font-size: 6rem;
+    color: rgb(225, 21, 21);
+    font-family: Impact;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: rgb(225, 21, 21);
+}
+#login{
+    margin-right: 5%;
+    transition: .5s;
+}
+
+#ventana{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 72%;
+    width: 24%;
+    height: 30vh;
+    background-color: black;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    padding: 2%;
+}
+
+#ventana p:hover{
+    color: rgb(185 28 28);
+    transition: 1s;
+    cursor: pointer;
+}
+
+#cerrar{
+    color: rgb(225, 21, 21);
+    transition: .2s;
+}
+
+#cerrar:hover{
+    color: white !important
+
+}
+
+#login:hover{
+    font-size: 2.1rem;
+    color: rgb(185 28 28);
+    cursor: pointer;
+}
+
+section{
+    display: flex;
+    width: 100%;
+    height: 86vh;
+}
+
+section img{
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: 0.5s ease;
+}
+
+section img:hover{
+    cursor: crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+
+#seccion{
+    width: 100%;
+    height: 30vh;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    font-family: Impact;
+}
+
+#seccion p{
+    transition: 2s;
+}
+
+#seccion p:hover{
+    font-size: 3rem;
+    color: rgb(225, 21, 21);
+}
+
+#divFotosHover{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+article{
+    position: relative;
+    margin-top: 8%;
+    width: 450px;
+    left: 0%;
+    transition: all .3s ease;
+}
+
+article img:first-child{
+    border-radius: 4px;
+    object-fit: cover;
+    width: 100%;
+}
+
+article img:last-child{
+    position: absolute;
+    width: 480px;
+    bottom: 0;
+    left: -5%;
+    right: 0;
+    margin: auto;
+    transform: translateY(25%);
+    transition: .3s ease;
+    opacity: 0;
+}
+
+article:hover{
+    transform: 
+    perspective(250px)
+    rotateX(10deg)
+    translateY(-5%)
+    translateZ(0);
+}
+
+article::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-image: 
+    linear-gradient(
+        to bottom,
+        transparent 10%,
+        rgb(52, 52, 52) 50%,
+        black 95%
+    );
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+article:hover:before{
+    opacity: 1;
+}
+
+article:hover img:last-child{
+    opacity: 1;
+    transform: translateY(10%);
+}
+
+#uno{
+    box-shadow: 0 60px 60px -60px red;
+}
+
+#dos{
+    box-shadow: 0 60px 60px -60px rgb(130, 130, 130);
+}
+
+#tres{
+    box-shadow: 0 60px 60px -60px rgb(21, 216, 255);
+}
+
+#siguenos{
+    width: 100%;
+    height: 20vh;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8%;
+}
+
+#siguenos p{
+    color: white;
+    font-family: Impact;
+    transition: 1s;
+    font-size: 3rem;
+}
+
+#siguenos p:hover{
+    color: rgb(225, 21, 21);
+}
+
+#sigue{
+    animation-name: lado;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;  
+}
+@keyframes lado{
+    0%{margin-left: -50%;}
+    100%{margin-left: 50%}
+}
+.card {
+    width: 20%;
+    height: 5rem;
+    border-radius: 4px;
+    display: flex;
+    justify-items: center;
+    gap: 5px;
+    padding: .4em;
+}
+
+.card p {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 2%;
+    transition: all .5s;
+    background: #000000;
+    border: 2px solid rgb(225, 21, 21);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card p:hover {
+    flex: 4;
+}
+
+.card p span {
+    min-width: 14rem;
+    padding: .5em;
+    text-align: center;
+    transform: rotate(-90deg);
+    transition: all .5s;
+    text-transform: uppercase;
+    color: rgb(225, 21, 21);
+    letter-spacing: .1em;
+}
+
+.card p:hover span {
+    transform: rotate(0);
+}
+
+#redes{
+    width: 100%;
+    height: 40vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.redes{
+    width: 20%;
+}
+
+@media (max-width: 750px) {
+    *{
+        max-width: 100%;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        min-width:100%;
+    }
+    #nav{
+        width: 100%;
+        height: 20vh;
+    }
+    #titulo b{
+        font-size: 4rem;
+    }
+    #titulo{
+        font-size: 2rem;
+        margin-left: 5%;
+    }
+    #login{
+        font-size: 2.5rem;
+    }
+    #logo{
+        margin-top: 10%;
+        width: 100px;
+    }
+    section{
+        height: 25vh;
+    }
+    section img:hover{
+        width: 100px;
+    }
+    #seccion{
+        flex-direction: column;
+        font-size: 1.5rem;
+        height: 30vh;
+    }
+    #divFotosHover{
+        flex-direction: column;
+        height: 90vh;
+        margin-top: 5%;
+    }
+    article{
+        margin-top: 5%;
+        width: 300px;
+    }
+    #siguenos{
+        height: 20vh;
+    }
+    #siguenos p{
+        font-size: 1.5rem;
+    }
+    #sigue{
+        animation-name: none;
+    }
+
+    #redes{
+        height: 20vh;
+        height: 50%;
+    }
+    .card{
+        width: 400px;
+        height: 20vh;
+    }
+    .card img{
+        width: 50px;
+    }
+    .card p {
+        border: none;
+    }
+    .card p span{
+        transform:rotate(0deg)
+    }
+}
