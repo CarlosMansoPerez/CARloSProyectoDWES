@@ -89,59 +89,57 @@
                         <a href="{{route('coches.imagen', $coche->idCoc)}}"><img src="{{$coche->foto}}" class="mt-7 m-auto" style="width: 23rem; height: 15rem;"></a>
 
                     {{-- DATOS --}}
-                    <div class="px-6 mb-6">
-
+                    <div class="flex flex-col flex-wrap justify-center items-center h-auto pb-3 pt-5">
+                        
                         {{-- PRECIO --}}
-                        <p class="text-center text-2xl text-red-700 mt-2 mb-1 font-bold" style="text-shadow: 1px 1px 1px black">{{$coche->precio}}€</p> 
-
+                        <div class="mb-2">
+                            <p class="text-center text-2xl text-red-700 font-bold" style="text-shadow: 1px 1px 1px black">{{$coche->precio}}€</p> 
+                        </div>
+                        
+                        <div class="flex flex-row flex-wrap justify-center items-center">
 
                             {{-- AÑO MATRICULACION --}}
-                            <div class="text-sm font-bold text-black m-3" style="height: 1rem; float: left;">
-                                <p>Año de matriculación</p>
-                                <p class="text-sm font-bold font-serif text-black text-xl text-center">{{$coche->anio_matriculacion}}</p>
-                                
-                            @if (auth()->user()->nombre != "Admin")   <!------------------------------------------>
-                                {{-- ACCESORIOS --}}
-                                <div class="mt-4" style="position:relative;top:90%;left:40%;">
-                                
-                                    <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold py-2 px-4 rounded ml-6" style="visibility: visible">VER ACCESORIOS</a>
-
-                                </div>
-
-                            </div>                            
-
-                            {{-- COLOR --}}
-                            <div class="text-sm font-bold text-black m-3" style="float: right;">
-                                <p class="text-center">Color</p>
-                                <div class="text-sm font-bold text-black text-lg m-auto" style="background-color: {{$coche->color}}; width:1.2rem; height: 1.2rem; border: 3px solid black">&nbsp;</div>
+                            <div class="text-lg text-center font-bold text-black mr-4">
+                                <p>{{$coche->anio_matriculacion}}</p>
                             </div>
 
-                            @else                <!------------------------------------------>
-
-                                {{-- EDITAR --}}
-                                <div class="mt-6" style="float: left;">
-                                    
-                                    <a href="{{route('coches.editar', $coche->idCoc)}}" class="bg-black hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">EDITAR</a>
-                                    
-                                </div>
-
-                                {{-- VER ACCESORIOS --}}
-                                {{-- <div class="mt-6 ml-6" style="float: left;">
-                                </div> --}}
-
-                            </div>                            
-
                             {{-- COLOR --}}
-                            <div class="text-sm font-bold text-black m-3" style="float: right;">
-                                <p class="text-center">Color</p>
-                                <div class="text-sm font-bold text-black text-lg m-auto" style="background-color: {{$coche->color}}; width:1.2rem; height: 1.2rem; border: 3px solid black">&nbsp;</div>
+                            <div class="flex flex-row flex-wrap justify-center items-center text-sm font-bold text-black">
+                                <p class="text-center text-base">Color</p>
+                                <div class="font-bold text-black text-lg ml-1" style="background-color: {{$coche->color}}; border: 3px solid black; width:1.5rem; height:1.5rem;">&nbsp;</div>
+                            </div>
+
+                        </div>
+
+
+                        @if (auth()->user()->nombre != "Admin")   <!------------------------------------------>
+
+                        {{-- ACCESORIOS --}}
+                        <div class="mt-5">
+                            
+                            <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-black   hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">VER ACCESORIOS</a>
+                            <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-red-700 hover:bg-black   duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">AÑADIR <i class="bi bi-cart3"></i></a>
+
+                        </div>
+
+
+                        @else                <!------------------------------------------>
+
+                        <div class="flex flex-wrap justify-center items-center text-center mt-5">
+
+                            {{-- EDITAR --}}
+                            <div class="m-1" style="">
+                                <a href="{{route('coches.editar', $coche->idCoc)}}" class="text-lg bg-black hover:bg-zinc-800 text-white font-bold rounded px-2 py-1 ">EDITAR</a>
+                            </div>
+
+                            <div class="m-1" style="">
                                 {{-- BORRAR --}}
-                                <div class="mt-8" style="float: right;">
-                                    <a href="{{route('coches.borrar', $coche->idCoc)}}" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">BORRAR</a>
-                                </div>
+                                <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
                             </div>
 
-                            @endif
+                        </div>
+
+                        @endif
 
                     </div>
 
