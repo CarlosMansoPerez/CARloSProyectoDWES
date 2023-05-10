@@ -7,4 +7,4 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<a href="https://www.youtube.com/watch?v=gZI91-yX52U">Vídeo del CheckPoint de CARloS</a>
+<a style="text-align:center; margin-top: 2rem;" href="https://www.youtube.com/watch?v=gZI91-yX52U">Vídeo del CheckPoint de CARloS</a>
