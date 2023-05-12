@@ -30,10 +30,11 @@
 
             <div class="mb-4" style="width:100%; background-color: #333333;">
                 <nav class="bg-black text-stone-50 font-bold font-sans text-center flex justify-center items-center" style="height: 3rem; margin-top:44.5rem;">
-                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('coches.listado')}}">INICIO</a>
-                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('coches.listado')}}#perfil">COCHES</a>
-                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('accesorios.listado')}}#accesorios" id="accesorios">ACCESORIOS</a>
-                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('perfil')}}" id="perfil">PERFIL</a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('coches.listado')}}">INICIO</a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('coches.listado')}}#perfil">COCHES</a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('accesorios.listado')}}#accesorios" id="accesorios">ACCESORIOS</a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('perfil')}}" id="perfil">PERFIL</a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100 text-xl" href="{{route('carrito.listar', auth()->user()->idUsu)}}" id="carrito"><i class="bi bi-cart3"></i></a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 

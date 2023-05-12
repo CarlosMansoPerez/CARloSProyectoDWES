@@ -33,24 +33,57 @@
                     </form>                </nav>
             </div>
 
-            <div class="bg-zinc-800" style="width: 100%;height:665px;">
-                <img src="{{$imagen->foto}}" style="width:60rem;height:41.5rem;">
-                <div style="position:absolute;top:20%;left:70%;">
-                    <p class="text-4xl text-white font-bold">{{$imagen->marca}}</p>
-                    <p class="text-3xl text-red-700 font-bold">{{$imagen->modelo}}</p>
-                    <img src="{{$imagen->logo}}" style="width:6rem;position:absolute;top:-2%;left:85%;">
-                    <p class="mt-12 text-white text-xl">Matriculado en</p> 
-                    <p class="text-3xl text-white font-bold">{{$imagen->anio_matriculacion}}</p>
-                    <p class="mt-12 text-white text-xl">Color disponible</p>
-                    <div class="text-sm font-bold text-black mt-2">
-                        <div class="text-sm font-bold text-black text-lg" style="background-color: {{$imagen->color}}; width:2.2rem; height: 2.2rem; border: 3px solid black">&nbsp;</div>
+            <div class="bg-zinc-800 flex flex-wrap justify-left items-center flex-row" style="width: 100%;padding-bottom:1.7rem">
+
+                {{-- FOTO --}}
+                <div class="w-7/12" style="margin-left: 5%; margin-top:2%">
+                    <img class="w-full" src="{{$imagen->foto}}">
+                </div>
+
+                {{-- DATOS --}}
+                <div class="p-3 flex justify-center flex-col items-center text-center w-3/12" style="margin-left: 6%">
+
+                    <div class="flex flex-wrap justify-center items-center flex-row mb-5" style="margin-left: -4rem; margin-top:4rem;">
+                        <div class="mr-3">
+                            <img src="{{$imagen->logo}}" style="width:4rem;margin-bottom:2rem">
+                        </div>
+                        <div>
+                            <p class="text-5xl text-white font-bold">{{$imagen->marca}}</p>
+                            <p class="text-5xl text-red-700 font-bold" style="margin-left: -1rem">{{$imagen->modelo}}</p>
+                        </div>
                     </div>
-                    <p class="mt-8 ml-12 text-red-700 font-bold hover:scale-105 hover:text-white duration-700" style="font-size: 5rem;">{{$imagen->precio}}€</p>
+                    
+
+                    <div class="flex flex-row justify-center items-center" style="margin-top: 2rem">
+
+                        <div class="flex flex-col justify-center items-center mr-5" style="width: 12rem; min-height:12rem;">
+                            <p class="text-white text-2xl mb-1">Matriculado en</p> 
+                            <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->anio_matriculacion}}</p>
+
+                            <p class="text-white text-2xl mb-1">Color disponible</p>
+                            <div class="text-sm font-bold text-black">
+                                <div class="text-sm font-bold text-black text-lg" style="background-color: {{$imagen->color}}; width:2.2rem; height: 2.2rem; border: 3px solid black">&nbsp;</div>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-col justify-center items-center ml-5" style="width: 12rem; min-height:12rem;">
+
+                            <p class="text-white text-2xl mb-1">Kilómetros</p> 
+                            <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->kilometros}}</p>
+
+                            <p class="text-white text-2xl mb-1">Combustible</p> 
+                            <p class="text-3xl text-white font-bold">{{$imagen->combustible}}</p>
+                        </div>
+
+                    </div>
+
+                    <p class="text-red-700 font-bold hover:scale-105 hover:text-white duration-700 mt-5" style="font-size: 5rem;">{{$imagen->precio}}€</p>
+
+                    <a href="{{route('coches.listado')}}" class="bg-white hover:bg-black text-black hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="margin-top: 3rem">VOLVER</a>
+
                 </div>
             </div>
-
-            <a href="{{route('coches.listado')}}" style="position:absolute;top:90%;left:78%;" class="bg-white hover:bg-black text-black hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">VOLVER</a>
-
 
     </body>
 </html>

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer("precio");
             $table->string("anio_matriculacion", 4);
             $table->string("color", 7);
+            $table->string("kilometros");
+            $table->string("combustible");
             $table->text("foto");
             $table->text("logo");
             $table->timestamps();

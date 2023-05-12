@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accesorio', function (Blueprint $table) {
-            $table->id("idAcc");
-            $table->unsignedBigInteger("idCoc");
-            $table->string("nombre");
-            $table->string("precio");
-            $table->text("foto");
+        Schema::create('carrito', function (Blueprint $table) {
+            $table->id("idCar");
+            $table->unsignedBigInteger("idUsu");
             $table->timestamps();
+
+            $table->foreign('idUsu')->references('idUsu')->on('usuario')->onDelete('cascade');
+
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('accesorio');
+        Schema::dropIfExists('carrito');
     }
 };

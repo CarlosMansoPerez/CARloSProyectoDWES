@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CocheController;
 use App\Http\Controllers\AccesorioController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
@@ -50,6 +51,11 @@ Route::get("/Inicio", function(){
 // RUTAS PARA EL PERFIL
 
     Route::view("perfil", "perfil.perfil")->name("perfil");
+
+// RUTAS PARA EL CARRITO
+
+    Route::get("carrito/{id}",      [CarritoController::class, "listarCarrito"])->name("carrito.listar");
+    // Route::post("carrito/insertar", [CarritoController::class, "insertarCoche"])->name("carrito.agregar");
 
 // RUTAS PARA REGISTRO
 

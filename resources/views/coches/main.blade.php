@@ -66,8 +66,9 @@
         
         @endif
 
-        <p class="text-white font-bold font-sans text-2xl" style="position:absolute;left:5%;top:109%;">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
-<br>
+        <div class="mt-3" style="margin-left: 5%">
+            <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
+        </div>
 
     @foreach($datos as $coche)
 
@@ -99,14 +100,28 @@
                         <div class="flex flex-row flex-wrap justify-center items-center">
 
                             {{-- AÑO MATRICULACION --}}
-                            <div class="text-lg text-center font-bold text-black mr-4">
-                                <p>{{$coche->anio_matriculacion}}</p>
+                            <div class="text-lg text-center font-bold text-black ml-5 mr-2">
+                                <p><i class="bi bi-calendar2-week-fill"></i> {{$coche->anio_matriculacion}}</p>
                             </div>
 
+                            <b class="mr-2">|</b>
+
                             {{-- COLOR --}}
-                            <div class="flex flex-row flex-wrap justify-center items-center text-sm font-bold text-black">
-                                <p class="text-center text-base">Color</p>
+                            {{-- <div class="flex flex-row flex-wrap justify-center items-center text-sm font-bold text-black">
                                 <div class="font-bold text-black text-lg ml-1" style="background-color: {{$coche->color}}; border: 3px solid black; width:1.5rem; height:1.5rem;">&nbsp;</div>
+                            </div> --}}
+
+                            {{-- KILOMETRAJE --}}
+                            <div class="text-lg text-center font-bold text-black mr-2 flex felx-wrap justify-center items-center flex-row">
+                                <img style="width:1.5rem" class="mr-1" src="{{asset('img/iconoKilometros.png')}}" alt=""><b>{{$coche->kilometros}}</b>
+                            </div>
+
+                            <b class="mr-2">|</b>
+
+
+                            {{-- COMUSTIBLE --}}
+                            <div class="text-lg text-center font-bold text-black mr-2">
+                                <p><i class="bi bi-fuel-pump-fill"></i> {{$coche->combustible}}</p>
                             </div>
 
                         </div>
@@ -114,12 +129,20 @@
 
                         @if (auth()->user()->nombre != "Admin")   <!------------------------------------------>
 
-                        {{-- ACCESORIOS --}}
-                        <div class="mt-5">
+                        {{-- ACCESORIOS  Y CARRITO --}}
+                        <div class="mt-5 flex flex-wrap justify-center items-center">
                             
-                            <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-black   hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">VER ACCESORIOS</a>
-                            <a href="{{route('coches.accesorios', $coche->idCoc)}}#accesoriosCoches" class="bg-red-700 hover:bg-black   duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">AÑADIR <i class="bi bi-cart3"></i></a>
+                            <a href="{{route('coches.accesorios', $coche->idCoc)}}" class="bg-black mr-5  hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">VER ACCESORIOS</a>
+                            
+                            {{-- <form action="{{route('carrito.agregar')}}" method="POST">
+                            @csrf
 
+                                <input type="hidden" value="<?= $coche->idCoc ?>" name="idCoche">
+                                <input type="hidden" value="<?= auth()->user()->idUsu ?>" name="idUsu">
+
+                                <button type="submit" class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">AÑADIR <i class="bi bi-cart3"></i></button>
+                            
+                            </form> --}}
                         </div>
 
 

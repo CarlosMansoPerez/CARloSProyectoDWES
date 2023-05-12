@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Accesorio;
+use App\Models\Carrito;
 use App\Models\Coche;
 use App\Models\Usuario;
+use App\Models\CarritoCoche;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\VarDumper\VarDumper;
 
 class CocheController extends Controller
 {
@@ -32,6 +36,8 @@ class CocheController extends Controller
         $coche->foto = $req->foto;
         $coche->logo = $req->logo;
         $coche->color = $req->color;
+        $coche->kilometros = $req->kilometros;
+        $coche->combustible = $req->combustible;
 
         $coche->save();
 
@@ -56,7 +62,7 @@ class CocheController extends Controller
 
     public function actualizar(Request $req){
 
-        $coche = Coche::find($req->idCoc); //PORQUE NO SE TRAE EL ID
+        $coche = Coche::find($req->idCoc);
 
         $coche->idCoc = $req->idCoc;
         $coche->marca = $req->marca;
@@ -66,21 +72,13 @@ class CocheController extends Controller
         $coche->foto = $req->foto;
         $coche->logo = $req->logo;
         $coche->color = $req->color;
+        $coche->kilometros = $req->kilometros;
+        $coche->combustible = $req->combustible;
 
         $coche->save();
 
         return redirect(route("coches.listado"));
 
-    }
-
-    public function accesorios(Request $req){
-
-        $idCoche = $req->idCoc;
-        $accesorios = Accesorio::all()->where("idCoc",$idCoche);
-        $coches = Coche::find($req->idCoc);
-
-        
-        return view("coches.accesorios",  compact("accesorios"), compact("coches"));
     }
 
     public function imagen(Request $req){
@@ -89,4 +87,6 @@ class CocheController extends Controller
         
         return view("coches.imagen",  compact("imagen"));
     }
+
+
 }

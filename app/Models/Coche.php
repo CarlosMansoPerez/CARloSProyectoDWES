@@ -12,9 +12,5 @@ class Coche extends Model
     protected $table = "coche";
     protected $primaryKey = "idCoc";
 
-    protected $fillable = ["marca", "modelo", "precio", "fecha_matriculacion", "color", "foto", "logo"];
-
-    public function accesorios(){
-        return $this->hasMany('App\Models\Accesorio', 'idAcc', 'idCoc');
-    }
+    protected $fillable = ["marca", "modelo", "precio", "fecha_matriculacion", "color", "kilometros", "combustible", "foto", "logo"];
 }
