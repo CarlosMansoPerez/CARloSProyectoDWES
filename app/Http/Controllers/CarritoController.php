@@ -36,4 +36,25 @@ class CarritoController extends Controller
         
         return view("perfil.carrito", ["datos" => $datos]);
     }
+
+    
+    public function borrar(Request $req){
+
+        CarritoCoche::where('idCar', auth()->user()->idUsu)->where('idCoc', $req->id)->delete();
+
+        return redirect()->route("carrito.listar", auth()->user()->idUsu);
+    }
+
+    public function agregar(Request $req){
+
+        $coche = new CarritoCoche();
+
+        $coche->idCar = auth()->user()->idUsu;
+        $coche->idCoc = $req->idCoche;
+        $coche->cantidad = 1;
+
+        $coche->save();
+
+        return redirect()->route("carrito.listar", auth()->user()->idUsu);
+    }
 }

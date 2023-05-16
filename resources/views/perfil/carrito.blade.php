@@ -30,10 +30,10 @@
 
         <div style="width: 100%; height:auto;" class="h-auto px-5 py-3 text-center text-xl flex flex-row m-auto flex-wrap justify-start items-start">
 
-            <div class="mt-3 p-5" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
+            <div class="mt-3 p-5 flex flex-col align-center justify-center" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
                 
                 @foreach ($datos as $item)
-                    <div id="cardsCarrito" class="m-1 bg-black flex justify-around align-center flex-row p-2">
+                    <div id="cardsCarrito" class="m-1 bg-black flex justify-around align-center flex-row p-2 mt-5">
                         <div class="flex flex-col justify-left align-center text-white mt-5">
                             <p>{{$item["marca"]}}</p>
                             <p>{{$item["modelo"]}}</p>
@@ -44,6 +44,8 @@
                             <img style="width:18rem" src="{{$item["foto"]}}" alt="">
                         </div>
                     </div>
+                    <a href="{{route('carrito.borrar', $item["idCoc"])}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1">ELIMINAR</a>
+
 
                     <?php $total += $item["precio"] ?>
 
@@ -66,7 +68,7 @@
                 <div class="flex flex-wrap flex-col justify-center items-center">
                     <p style="margin-bottom: 20%" class="text-3xl font-bold">TOTAL: <b class="text-4xl text-red-700">{{$total}}€</b></p>
 
-                        <a style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1">PAGAR</a>
+                        <a style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="factura">PAGAR</a>
                 </div>
                 
             </div>

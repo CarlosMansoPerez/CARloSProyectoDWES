@@ -134,7 +134,7 @@
                             
                             <a href="{{route('coches.accesorios', $coche->idCoc)}}" class="bg-black mr-5  hover:bg-red-700 duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">VER ACCESORIOS</a>
                             
-                            {{-- <form action="{{route('carrito.agregar')}}" method="POST">
+                            <form action="{{route('carrito.agregar')}}" method="POST">
                             @csrf
 
                                 <input type="hidden" value="<?= $coche->idCoc ?>" name="idCoche">
@@ -142,7 +142,7 @@
 
                                 <button type="submit" class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1" style="visibility: visible">AÑADIR <i class="bi bi-cart3"></i></button>
                             
-                            </form> --}}
+                            </form>
                         </div>
 
 

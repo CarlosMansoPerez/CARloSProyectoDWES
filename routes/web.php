@@ -54,7 +54,13 @@ Route::get("/Inicio", function(){
 
 // RUTAS PARA EL CARRITO
 
-    Route::get("carrito/{id}",      [CarritoController::class, "listarCarrito"])->name("carrito.listar");
+    Route::get("carrito/{id}",         [CarritoController::class, "listarCarrito"])->name("carrito.listar");
+    Route::get("carrito/borrar/{id}",  [CarritoController::class, "borrar"])->name("carrito.borrar");
+    Route::post("carrito/agregar", [CarritoController::class, "agregar"])->name("carrito.agregar");
+
+    Route::get("carrito/factura", function(){
+        return view('perfil.factura');
+    })->name("carrito.factura");
     // Route::post("carrito/insertar", [CarritoController::class, "insertarCoche"])->name("carrito.agregar");
 
 
