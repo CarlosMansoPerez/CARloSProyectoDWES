@@ -119,7 +119,7 @@
                             <b class="mr-2">|</b>
 
 
-                            {{-- COMUSTIBLE --}}
+                            {{-- COMBUSTIBLE --}}
                             <div class="text-lg text-center font-bold text-black mr-2">
                                 <p><i class="bi bi-fuel-pump-fill"></i> {{$coche->combustible}}</p>
                             </div>

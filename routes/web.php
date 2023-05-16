@@ -57,6 +57,7 @@ Route::get("/Inicio", function(){
     Route::get("carrito/{id}",      [CarritoController::class, "listarCarrito"])->name("carrito.listar");
     // Route::post("carrito/insertar", [CarritoController::class, "insertarCoche"])->name("carrito.agregar");
 
+
 // RUTAS PARA REGISTRO
 
 Route::get("usuario/registrar", [UsuarioController::class, "insertarUsuario"])->name("usuarios.insertar");
