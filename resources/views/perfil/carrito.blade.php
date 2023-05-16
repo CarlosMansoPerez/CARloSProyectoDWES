@@ -57,11 +57,11 @@
 
                 <div class="flex flex-wrap flex-col justify-center items-start">
                     <p class="mb-5 font-bold">Datos de envío</p>
-                    <p class="mb-1">Direccion de envio: Alfredo Palma 21, Campomar 2, Bajo D</p>
-                    <p class="mb-1">Numero de telefono; 640 72 77 53</p>
-                    <p class="mb-1">Codigo postal: 29603</p>
-                    <p class="mb-1">Ciudada: Marbella</p>
-                    <p class="mb-5">Provincia: Málaga</p>
+                    <p class="mb-1">Direccion de envio: {{auth()->user()->direccionEnvio}}</p>
+                    <p class="mb-1">Numero de telefono: {{auth()->user()->numeroTelefono}}</p>
+                    <p class="mb-1">Codigo postal: {{auth()->user()->cp}}</p>
+                    <p class="mb-1">Ciudada: {{auth()->user()->ciudad}}</p>
+                    <p class="mb-5">Provincia: {{auth()->user()->provincia}}</p>
                     <p class="mb-1 mt-5">Fecha estimada de entrega: 24/05/2023</p>
                 </div>
 

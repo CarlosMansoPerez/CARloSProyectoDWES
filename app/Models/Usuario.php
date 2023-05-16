@@ -28,6 +28,11 @@ class Usuario extends Authenticatable
         'email',
         'nombre',
         'password',
+        'direccionEnvio',
+        'ciudad',
+        'provincia',
+        'cp',
+        'numeroTelefono',
     ];
 
     /**
