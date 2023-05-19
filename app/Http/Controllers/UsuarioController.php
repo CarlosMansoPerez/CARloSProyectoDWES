@@ -30,4 +30,23 @@ class UsuarioController extends Controller
         return redirect(route("login"));
     }
 
+
+    public function actualizarUsuario(Request $req){
+
+        $usuario = Usuario::find($req->idUsu);
+
+        $usuario->email = $req->email;
+        $usuario->nombre = $req->nombre;
+        $usuario->direccionEnvio = $req->direccion;
+        $usuario->numeroTelefono = $req->telefono;
+        $usuario->ciudad = $req->ciudad;
+        $usuario->cp = $req->cp;
+        $usuario->provincia = $req->provincia;
+
+        $usuario->save();
+
+        return redirect(route("perfil"));
+
+    }
+
 }

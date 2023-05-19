@@ -51,6 +51,8 @@ Route::get("/Inicio", function(){
 // RUTAS PARA EL PERFIL
 
     Route::view("perfil", "perfil.perfil")->name("perfil");
+    Route::post("perfil",  [UsuarioController::class, "actualizarUsuario"])->name("usuarios.actualizar");
+
 
 // RUTAS PARA EL CARRITO
 
