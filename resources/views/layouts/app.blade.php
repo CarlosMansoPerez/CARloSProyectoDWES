@@ -34,7 +34,7 @@
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('coches.listado')}}#perfil">COCHES</a>
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('accesorios.listado')}}#accesorios" id="accesorios">ACCESORIOS</a>
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('perfil')}}" id="perfil">PERFIL</a>
-                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100 text-xl" href="{{route('carrito.listar', auth()->user()->idUsu)}}" id="carrito"><i class="bi bi-cart3"></i></a>
+                    <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100 text-xl" href="{{route('carrito.listar', auth()->user()->idUsu)}}" id="carrito"><i class="bi bi-cart3"></i><span class="badge" style="font-size:0.9rem"><?=$productos?></span></a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 

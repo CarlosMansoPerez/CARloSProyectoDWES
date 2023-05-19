@@ -16,7 +16,7 @@ class CocheController extends Controller
 {
     public function listar(Request $req){
 
-        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::all("marca"),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion"), "color" => Coche::all("color"), "usuario" => Usuario::find(1),],);
+        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::all("marca"),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion"), "color" => Coche::all("color"), "usuario" => Usuario::find(1),],["productos"=>CarritoCoche::count()]);
         
     }
 
