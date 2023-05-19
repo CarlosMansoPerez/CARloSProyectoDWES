@@ -33,8 +33,9 @@ class CarritoController extends Controller
                 
             ];
         }
-        
-        return view("perfil.carrito", ["datos" => $datos]);
+
+        if(isset($datos)) return view("perfil.carrito", ["datos" => $datos]);
+        else return view("perfil.carrito");
     }
 
     

@@ -26,12 +26,15 @@
 
         <a style="position:absolute; top:2%;left:2%" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="{{route('coches.listado')}}">VOLVER</a>
 
-        <p class="text-center text-red-700 mt-2 text-4xl font-bold">Productos en el carrito de {{auth()->user()->nombre}}</p>
+        <p class="text-center text-red-700 mt-2 text-4xl font-bold">Carrito de {{auth()->user()->nombre}}</p>
 
         <div style="width: 100%; height:auto;" class="h-auto px-5 py-3 text-center text-xl flex flex-row m-auto flex-wrap justify-start items-start">
 
             <div class="mt-3 p-5 flex flex-col align-center justify-center" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
-                
+            
+            <?php
+                if(isset($datos)){
+            ?>
                 @foreach ($datos as $item)
                     <div id="cardsCarrito" class="m-1 bg-black flex justify-around align-center flex-row p-2 mt-5">
                         <div class="flex flex-col justify-left align-center text-white mt-5">
@@ -50,19 +53,30 @@
                     <?php $total += $item["precio"] ?>
 
                 @endforeach
+
+            <?php
+                }else{
+            ?>
+            <div class="flex justify-end align-center flex-col">
+                <p class="text-black text-3xl">El carrito está vacío.</p>
+                <a href="{{route('coches.listado')}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 hover:scale-105 text-white font-bold rounded py-1 mt-5" style="width:20%;margin-left:40%">¡ LLÉNALO !</a>
+            </div>
+            <?php
+                }
+            ?>
             
             </div>
 
             <div class="flex flex-wrap flex-row justify-around items-center my-3 py-2" style="width: 50%;height:auto;min-height:40rem;background-color:#a9a9a9">
 
-                <div class="flex flex-wrap flex-col justify-center items-start">
+                <div class="flex flex-wrap flex-col justify-center items-start" style="text-shadow:1px 1px 1px black">
                     <p class="mb-5 font-bold">Datos de envío</p>
                     <p class="mb-1">Direccion de envio: {{auth()->user()->direccionEnvio}}</p>
                     <p class="mb-1">Numero de telefono: {{auth()->user()->numeroTelefono}}</p>
                     <p class="mb-1">Codigo postal: {{auth()->user()->cp}}</p>
                     <p class="mb-1">Ciudada: {{auth()->user()->ciudad}}</p>
                     <p class="mb-5">Provincia: {{auth()->user()->provincia}}</p>
-                    <p class="mb-1 mt-5">Fecha estimada de entrega: 24/05/2023</p>
+                    <p class="mb-1 mt-5">Fecha estimada de entrega: <?= isset($datos)? date('d/m/Y', strtotime('+9 days')) : "" ?></p>
                 </div>
 
                 <div class="flex flex-wrap flex-col justify-center items-center">
