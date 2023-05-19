@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CarritoCoche;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -47,6 +48,10 @@ class UsuarioController extends Controller
 
         return redirect(route("perfil"));
 
+    }
+
+    public function perfil(){
+        return view("perfil.perfil", ["productos" => CarritoCoche::count()]);
     }
 
 }

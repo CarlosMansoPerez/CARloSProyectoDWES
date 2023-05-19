@@ -50,7 +50,7 @@ Route::get("/Inicio", function(){
 
 // RUTAS PARA EL PERFIL
 
-    Route::view("perfil", "perfil.perfil")->name("perfil");
+    Route::get("perfil",   [UsuarioController::class, "perfil"])->name("perfil");
     Route::post("perfil",  [UsuarioController::class, "actualizarUsuario"])->name("usuarios.actualizar");
 
 
@@ -58,7 +58,7 @@ Route::get("/Inicio", function(){
 
     Route::get("carrito/{id}",         [CarritoController::class, "listarCarrito"])->name("carrito.listar");
     Route::get("carrito/borrar/{id}",  [CarritoController::class, "borrar"])->name("carrito.borrar");
-    Route::post("carrito/agregar", [CarritoController::class, "agregar"])->name("carrito.agregar");
+    Route::post("carrito/agregar",     [CarritoController::class, "agregar"])->name("carrito.agregar");
 
     Route::get("carrito/factura", function(){
         return view('perfil.factura');
