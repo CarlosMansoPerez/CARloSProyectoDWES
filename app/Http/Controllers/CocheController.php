@@ -60,26 +60,28 @@ class CocheController extends Controller
 
     }
 
-    public function actualizar(Request $req){
-
+    public function actualizar(Request $req)
+    {
         $coche = Coche::find($req->idCoc);
-
+    
         $coche->idCoc = $req->idCoc;
         $coche->marca = $req->marca;
         $coche->modelo = $req->modelo;
         $coche->precio = $req->precio;
         $coche->anio_matriculacion = $req->anio;
-        $coche->foto = $req->foto;
-        $coche->logo = $req->logo;
         $coche->color = $req->color;
         $coche->kilometros = $req->kilometros;
         $coche->combustible = $req->combustible;
-
+        $coche->foto = $req->foto;
+        $coche->logo = $req->logo;
+    
         $coche->save();
-
+    
         return redirect(route("coches.listado"));
-
     }
+    
+    
+    
 
     public function imagen(Request $req){
 

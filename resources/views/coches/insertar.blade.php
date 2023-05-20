@@ -13,6 +13,20 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <style>
+            .image-container {
+                width: 200px;
+                height: 200px;
+                border: 1px solid #ccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .image-container img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333;">
 
@@ -34,7 +48,7 @@
                 </nav>
             </div>
 
-            <div class="rounded shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 35rem;height:38rem;margin:auto;" >
+            <div class="rounded shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 55rem;height:38rem;margin:auto;" >
                 
                 <div class="bg-black pb-4 font-sans">
                     <p class="text-center pt-3 font-bold text-red-700 text-3xl">INSERTANDO NUEVO COCHE</p>
@@ -44,14 +58,38 @@
                     <form action="{{route('coches.guardar')}}" class="flex justify-center flex-col items-center" method="post">
                         @csrf
 
-                        <input class="mt-6 text-center w-60" name="marca"  type="text" placeholder="Marca">
-                        <input class="mt-6 text-center w-60" name="modelo" type="text" placeholder="Modelo">
-                        <input class="mt-6 text-center w-60" name="precio" type="number" min="1000" max="500000" placeholder="Precio">
-                        <input class="mt-6 text-center w-60" name="anio"   type="number" min="1990" max="2023" placeholder="Año matriculacion">
-                        <input class="mt-6 text-center w-60" name="foto"   type="url" placeholder="Foto">
-                        <input class="mt-6 text-center w-60" name="logo"   type="url" placeholder="Logo">
-                        <input class="mt-6 text-center w-60" name="color"  type="color" value="#ffffff"><label for="">Color</label>
-    
+                        <div class="flex flex-row justify-around items-center" style="width:100%">
+
+                            <div class="flex flex-col justify-center items-center">
+                                <input class="mt-6 text-center w-60" name="marca"       style="width: 18rem" type="text" placeholder="Marca">
+                                <input class="mt-6 text-center w-60" name="modelo"      style="width: 18rem" type="text" placeholder="Modelo">
+                                <input class="mt-6 text-center w-60" name="precio"      style="width: 18rem" type="number" min="1000" max="500000" placeholder="Precio">
+                                <input class="mt-6 text-center w-60" name="anio"        style="width: 18rem" type="number" min="1990" max="2023" placeholder="Año matriculacion">
+                                <input class="mt-6 text-center w-60" name="kilometros"  style="width: 18rem" type="number" placeholder="kilometros">
+                                <input class="mt-6 text-center w-60" name="combustible" style="width: 18rem" type="text" placeholder="combustible">
+                                <input class="mt-6 text-center w-60" name="color"       style="width: 18rem" type="color" value="#ffffff"><label for="">Color</label>
+                            </div>
+
+                            <div class="flex flex-col justify-center align-center" style="width: 30%;height:27rem">
+                                <div>
+                                    <input type="text" id="url1" placeholder="URL Foto" name="foto" style="margin-top: 3rem;width:17rem">
+                                    <div class="image-container" id="image1" style="width: 17rem">
+                                        <img src="{{asset('img/siluetaCoche.png')}}" alt="Imagen predeterminada" style="width:40rem">
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="text" id="url2" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem">
+                                    <div class="image-container" id="image2" style="width: 17rem">
+                                        <img src="{{asset('img/siluetaLogo.png')}}" alt="Imagen predeterminada" style="width:40rem">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <input type="hidden" name="idUsu">
+                        <input type="hidden" name="idCoc">
+                        
                         <button type="submit" class="bg-red-700 hover:bg-black text-white mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">GUARDAR</button>
                     </form>
 
@@ -60,7 +98,33 @@
             </div>
 
 
-
+            <script>
+                function cargarImagen(inputId, imageId) {
+                    var input = document.getElementById(inputId);
+                    var imageContainer = document.getElementById(imageId);
+                    var image = imageContainer.querySelector('img');
+        
+                    if (input.value.trim() === '') {
+                        // Input vacío, mostrar imagen predeterminada
+                        image.src = 'imagen_predeterminada.jpg';
+                    } else {
+                        // Cargar imagen desde la URL proporcionada
+                        image.src = input.value;
+                    }
+                }
+        
+                var urlInput1 = document.getElementById('url1');
+                var imageContainer1 = document.getElementById('image1');
+                urlInput1.addEventListener('input', function() {
+                    cargarImagen('url1', 'image1');
+                });
+        
+                var urlInput2 = document.getElementById('url2');
+                var imageContainer2 = document.getElementById('image2');
+                urlInput2.addEventListener('input', function() {
+                    cargarImagen('url2', 'image2');
+                });
+            </script>
 
     </body>
 </html>
