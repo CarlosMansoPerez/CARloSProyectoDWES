@@ -9,6 +9,7 @@ use App\Models\Coche;
 use App\Models\Usuario;
 use App\Models\CarritoCoche;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -29,15 +30,15 @@ class CocheController extends Controller
 
         $coche = new Coche();
 
-        $coche->marca = $req->marca;
+        $coche->marca              = $req->marca;
         $coche->modelo             = $req->modelo;
         $coche->precio             = $req->precio;
         $coche->anio_matriculacion = $req->anio;
-        $coche->foto = $req->foto;
-        $coche->logo = $req->logo;
-        $coche->color = $req->color;
-        $coche->kilometros = $req->kilometros;
-        $coche->combustible = $req->combustible;
+        $coche->foto               = $req->foto;
+        $coche->logo               = $req->logo;
+        $coche->color              = $req->color;
+        $coche->kilometros         = $req->kilometros;
+        $coche->combustible        = $req->combustible;
 
         $coche->save();
 
@@ -80,7 +81,12 @@ class CocheController extends Controller
         return redirect(route("coches.listado"));
     }
     
-    
+    public function accesorios(Request $req){
+        
+        $accesorios = DB::table('accesorios')->where('idCoc', $req->idCoc)->get();
+
+        return view("coches.accesorios",["accesorios" => $accesorios, "coche" => Coche::find($req->idCoc)],["productos"=>CarritoCoche::count()]);
+    }
     
 
     public function imagen(Request $req){

@@ -33,35 +33,68 @@
                     </form>                </nav>
             </div>
 
-            <div class="rounded shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 35rem;height:30rem;margin:auto;" >
+            <div class="rounded shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black pb-5" style="width: 45rem;height:auto;margin:auto;" >
                 
                 <div class="bg-black pb-4 font-sans">
                     <p class="text-center pt-3 font-bold text-red-700 text-3xl">INSERTANDO NUEVO ACCESORIO</p>
                 </div>
 
-                <div>
                     <form action="{{route('accesorios.guardar')}}" class="flex justify-center flex-col items-center" method="post">
                         @csrf
 
-                        <select name="coches" id="coches" class="mt-12" style="width:15rem;">
-                            <option value="" selected disabled>Del Coche</option>
-                            @foreach($coches as $item)
-                                <option name="coche" value="{{$item->idCoc}}">{{$item->marca}}&nbsp;{{$item->modelo}}</option>
-                            @endforeach
-                        </select>
-                        <input class="mt-6 text-center w-60" name="nombre" type="text" placeholder="Nombre">
-                        <input class="mt-6 text-center w-60" name="precio" type="number" min="50" max="8000" placeholder="Precio">
-                        <input class="mt-6 text-center w-60" name="foto"   type="url" placeholder="Foto">
-                        
-    
-                        <button type="submit" class="bg-red-700 hover:bg-black text-white mt-12 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">GUARDAR</button>
-                    </form>
+                        <div class="flex justify-between flex row items-center">
 
-                </div>
+                            <div class="flex flex-col flex-wrap justify-center items-center mx-5" style="width: 50%;height:25rem">
+
+                                <select name="accesorios" id="accesorios" style="width:15rem;">
+                                    <option value="">Del Coche</option>
+                                    @foreach ($coche as $item)
+                                        <option value="{{$item->idCoc}}">{{$item->modelo}}</option>
+                                    @endforeach
+                                </select>
+
+                                <input class="mt-6 text-center w-60"  name="nombre" type="text" placeholder="Nombre">
+                                <input class="mt-6 text-center w-60"  name="precio" type="number" min="50" max="8000" placeholder="Precio">
+                            
+                            </div>
+
+                            <div class="flex flex-col justify-center items-center mx-5" style="width: 50%;">
+                                <div>
+                                    <input type="text" id="url1" placeholder="URL Foto" name="foto" style="width:17rem;margin-top:6rem">
+                                    <div class="image-container" id="image1" style="width: 17rem">
+                                        <img src="{{asset('img/siluetaCoche.png')}}" alt="Imagen predeterminada" style="width:40rem">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="bg-red-700 hover:bg-black text-white mt-8 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">GUARDAR</button>
+                    </form>
     
             </div>
 
 
+            <script>
+                function cargarImagen(inputId, imageId) {
+                    var input = document.getElementById(inputId);
+                    var imageContainer = document.getElementById(imageId);
+                    var image = imageContainer.querySelector('img');
+        
+                    if (input.value.trim() === '') {
+                        // Input vacío, mostrar imagen predeterminada
+                        image.src = 'imagen_predeterminada.jpg';
+                    } else {
+                        // Cargar imagen desde la URL proporcionada
+                        image.src = input.value;
+                    }
+                }
+        
+                var urlInput1 = document.getElementById('url1');
+                var imageContainer1 = document.getElementById('image1');
+                urlInput1.addEventListener('input', function() {
+                    cargarImagen('url1', 'image1');
+                });
+            </script>
 
 
     </body>

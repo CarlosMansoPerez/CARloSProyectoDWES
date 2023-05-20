@@ -16,44 +16,54 @@
         <a href="{{route('accesorios.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-1 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;position:absolute;left:38%;">INSERTAR NUEVO ACCESORIO</a>
     @endif
 
-    <p class="text-white font-bold font-sans text-2xl" style="position:absolute;left:5%;top:108%;">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
-
-    <p id="accesorios"></p>
+    <p class="text-white font-bold font-sans text-2xl" style="margin-left: 6%;margin-top:2%">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
+        
+    <div class="flex justify-start flex-wrap items-center flex-row">
     @foreach($datos as $accesorio)
 
-            {{-- CARDS --}}
-            <div class="rounded float-left mt-12 mb-7 shadow-lg my-8 bg-gray-200 hover:bg-gray-300 hover:scale-105 duration-700 text-center shadow-black" style="width: 15rem;height:19rem; margin-left: 5.5%;z-index:0;" >
+    {{-- CARDS --}}
+    <div class="rounded shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 25rem;height:auto;min-height:29rem; margin-left: 5.5%;z-index:0;" >
 
-                {{-- CABECERA --}}
-                    <div class="font-bold text-2xl mb-1">
-                            <p class="text-lg  mx-6 mt-5 font-serif">{{$accesorio->nombre}}</p>
-                            <p class="text-2xl mx-6  font-serif text-red-700">{{$accesorio->precio}}€</p>
-                    </div>
+        {{-- CABECERA --}}
+            <div class="font-bold text-2xl mb-1 text-center">
+                    <p class="text-2xl  mx-6 font-serif mt-5 ">{{$accesorio->nombre}}</p>
+            </div>
 
-                    {{-- IMAGEN --}}
-                        <img src="{{$accesorio->foto}}" class="mt-3  m-auto" style="width: 15rem; height: 10rem;">
+            {{-- IMAGEN --}}
+                <a href="{{route('coches.imagen', $accesorio->idCoc)}}"><img src="{{$accesorio->foto}}" class="mt-7 m-auto" style="width: 23rem; height: 15rem;"></a>
 
-                    @if (auth()->user()->nombre != "Admin")
-                    
-                    @else
-
-                        <div class="mt-1">
-                            {{-- BORRAR --}}
-                            <div class="mt-3 ml-3" style="float: left;">
-                                <a href="{{route('accesorios.editar', $accesorio->idAcc)}}" class="bg-black hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">EDITAR</a>
-                            </div>
-                            {{-- EDITAR --}}
-                            <div class="mt-3 mr-3" style="float: right;">
-                                <a href="{{route('accesorios.borrar', $accesorio->idAcc)}}" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">BORRAR</a>
-                            </div>
-
-                    @endif
-
-                    </div>
+            {{-- DATOS --}}
+            <div class="flex flex-col flex-wrap justify-center items-center h-auto pb-3 pt-5">
+                
+                {{-- PRECIO --}}
+                <div class="mb-2">
+                    <p class="text-center text-3xl text-red-700 font-bold mt-3" style="text-shadow: 1px 1px 1px black">{{$accesorio->precio}}€</p> 
                 </div>
 
-        @endforeach
+                @if (auth()->user()->nombre == "Admin")   <!------------------------------------------>
 
+                <div class="flex flex-wrap justify-center items-center text-center mt-5">
+
+                    {{-- EDITAR --}}
+                    <div class="m-1" style="">
+                        <a href="{{route('accesorios.editar', $accesorio->id)}}" class="text-lg bg-black hover:bg-zinc-800 text-white font-bold rounded px-2 py-1 ">EDITAR</a>
+                    </div>
+
+                    <div class="m-1" style="">
+                        {{-- BORRAR --}}
+                        <a href="{{route('accesorios.borrar', $accesorio->id)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
+                    </div>
+
+                </div>
+
+                @endif
+
+            </div>
+
+    </div>
+
+@endforeach
+</div>
     @endempty
 
 @endsection

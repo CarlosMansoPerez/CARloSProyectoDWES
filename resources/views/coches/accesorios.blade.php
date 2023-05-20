@@ -12,7 +12,7 @@
 
     @else --}}
 
-    <p id="accesoriosCoches" class="text-center mt-6 text-white text-2xl">Accesorios <br> <b>{{$coches->marca}} {{$coches->modelo}}</b></p>
+    <p id="accesoriosCoches" class="text-center mt-6 text-white text-2xl">Accesorios <br> <b>{{$coche->marca}} {{$coche->modelo}}</b></p>
 
     @foreach($accesorios as $accesorio)
 
@@ -28,28 +28,21 @@
                     {{-- IMAGEN --}}
                         <img src="{{$accesorio->foto}}" class="mt-3  m-auto" style="width: 15rem; height: 10rem;">
                     
-                @if (auth()->user()->nombre != "Admin")
-                    
-                @else
-                    
-                
                     <div class="mt-1">
                         {{-- BORRAR --}}
                         <div class="mt-3 ml-3" style="float: left;">
-                            <a href="{{route('accesorios.editar', $accesorio->idAcc)}}" class="bg-black hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">EDITAR</a>
+                            <a href="{{route('accesorios.editar', $accesorio->id)}}" class="bg-black hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">EDITAR</a>
                         </div>
                         {{-- EDITAR --}}
                         <div class="mt-3 mr-3" style="float: right;">
-                            <a href="{{route('accesorios.borrar', $accesorio->idAcc)}}" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">BORRAR</a>
+                            <a href="{{route('accesorios.borrar', $accesorio->id)}}" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">BORRAR</a>
                         </div>
-                        
-                        @endif
-                        
+
                     </div>
                 </div>
 
         @endforeach
 
-    @endempty
+    {{-- @endempty --}}
 
 @endsection
