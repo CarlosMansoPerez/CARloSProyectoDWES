@@ -60,13 +60,29 @@
 
                         <div class="flex flex-row justify-around items-center" style="width:100%">
 
-                            <div class="flex flex-col justify-center items-center">
-                                <input class="mt-6 text-center w-60" name="marca"       style="width: 18rem" type="text" placeholder="Marca">
-                                <input class="mt-6 text-center w-60" name="modelo"      style="width: 18rem" type="text" placeholder="Modelo">
+                            <div class="flex flex-col justify-center items-center mt-5">
+
+                                <select name="marca" id="marcaSelect" style="width: 18rem" class="text-center">
+                                    <option value="" selected disabled>Marca</option>
+                                    @foreach ($marcas as $item)
+                                        <option value="{{$item}}">{{$item}}</option>
+                                    @endforeach
+                                </select>
+
+                                <select id="modeloSelect" name="modelo" style="width: 18rem" class="mt-6 text-center">
+                                <option value="">Selecciona una marca primero</option>
+                                </select>
+                                
                                 <input class="mt-6 text-center w-60" name="precio"      style="width: 18rem" type="number" min="1000" max="500000" placeholder="Precio">
                                 <input class="mt-6 text-center w-60" name="anio"        style="width: 18rem" type="number" min="1990" max="2023" placeholder="Año matriculacion">
-                                <input class="mt-6 text-center w-60" name="kilometros"  style="width: 18rem" type="number" placeholder="kilometros">
-                                <input class="mt-6 text-center w-60" name="combustible" style="width: 18rem" type="text" placeholder="combustible">
+                                <input class="mt-6 text-center w-60" name="kilometros"  style="width: 18rem" type="number" placeholder="Kilometros">
+                                
+                                <select name="combustible" id="combustible" class="mt-6 text-center" style="width: 18rem">
+                                    <option value="" selected disabled>Combustible</option>
+                                    <option value="Diesel">Diésel</option>
+                                    <option value="Gasolina">Gasolina</option>
+                                </select>
+
                                 <input class="mt-6 text-center w-60" name="color"       style="width: 18rem" type="color" value="#ffffff"><label for="">Color</label>
                             </div>
 
@@ -78,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" id="url2" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem">
+                                    <input type="text" id="logoInput" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem">
                                     <div class="image-container" id="image2" style="width: 17rem">
                                         <img src="{{asset('img/siluetaLogo.png')}}" alt="Imagen predeterminada" style="width:40rem">
                                     </div>
@@ -119,11 +135,98 @@
                     cargarImagen('url1', 'image1');
                 });
         
-                var urlInput2 = document.getElementById('url2');
+                var urlInput2 = document.getElementById('logoInput');
                 var imageContainer2 = document.getElementById('image2');
-                urlInput2.addEventListener('input', function() {
-                    cargarImagen('url2', 'image2');
+                urlInput2.addEventListener('change', function() {
+                    cargarImagen('logoInput', 'image2');
                 });
+
+
+                var marcaSelect = document.getElementById('marcaSelect');
+                var modeloSelect = document.getElementById('modeloSelect');
+                var logoInput = document.getElementById('logoInput');
+
+                // Función para cargar los modelos según la marca seleccionada
+                function cargarModelos() {
+
+                    var marcaSeleccionada = marcaSelect.value;
+
+                    // Limpio las opciones anteriores
+                    modeloSelect.innerHTML = '';
+
+                    // Obtengo los modelos correspondientes a la marca seleccionada
+                    var modelos = obtenerModelos(marcaSeleccionada);
+
+                    // Agrego las opciones de modelos al select
+                    modelos.forEach(modelo => {
+                        var option = document.createElement('option');
+                        option.value = modelo;
+                        option.text = modelo;
+                        modeloSelect.appendChild(option);
+                    });
+                }
+
+                marcaSelect.addEventListener('change', cargarModelos);
+                marcaSelect.addEventListener('change', cambiarLogo);
+
+                // Modelos de marca específica
+                function obtenerModelos(marca) {
+                    switch (marca) {
+                        case 'Volkswagen':
+                            return ['Golf GTI', 'Polo GTI'];
+                        case 'BMW':
+                            return ['Serie 1', 'Serie 3', 'Serie 5', 'X6'];
+                        case 'Mercedes-Benz':
+                            return ['Clase A', 'Clase C', 'Clase E', 'Clase S'];
+                        case 'Audi':
+                            return ['A3', 'A4', 'A6', 'Q5'];
+                        case 'Ford':
+                            return ['Focus', 'Mondeo', 'Mustang'];
+                        case 'Porsche':
+                            return ['911 Carrera', ' Cayenne', 'Panamera', 'Boxster', 'Cayman', 'Macan'];
+                        case 'Ferrari':
+                            return ['Portofino', '488 GTB', '812 Superfast', 'SF90 Stradale'];
+                        case 'Toyota':
+                            return ['Yaris GR'];
+                        case 'Honda':
+                            return ['Civic', 'HR-V', 'CR-V'];
+                        case 'Renault':
+                            return ['Clio RS', 'Mégane RS'];
+                        case 'Mini':
+                            return ['Cooper', 'Clubman', 'Countryman', 'Cabrio'];
+                        case 'Chevrolet':
+                            return ['Cammaro', 'Corvette'];
+                    }
+                }
+
+                function cambiarLogo() {
+                    var marcaSeleccionada = marcaSelect.value;
+
+                    // Definir un objeto con las URL de los logos de las marcas
+                    var logos = {
+                    "Volkswagen": 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png',
+                    "BMW":"https://cdn.icon-icons.com/icons2/1834/PNG/512/iconfinderbmwlogo4140436-115966_115915.png",
+                    "Mercedes-Benz":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/2048px-Mercedes-Logo.svg.png",
+                    "Audi":"https://www.rentacarfloridacars.com/wp-content/uploads/2016/12/Audi-Logo-2013.png",
+                    "Ford":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ford_Motor_Company_Logo.svg/2560px-Ford_Motor_Company_Logo.svg.png",
+                    "Porsche":"https://logos-world.net/wp-content/uploads/2021/04/Porsche-Logo.png",
+                    "Ferrari":"https://i.pinimg.com/originals/ae/db/ae/aedbaebd3b32e25585970765a86cbe22.png",
+                    "Toyota":"https://logotipoz.com/wp-content/uploads/2022/11/toyota-logo-vector.png",
+                    "Honda":"https://www.pngmart.com/files/1/Honda-Logo-PNG.png",
+                    "Renault":"https://cdn.cookielaw.org/logos/1058e0b9-ee95-4d43-8292-3dae40ce5c3c/903e2d1c-4b45-44eb-a67d-70bb644cc381/1e201975-19cd-4a3d-b0c3-7bbe1a2fb964/renault.png",
+                    "Mini":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/MINI_logo.svg/1200px-MINI_logo.svg.png",
+                    "Chevrolet":"https://1000marcas.net/wp-content/uploads/2020/01/Chevrolet-logo.png"                
+                };
+
+                    // Obtener la URL del logo correspondiente a la marca seleccionada
+                    var urlLogo = logos[marcaSeleccionada];
+
+                    // Asignar la URL al atributo src del input de imagen
+                    logoInput.value = urlLogo;
+
+                    var changeEvent = new Event('change');
+                    urlInput2.dispatchEvent(changeEvent);
+                }
             </script>
 
     </body>

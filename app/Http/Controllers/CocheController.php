@@ -23,7 +23,22 @@ class CocheController extends Controller
 
     public function insertarCoche(Request $req){
 
-        return view("coches.insertar");
+        $marcas = array(
+            "Volkswagen",
+            "BMW",
+            "Mercedes-Benz",
+            "Audi",
+            "Ford",
+            "Porsche",
+            "Ferrari",
+            "Toyota",
+            "Honda",
+            "Renault",
+            "Mini",
+            "Chevrolet",
+        );
+        
+        return view("coches.insertar", ["marcas" => $marcas]);
     }
 
     public function guardar(Request $req){
