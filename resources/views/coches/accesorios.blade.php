@@ -2,15 +2,15 @@
 
 @section("main")
 
-    {{-- @if(count($accesorios) == 0)
+    @if(count($accesorios) == 0)
 
         <div class="bg-red-300 text-center py-6 text-xl">
-            <p id="accesoriosCoches">No hay accesorios disponibles para el <b>{{$coches->marca}} {{$coches->modelo}}</b></p>
+            <p id="accesoriosCoches">No hay accesorios disponibles para el <b>{{$coche->marca}} {{$coche->modelo}}</b></p>
             <p>Contacta con el administrador de la base de datos para insertarlos</p><br>
             <a class="bg-black hover:bg-zinc-800 font-sans text-white ml-6 mt-6 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" href="{{route('coches.listado')}}">VOLVER</a>
         </div> 
 
-    @else --}}
+    @else
 
     <p id="accesoriosCoches" class="text-center mt-6 text-white text-2xl">Accesorios <br> <b>{{$coche->marca}} {{$coche->modelo}}</b></p>
 
@@ -43,6 +43,6 @@
 
         @endforeach
 
-    {{-- @endempty --}}
+    @endempty
 
 @endsection

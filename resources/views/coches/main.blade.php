@@ -2,6 +2,10 @@
 
 @section("main")
 
+    <div class="mt-5" style="margin-left: 3%">
+        <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
+    </div>
+
     @empty($datos)
 
         <div class="bg-red-300">
@@ -9,71 +13,88 @@
         </div> 
 
     @else
+
+    <?php
+
+    ?>
         {{-- FILTRO --}}
-        {{-- <div class="text-red-500 text-lg" style="width:100%;height:3rem;background-color:#333333">
+        <div class="text-red-700 text-lg mt-3" style="margin-left:4rem;width:88%;height:3rem;background-color:#333333">
             <div class="flex justify-start">            
                 <p class="mt-2 ml-5 mt-4 font-semibold">Filtrar por</p>
                 {{-- MARCA --}}
-                {{-- <select name="marcas" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
+                <select id="marcas" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
                     <option value=""selected disabled>Marca</option>
                     @foreach ($marcas as $item)
                         <option value="{{$item->marca}}">{{$item->marca}}</option>
                     @endforeach
-                </select> --}}
+                </select>
                 {{-- MODELO --}}
-                {{-- <select name="modelos" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                <select id="modelos" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
                     <option value=""selected disabled>Modelo</option>
                     @foreach ($modelos as $item)
                         <option value="{{$item->modelo}}">{{$item->modelo}}</option>
                     @endforeach 
-                </select> --}}
+                </select>
                 {{-- PRECIO --}}
-                {{-- <select name="precios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:11rem;height:3rem;">
+                <select id="precios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:11rem;height:3rem;">
                     <option value=""selected disabled>Precio</option>
-                    <option value="">0 - 5000€</option>
-                    <option value="">5000  - 10000€</option>
-                    <option value="">10000 - 20000€</option>
-                    <option value="">20000 - 50000€</option>
-                    <option value="">50000 - 100000€</option> --}}
-                        {{-- @foreach ($precios as $item)
-                            <option value="{{$item->precio}}">{{$item->precio}}</option>
-                        @endforeach --}}
-                {{-- </select> --}}
+                    <option value="5000">Menos de 5.000€</option>
+                    <option value="10000">Menos de 10.000€</option>
+                    <option value="25000">Menos de 25.000€</option>
+                    <option value="50000">Menos de 50.000€</option>
+                    <option value="100000">Menos de 100.000€</option>
+                    <option value="1000000">Más de 100.000€</option>
+                </select>
                 {{-- AÑO MATRICULACION --}}
-                    {{-- <select name="anios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                    <select id="anios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
                         <option value="" selected disabled>Año</option>
-                            @foreach ($anios as $item)
-                                <option value="{{$item->anio_matriculacion}}">{{$item->anio_matriculacion}}</option>
-                            @endforeach
-                    </select> --}}
+                            <?php for($i=2009;$i<2024;$i++){ ?>
+                                <option value="{{$i}}">{{$i}}</option>
+                            <?php } ?>
+                    </select>
                 {{-- COLOR --}}
-                {{-- <select name="colores" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                {{-- <select id="colores" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
                     <option value="">Color</option>
                     @foreach ($color as $item)
-                        <option value="{{$item->color}}" style="background:#{{$item->color}}"><span style="">Color</span></option>
+                        <option value="{{$item->color}}"><span><p  style="color:red">Hola</p></span></option>
                     @endforeach
+                </select> --}}
+                {{-- COMBUSTIBLE --}}
+                <select id="combustibles" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
+                    <option value="" selected disabled>Combustible</option>
+                            <option value="Diesel">Diésel</option>
+                            <option value="Gasolina">Gasolina</option>
                 </select>
-            </div>
-        </div> --}}
+                {{-- KILOMETROS --}}
+                <select id="kilometros" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:11rem;height:3rem;">
+                    <option value=""selected disabled>Kilometros</option>
+                    <option value="10000">Menos de 10.000</option>
+                    <option value="25000">Menos de 25.000</option>
+                    <option value="50000">Menos de 50.000</option>
+                    <option value="100000">Menos de 100.000</option>
+                    <option value="200000">Menos de 200.000</option>
+                    <option value="1000000">Más de 200.000</option>
+                </select>
 
-        {{-- {{dd(auth()->user());}} --}}
+                <div id="borrarFiltros" style="width:3rem;height:3rem;background-color:rgb(0, 0, 0);border:1px solid gray" class="ml-5 mt-2 flex justify-center items-center text-2xl hover:cursor-pointer hover:bg-red-700 hover:text-white">
+                    <i class="bi bi-trash3-fill"></i>
+                </div>
+
+            </div>
+        </div>
 
         @if (auth()->user()->nombre != "Admin")
         
         @else
 
-        <a href="{{route('coches.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;position:absolute;left:38%;">INSERTAR NUEVO COCHE</a>
+        <a href="{{route('coches.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;position:absolute;left:38%;top:104%">INSERTAR NUEVO COCHE</a>
         
         @endif
-
-        <div class="mt-3" style="margin-left: 5%">
-            <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
-        </div>
 
     @foreach($datos as $coche)
 
             {{-- CARDS --}}
-            <div class="rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
+            <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
 
                 {{-- CABECERA --}}
                     <div class="font-bold text-2xl mb-1">
