@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accesorio;
 use Illuminate\Http\Request;
 use App\Models\Carrito;
 use App\Models\CarritoCoche;
@@ -34,7 +35,19 @@ class CarritoController extends Controller
             ];
         }
 
-        if(isset($datos)) return view("perfil.carrito", ["datos" => $datos]);
+        if(isset($datos)){
+
+            $accesorios = [];
+
+            foreach ($datos as $cocheAcc) {
+                $results = Accesorio::where("idCoc", $cocheAcc["idCoc"])->get();
+                foreach ($results as $result) {
+                    $accesorios[] = $result;
+                }
+            }
+        }
+
+        if(isset($datos)) return view("perfil.carrito", ["datos" => $datos], ["accesorios" => $accesorios]);
         else return view("perfil.carrito");
     }
 

@@ -80,3 +80,5 @@ document.getElementById("borrarFiltros").addEventListener("click", borrarFiltros
 function borrarFiltros(){
     location.reload(true);
 }
+
+

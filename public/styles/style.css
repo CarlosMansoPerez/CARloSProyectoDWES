@@ -495,3 +495,33 @@ article:hover img:last-child{
     padding: 5px;
     font-size: .4rem;
 }
+
+#divExtras{
+    width: 40rem;
+    height: auto;
+    padding: 2rem 4rem 4rem 2rem;
+    background-color: rgb(211, 211, 211);
+    color: black;
+    position: absolute;
+}
+
+#cerrarAccesorios{
+    position: relative;
+    top: 2%;
+    left: 50%;
+    font-size: 2rem;
+    color: rgb(225, 21, 21);
+    transition: 1s;
+}
+
+#cerrarAccesorios:hover{
+    cursor: pointer;
+}
+
+#ventanaAccesorios{
+    width:20rem; 
+    display:none;
+    background-color: #6c6c6c;
+    margin-top: 1rem;
+    width: 100%;
+}

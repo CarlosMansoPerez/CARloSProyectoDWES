@@ -17,7 +17,10 @@ class CocheController extends Controller
 {
     public function listar(Request $req){
 
-        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::all("marca"),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion")->get(), "color" => Coche::all("color"), "usuario" => Usuario::find(1),],["productos"=>CarritoCoche::count()]);
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
+
+        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::distinct()->select('marca')->get(),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion")->get(), "color" => Coche::all("color"), "usuario" => Usuario::find(1),],["productos"=>$productos->count()]);
         
     }
 
@@ -100,7 +103,7 @@ class CocheController extends Controller
         
         $accesorios = DB::table('accesorios')->where('idCoc', $req->idCoc)->get();
 
-        return view("coches.accesorios",["accesorios" => $accesorios, "coche" => Coche::find($req->idCoc)],["productos"=>CarritoCoche::count()]);
+        return view("coches.accesorios",["accesorios" => $accesorios, "coche" => Coche::find($req->idCoc)],["productos"=>CarritoCoche::count()->where("idCar", auth()->user()->idUsu)]);
     }
     
 

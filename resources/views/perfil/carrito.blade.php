@@ -20,8 +20,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <link rel="stylesheet" href="{{asset('styles/style.css')}}">
+
+        <script defer src="{{asset('js/carrito.js')}}"></script>
         
     </head>
+
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
         <a style="position:absolute; top:2%;left:2%" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="{{route('coches.listado')}}">VOLVER</a>
@@ -35,6 +38,8 @@
             <?php
                 if(isset($datos)){
             ?>
+                <b id="extras" class="extras text-lg bg-black hover:bg-white hover:text-red-700 text-white font-bold rounded px-2 py-1">VER EXTRAS</b>
+
                 @foreach ($datos as $item)
                     <div id="cardsCarrito" class="m-1 bg-black flex justify-around align-center flex-row p-2 mt-5">
                         <div class="flex flex-col justify-left align-center text-white mt-5">
@@ -46,11 +51,33 @@
                         <div>
                             <img style="width:18rem" src="{{$item["foto"]}}" alt="">
                         </div>
-                    </div>
-                    <a href="{{route('carrito.borrar', $item["idCoc"])}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1">ELIMINAR</a>
 
+                    </div>
+
+                    <div>
+                        <a href="{{route('carrito.borrar', $item["idCoc"])}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1">ELIMINAR</a>
+                    </div>
 
                     <?php $total += $item["precio"] ?>
+
+                    <div id="ventanaAccesorios" class="ventanaAccesorios">
+                        <b id="cerrarAccesorios"></b>
+                        @foreach ($accesorios as $accesorio)
+                            <?php if($accesorio['idCoc'] == $item['idCoc']){ ?>
+                                <div class="p-2 flex justify-between flex-row items-center" style="border: 2px solid red;">
+                                    <div class="w-9/12">
+                                        <p>{{$accesorio['nombre']}}</p>
+                                        <p class="font-bold">{{$accesorio['precio']}}€</p>
+                                    </div>
+                                    <img src="{{$accesorio['foto']}}" class="mr-8" style="width:8rem;">
+                                    <div class="w-3/12 text-left">
+                                        <button data-precio="{{$accesorio['precio']}}" data-nombre="{{$accesorio['nombre']}}" class="text-lg bg-red-700 hover:bg-black hover:text-white hover:scale-105 text-white font-bold rounded py-1 px-2 mt-5 aniadir">AÑADIR</button>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        @endforeach
+                        <p></p>
+                    </div>
 
                 @endforeach
 
@@ -79,8 +106,21 @@
                     <p class="mb-1 mt-5">Fecha estimada de entrega: <?= isset($datos)? date('d/m/Y', strtotime('+9 days')) : "" ?></p>
                 </div>
 
-                <div class="flex flex-wrap flex-col justify-center items-center">
-                    <p style="margin-bottom: 20%" class="text-3xl font-bold">TOTAL: <b class="text-4xl text-red-700">{{$total}}€</b></p>
+                <div class="flex flex-wrap flex-col justify-center items-center" style="width:40rem">
+                    
+                    <p style="text-shadow:1px 1px 1px black;margin-left:-50%" class="font-bold mb-5">Resumen del pedido:</p>
+
+                    <div id="resumen" class="flex flex-wrap flex-col justify-start items-start text-left mb-5" style="text-shadow:1px 1px 1px black; margin-left:-35%">
+                        <?php if(isset($datos)){ ?>
+                        @foreach ($datos as $productos)
+                        <div class="flex flex-row justify-start items-start">
+                            <p style="width:15rem">{{$productos["marca"]}} {{$productos['modelo']}}</p><b>{{$productos['precio']}}€</b>
+                        </div>
+                        @endforeach
+                        <?php } ?>
+                    </div>
+
+                    <p style="margin-bottom: 5%" class="text-3xl font-bold">TOTAL: <b id="total" class="text-4xl text-red-700">{{$total}}</b><b class="text-4xl text-red-700">€</b></p>
 
                         <a style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="factura">PAGAR</a>
                 </div>
