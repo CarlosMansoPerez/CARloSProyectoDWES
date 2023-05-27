@@ -26,10 +26,24 @@
                     <form action="{{route('usuarios.guardar')}}" class="flex justify-center flex-col items-center mt-12" method="post">
                         @csrf
 
-                            <input class="mt-6 text-center w-60 mb-4" name="nombre"   type="text"     placeholder="Nombre">
-                            <input class="mt-6 text-center w-60 mb-4" name="email"    type="email"    placeholder="Correo electrónico">
-                            <input class="mt-6 text-center w-60 mb-4" name="password" type="password" placeholder="Contraseña">
+                        <div class="flex flex-wrap flex-row justify-center items-center gap-12 ">
 
+                            <div class="flex flex-wrap flex-col justify-center items-center">
+                                <input class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">
+                                <input class="mt-6 text-center w-60 mb-4" name="email"          type="email"    placeholder="Correo electrónico">
+                                <input class="mt-6 text-center w-60 mb-4" name="password"       type="password" placeholder="Contraseña">
+                                <input class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text"     placeholder="Nº teléfono">
+                            </div>
+
+                            <div class="flex flex-wrap flex-col justify-center items-center">
+                                <input class="mt-6 text-center w-60 mb-4" name="direccionEnvio" type="text" placeholder="Direccion de Envio">
+                                <input class="mt-6 text-center w-60 mb-4" name="provincia"      type="text" placeholder="Provincia">
+                                <input class="mt-6 text-center w-60 mb-4" name="ciudad"         type="text" placeholder="Ciudad">
+                                <input class="mt-6 text-center w-60 mb-4" name="cp"             type="text" placeholder="Código Postal">
+                            </div>
+
+                        
+                        </div>
                         <button type="submit" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">REGISTRARSE</button>
                     </form>
 <br><br>

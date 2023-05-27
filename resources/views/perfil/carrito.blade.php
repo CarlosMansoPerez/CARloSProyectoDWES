@@ -37,10 +37,8 @@
             <div class="mt-3 p-5 flex flex-col align-center justify-center" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
             
             <?php
+                $productosFactura = [];
                 if(isset($datos)){
-                
-                    $productosFactura = [];
-
             ?>
 
             <form action="{{asset('actions/pdf.php')}}" method="POST">
@@ -110,19 +108,23 @@
                     <p class="mb-1">Codigo postal: {{auth()->user()->cp}}</p>
                     <p class="mb-1">Ciudada: {{auth()->user()->ciudad}}</p>
                     <p class="mb-5">Provincia: {{auth()->user()->provincia}}</p>
+                    <?php if(isset($datos)){ ?>
                     <p class="mb-1 mt-5">Fecha estimada de entrega: <?= isset($datos)? date('d/m/Y', strtotime('+9 days')) : "" ?></p>
+                    <?php } ?>
                 </div>
 
                 <div class="flex flex-wrap flex-col justify-center items-center" style="width:40rem">
                     
+                    <?php if(isset($datos)){ ?>
                     <p style="text-shadow:1px 1px 1px black;margin-left:-50%" class="font-bold mb-5">Resumen del pedido:</p>
-
+                    <?php } ?>
                     <div id="resumen" class="flex flex-wrap flex-col justify-start items-start text-left mb-5" style="text-shadow:1px 1px 1px black; margin-left:-35%">
                         <?php if(isset($datos)){ ?>
                         @foreach ($datos as $productos)
                         <div class="flex flex-row justify-start items-start">
                             <p style="width:15rem">{{$productos["marca"]}} {{$productos['modelo']}}</p><b>{{$productos['precio']}}€</b>
                         </div>
+                        
                         <?php array_push($productosFactura, $productos["marca"],$productos["modelo"],$productos["anio_matriculacion"]); ?>
                         @endforeach
                         <?php } ?>

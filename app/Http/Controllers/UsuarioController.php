@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carrito;
 use App\Models\CarritoCoche;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class UsuarioController extends Controller
 
     public function guardarUsuario(Request $req){
 
+        $contadorUsuarios = 3;
+        $contadorUsuarios++;
         $contra = Hash::make($req->password);
 
         $usuario = new Usuario();
@@ -25,8 +28,18 @@ class UsuarioController extends Controller
         $usuario->nombre   = $req->nombre;
         $usuario->email    = $req->email;
         $usuario->password = $contra;
+        $usuario->direccionEnvio = $req->direccionEnvio;
+        $usuario->numeroTelefono = $req->numeroTelefono;
+        $usuario->ciudad = $req->ciudad;
+        $usuario->cp = $req->cp;
+        $usuario->provincia = $req->provincia;
 
         $usuario->save();
+
+        $carrito = new Carrito();
+        $carrito->idCar = $contadorUsuarios;
+        $carrito->idUsu = $contadorUsuarios;
+        $carrito->save();
 
         return redirect(route("login"));
     }
