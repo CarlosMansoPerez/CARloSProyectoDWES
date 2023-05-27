@@ -102,8 +102,10 @@ class CocheController extends Controller
     public function accesorios(Request $req){
         
         $accesorios = DB::table('accesorios')->where('idCoc', $req->idCoc)->get();
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
-        return view("coches.accesorios",["accesorios" => $accesorios, "coche" => Coche::find($req->idCoc)],["productos"=>CarritoCoche::count()->where("idCar", auth()->user()->idUsu)]);
+        return view("coches.accesorios",["accesorios" => $accesorios, "coche" => Coche::find($req->idCoc)],["productos"=>$productos->count()]);
     }
     
 

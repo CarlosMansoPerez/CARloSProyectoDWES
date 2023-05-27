@@ -28,6 +28,7 @@
                     {{-- IMAGEN --}}
                         <img src="{{$accesorio->foto}}" class="mt-3  m-auto" style="width: 15rem; height: 10rem;">
                     
+                    <?php if(auth()->user()->idUsu == 2){ ?>
                     <div class="mt-1">
                         {{-- BORRAR --}}
                         <div class="mt-3 ml-3" style="float: left;">
@@ -37,7 +38,7 @@
                         <div class="mt-3 mr-3" style="float: right;">
                             <a href="{{route('accesorios.borrar', $accesorio->id)}}" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">BORRAR</a>
                         </div>
-
+                    <?php } ?>
                     </div>
                 </div>
 
