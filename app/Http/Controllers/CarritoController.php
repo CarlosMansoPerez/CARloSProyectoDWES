@@ -71,4 +71,8 @@ class CarritoController extends Controller
 
         return redirect()->route("carrito.listar", auth()->user()->idUsu);
     }
+
+    public function factura(Request $req){
+        return view("pdf.plantilla", ["datos" => $req->prueba]);
+    }
 }

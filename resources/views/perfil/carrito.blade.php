@@ -20,6 +20,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <link rel="stylesheet" href="{{asset('styles/style.css')}}">
+        <script  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script defer src="{{asset('js/carrito.js')}}"></script>
         
@@ -37,7 +38,13 @@
             
             <?php
                 if(isset($datos)){
+                
+                    $productosFactura = [];
+
             ?>
+
+            <form action="{{asset('actions/pdf.php')}}" method="POST">
+
                 <b id="extras" class="extras text-lg bg-black hover:bg-white hover:text-red-700 text-white font-bold rounded px-2 py-1">VER EXTRAS</b>
 
                 @foreach ($datos as $item)
@@ -71,7 +78,7 @@
                                     </div>
                                     <img src="{{$accesorio['foto']}}" class="mr-8" style="width:8rem;">
                                     <div class="w-3/12 text-left">
-                                        <button data-precio="{{$accesorio['precio']}}" data-nombre="{{$accesorio['nombre']}}" class="text-lg bg-red-700 hover:bg-black hover:text-white hover:scale-105 text-white font-bold rounded py-1 px-2 mt-5 aniadir">AÑADIR</button>
+                                        <b data-precio="{{$accesorio['precio']}}" data-nombre="{{$accesorio['nombre']}}" class="text-lg bg-red-700 hover:bg-black hover:text-white hover:scale-105 text-white font-bold rounded py-1 px-2 mt-5 aniadir">AÑADIR</b>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -116,14 +123,22 @@
                         <div class="flex flex-row justify-start items-start">
                             <p style="width:15rem">{{$productos["marca"]}} {{$productos['modelo']}}</p><b>{{$productos['precio']}}€</b>
                         </div>
+                        <?php array_push($productosFactura, $productos["marca"],$productos["modelo"],$productos["anio_matriculacion"]); ?>
                         @endforeach
                         <?php } ?>
                     </div>
 
                     <p style="margin-bottom: 5%" class="text-3xl font-bold">TOTAL: <b id="total" class="text-4xl text-red-700">{{$total}}</b><b class="text-4xl text-red-700">€</b></p>
 
-                        <a style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="factura">PAGAR</a>
-                </div>
+                    <?php $productosFacturaString = implode(",", $productosFactura);?>
+                    <input type="hidden" name="total" value="{{$total}}">
+                    <input type="hidden" name="nombre" value="{{auth()->user()->nombre}}">
+                    <input type="hidden" name="email" value="{{auth()->user()->email}}">
+                    <input type="hidden" name="direccion" value="{{auth()->user()->direccionEnvio}}">
+
+                        <button type="submit"  style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1">PAGAR</button>
+                    </form>
+                    </div>
                 
             </div>
 

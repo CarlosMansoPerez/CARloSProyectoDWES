@@ -49,6 +49,8 @@ function aniadirAccesorio(e){
     
     precioTotal.innerText=valor
 
-    console.log(resumen.innerHTML += "<div class='flex flex-row justify-start items-start'><p style='width:15rem'>"+nombre+"</p><b>"+totalActual+"€</b></div>")
+    resumen.innerHTML += "<div class='flex flex-row justify-start items-start'><p style='width:15rem'>"+nombre+"</p><b>"+totalActual+"€</b></div>";
+
 }
+
 

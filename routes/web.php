@@ -5,6 +5,7 @@ use App\Http\Controllers\CocheController;
 use App\Http\Controllers\AccesorioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Auth\Events\Login;
@@ -58,12 +59,6 @@ Route::get("/Inicio", function(){
     Route::get("carrito/{id}",         [CarritoController::class, "listarCarrito"])->name("carrito.listar");
     Route::get("carrito/borrar/{id}",  [CarritoController::class, "borrar"])->name("carrito.borrar");
     Route::post("carrito/agregar",     [CarritoController::class, "agregar"])->name("carrito.agregar");
-
-    Route::get("carrito/factura", function(){
-        return view('perfil.factura');
-    })->name("carrito.factura");
-    // Route::post("carrito/insertar", [CarritoController::class, "insertarCoche"])->name("carrito.agregar");
-
 
 // RUTAS PARA REGISTRO
 
