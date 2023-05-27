@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("cantidad");
             $table->timestamps();
 
-            $table->foreign('idCar')->references('idCar')->on('carrito')->onDelete('cascade');
+            //$table->foreign('idCar')->references('idCar')->on('carrito')->onDelete('cascade');
             $table->foreign('idCoc')->references('idCoc')->on('coche')->onDelete('cascade');
 
         });
