@@ -112,6 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     html2pdf().set(options).from(element).save();
 });
+
+setTimeout(function() {
+    window.location.href = 'http://127.0.0.1:8000/carrito/1'; 
+}, 100);
 </script>
 
 </body>
