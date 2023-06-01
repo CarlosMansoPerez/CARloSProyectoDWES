@@ -6,13 +6,23 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'CARloS') }} @yield("section", "- Coches")</title>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <style>
+#password-error{
+    width: auto;
+    height: auto;
+    padding: 4% 4% 2% 2%;
+    position: absolute;
+    top: 55%;
+    left: 5%;
+}
+        </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333;">
 
@@ -31,7 +41,9 @@
                             <div class="flex flex-wrap flex-col justify-center items-center">
                                 <input id="nombre" class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">
                                 <input id="email" class="mt-6 text-center w-60 mb-4" name="email"          type="email"    placeholder="Correo electrónico">
-                                <input id="password" class="mt-6 text-center w-60 mb-4" name="password"       type="password" placeholder="Contraseña">
+                                <input id="password" class="mt-6 text-center w-60 mb-4" name="password" type="password" placeholder="Contraseña" minlength="4" required>
+                                <span id="password-error" class="text-red-500"></span>
+                                <i id="iconoOjo" class="bi bi-eye text-black" style="position: absolute;top:58%;left:16%"></i>
                                 <input id="numTel" class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text"     placeholder="Nº teléfono">
                             </div>
 
@@ -44,8 +56,8 @@
 
                         
                         </div>
-                        <button type="submit" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">REGISTRARSE</button>
-                        <a id="usuarioAleatorio" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">Usuario Aleatorio</a>
+                        <p><button type="submit" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">REGISTRARSE</button>
+                        <a id="usuarioAleatorio" class="bg-white hover:bg-red-700 text-red-700 mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">Usuario Aleatorio</a></p>
                     </form>
 <br><br>
                     <p class="text-white text-md ml-2 text-center hover:text-white">¿Ya tienes cuenta en <b class="text-red-700 text-lg">CAR</b>lo<b class="text-red-700 text-lg">S</b>? <br>Inicia sesión <a href="{{route('login')}}" class="text-red-700 font-bold hover:scale-105 hover:text-white duration-700">aquí</a></p>
@@ -137,6 +149,42 @@
                     console.log('Error en la solicitud:', error);
                 });
             }
+
+
+            // VALIDACIONES CONTRASEÑA
+
+            document.getElementById('password').addEventListener('input', function () {
+            var password = this.value;
+            var errorSpan = document.getElementById('password-error');
+            errorSpan.textContent = '';
+
+            var regexLength = /.{4,}/;
+            var regexUppercase = /[A-Z]/;
+            var regexNumber = /[0-9]/;
+
+            if (!regexLength.test(password)) {
+                errorSpan.textContent = 'La contraseña debe tener al menos 4 caracteres.';
+            } else if (!regexUppercase.test(password)) {
+                errorSpan.textContent = 'La contraseña debe contener al menos 1 letra mayúscula.';
+            } else if (!regexNumber.test(password)) {
+                errorSpan.textContent = 'La contraseña debe contener al menos 1 número.';
+            }
+            });
+
+            //VISIBILIDAD CONTRASEÑA
+
+            document.getElementById("iconoOjo").addEventListener("click", verPassword)
+            function verPassword() {
+                var inputPassword = document.getElementById("password");
+                var iconoOjo = document.getElementById("iconoOjo");
+                
+                if (inputPassword.type === "password") {
+                    inputPassword.type = "text";
+                } else {
+                    inputPassword.type = "password";
+                }
+            }
+
         </script>
     </body>
 </html>
