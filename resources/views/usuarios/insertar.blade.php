@@ -14,21 +14,33 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
         <style>
-#password-error{
-    width: auto;
-    height: auto;
-    padding: 4% 4% 2% 2%;
-    position: absolute;
-    top: 55%;
-    left: 5%;
-}
+            #password-error{
+                width: auto;
+                height: auto;
+                padding: 4% 4% 2% 2%;
+                position: absolute;
+                top: 55%;
+                left: 5%;
+            }
+            @media (max-width: 1250px) { 
+                .divRegistro{
+                    width: 100% !important;
+                }
+                #formRegistro{
+                    gap: 0 !important;
+                }
+                body{
+                    background-color: black !important;
+                    margin-bottom: 2%;
+                }
+            }
         </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333;">
 
-        <div style="width:100%;height:100vh;background-image:url('{{asset("img/cocheRegistro.jpg")}}');background-size:cover;">
+        <div style="width:100%;height:100vh;background-image:url('{{asset("img/cocheRegistro.jpg")}}');background-size:cover;" class="fotoFondoRegistro">
 
-            <div class=" shadow-lg bg-black shadow-black" style="width:40%;height:100%;float:left;" >
+            <div class="divRegistro shadow-lg bg-black shadow-black" style="width:40%;height:100%;float:left;" >
 
                 <div>
                     <p class="text-white text-6xl text-center mt-6" style="font-family:impact;">Registro <br><b class="text-red-700 text-8xl">CAR</b>lo<b class="text-red-700 text-8xl">S</b></p>
@@ -36,7 +48,7 @@
                     <form action="{{route('usuarios.guardar')}}" class="flex justify-center flex-col items-center mt-12" method="post">
                         @csrf
 
-                        <div class="flex flex-wrap flex-row justify-center items-center gap-12 ">
+                        <div id="formRegistro" class="flex flex-wrap flex-row justify-center items-center gap-12 ">
 
                             <div class="flex flex-wrap flex-col justify-center items-center">
                                 <input id="nombre" class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">

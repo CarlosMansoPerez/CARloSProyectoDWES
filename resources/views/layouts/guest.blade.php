@@ -13,16 +13,41 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            @media (max-width: 1250px) {
+                .tituloLogin{
+                    font-size: 5rem !important;
+                    left: 0% !important;
+                    left: 23% !important; 
+                    top: 0 !important;
+                }
+                .loTitulo{
+                    font-size: 3rem !important;
+                }
+                .cajaLogin{
+                    left: 0 !important;
+                    height: 35rem !important;
+                }
+                .sinCuenta{
+                    top: 88% !important;
+                    left: 10% !important;
+                }
+                .cajaLogin>form>div{
+                    margin-top: 23% !important;
+                }
+            }
+        </style>
     </head>
     <body class="font-sans text-gray-900 antialiased">
         
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background-image:url('{{asset("/img/cocheFondo.jpg")}}');background-size:cover;height:200px;width:100%;background-position:0px;background-repeat:none">
-            <p class="text-white text-xl" style="position:absolute; top:75%; left:6%;">¿Aún no tienes cuenta? <a class="text-white hover:text-black hover:scale-105 font-bold duration-700" style="text-shadow:2px 2px 1px rgb(190, 0, 0);cursor:pointer;" href="{{route('usuarios.insertar')}}">Registrarse</a></p>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 " style="background-image:url('{{asset("/img/cocheFondo.jpg")}}');background-size:cover;height:200px;width:100%;background-position:0px;background-repeat:none">
+            <p class="text-white text-xl sinCuenta" style="position:absolute; top:75%; left:6%;">¿Aún no tienes cuenta? <a class="text-white hover:text-black hover:scale-105 font-bold duration-700" style="text-shadow:2px 2px 1px rgb(190, 0, 0);cursor:pointer;" href="{{route('usuarios.insertar')}}">Registrarse</a></p>
             <div>
-                <h1 class="hover:scale-105 duration-700 text-center text-red-700" style="position:absolute; top: -7%;left:45%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b class="font-serif text-black" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>            
+                <h1 class="hover:scale-105 duration-700 text-center text-red-700 tituloLogin" style="position:absolute; top: -7%;left:45%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b class="font-serif text-black loTitulo" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>            
             </div>
 
-            <div class="w-full sm:max-w-md px-6 py-8 bg-black shadow-md overflow-hidden sm:rounded-lg" style="position:absolute;top:15%;left:5%;height:25rem;">
+            <div class="w-full sm:max-w-md px-6 py-8 bg-black shadow-md overflow-hidden sm:rounded-lg cajaLogin" style="position:absolute;top:15%;left:5%;height:25rem;">
                 {{ $slot }}
             </div>
         </div>

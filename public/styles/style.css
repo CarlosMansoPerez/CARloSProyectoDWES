@@ -164,6 +164,7 @@ a:hover{
     color: white;
     z-index: 1;
     padding: 2%;
+    font-size: 2rem;
 }
 
 #ventana p:hover{
@@ -526,3 +527,21 @@ article:hover img:last-child{
     width: 100%;
 }
 
+
+@media (max-width: 1250px) {
+    #divFiltros{
+        display: none;
+    }
+    #videoFondo{
+        display: none;
+    }
+    #divArriba{
+        display: none;
+    }
+    #ventana{
+        height: 30vh !important;
+        width: 60% !important;
+        font-size: 2rem !important;
+        left: 40% !important;
+    }
+}

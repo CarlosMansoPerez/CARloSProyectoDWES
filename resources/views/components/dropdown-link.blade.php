@@ -1,1 +1,1 @@
-<a {{ $attributes->merge(['class' => 'block w-full px-4 py-2 text-left text-sm leading-5 text-red-700 font-bold text-lg font-sans hover:text-white ml-12 focus:outline-none transition duration-150 ease-in-out']) }}>SALIR</a>
+<a {{ $attributes->merge(['class' => 'block w-full px-4 py-2 text-left text-sm leading-5 text-red-700 font-bold text-lg font-sans hover:text-white ml-12 focus:outline-none transition duration-150 ease-in-out pequeño']) }}>SALIR</a>

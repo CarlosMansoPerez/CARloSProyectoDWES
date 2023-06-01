@@ -2,7 +2,59 @@
 
 @section("main")
 
-    <div class="mt-5" style="margin-left: 3%">
+<style>
+    @media (max-width: 1250px) {
+        #divFiltros{
+            display: none;
+        }
+        #videoFondo{
+            margin-top:-42% !important; 
+        }
+        #tituloArriba{
+            font-size: 5rem !important;
+            margin-left: -5% !important;
+            margin-top: -15% !important;
+        }
+        #loTitulo{
+            font-size: 4rem !important;
+        }
+        #vermasMain{
+            margin-top: -108%;
+            margin-left: -4%;
+            width: 30% !important;
+            height: auto !important;
+            font-size: 1rem !important;
+        }
+        nav{
+            margin-top: 14.5rem !important;
+            width:100% !important;
+            font-size: .6rem !important;
+        }
+        nav>a{
+            margin: 2% !important;
+            margin-left: 4% !important;
+        }
+        #divSalir{
+            width:5% !important;
+        }
+        .pequeño{
+            width: 10%;
+            font-size: .6rem !important;
+            margin-left: 1%;
+        }
+        .cards{
+            width: 85% !important;
+            margin-left: 7% !important;
+        }
+        #saludo{
+            display: none;
+        }
+        #carrito{
+            font-size: 1rem; 
+        }
+    }
+</style>
+    <div id="saludo" class="mt-5" style="margin-left: 3%">
         <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
     </div>
 
@@ -93,7 +145,7 @@
     @foreach($datos as $coche)
 
             {{-- CARDS --}}
-            <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
+            <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black cards" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
 
                 {{-- CABECERA --}}
                     <div class="font-bold text-2xl mb-1">
