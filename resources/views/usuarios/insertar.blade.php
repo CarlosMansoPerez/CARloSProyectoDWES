@@ -29,22 +29,23 @@
                         <div class="flex flex-wrap flex-row justify-center items-center gap-12 ">
 
                             <div class="flex flex-wrap flex-col justify-center items-center">
-                                <input class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">
-                                <input class="mt-6 text-center w-60 mb-4" name="email"          type="email"    placeholder="Correo electrónico">
-                                <input class="mt-6 text-center w-60 mb-4" name="password"       type="password" placeholder="Contraseña">
-                                <input class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text"     placeholder="Nº teléfono">
+                                <input id="nombre" class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">
+                                <input id="email" class="mt-6 text-center w-60 mb-4" name="email"          type="email"    placeholder="Correo electrónico">
+                                <input id="password" class="mt-6 text-center w-60 mb-4" name="password"       type="password" placeholder="Contraseña">
+                                <input id="numTel" class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text"     placeholder="Nº teléfono">
                             </div>
 
                             <div class="flex flex-wrap flex-col justify-center items-center">
-                                <input class="mt-6 text-center w-60 mb-4" name="direccionEnvio" type="text" placeholder="Direccion de Envio">
-                                <input class="mt-6 text-center w-60 mb-4" name="provincia"      type="text" placeholder="Provincia">
-                                <input class="mt-6 text-center w-60 mb-4" name="ciudad"         type="text" placeholder="Ciudad">
-                                <input class="mt-6 text-center w-60 mb-4" name="cp"             type="text" placeholder="Código Postal">
+                                <input id="direccion" class="mt-6 text-center w-60 mb-4" name="direccionEnvio" type="text" placeholder="Direccion de Envio">
+                                <input id="provincia" class="mt-6 text-center w-60 mb-4" name="provincia"      type="text" placeholder="Provincia">
+                                <input id="ciudad" class="mt-6 text-center w-60 mb-4" name="ciudad"         type="text" placeholder="Ciudad">
+                                <input id="cp" class="mt-6 text-center w-60 mb-4" name="cp"             type="text" placeholder="Código Postal">
                             </div>
 
                         
                         </div>
                         <button type="submit" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">REGISTRARSE</button>
+                        <a id="usuarioAleatorio" class="bg-red-700 hover:bg-white text-white mt-4 hover:text-red-700 hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded">Usuario Aleatorio</a>
                     </form>
 <br><br>
                     <p class="text-white text-md ml-2 text-center hover:text-white">¿Ya tienes cuenta en <b class="text-red-700 text-lg">CAR</b>lo<b class="text-red-700 text-lg">S</b>? <br>Inicia sesión <a href="{{route('login')}}" class="text-red-700 font-bold hover:scale-105 hover:text-white duration-700">aquí</a></p>
@@ -57,5 +58,85 @@
 
         </div>
 
+        <script>
+            //NOMBRE Y CORREO 
+            var inputCorreo = document.getElementById("email");
+            var inputNombre = document.getElementById("nombre");
+            document.getElementById("usuarioAleatorio").addEventListener("click", correo);
+
+            function correo(){
+                fetch("https://api.generadordni.es/v2/person/username")
+                .then(response => response.json())
+                .then(data => {
+                    let valorNombre=data[0].split("_");
+                    inputNombre.value=valorNombre[0];
+                    inputCorreo.value=data[0]+"@gmail.com";
+                })
+                .catch(error => {
+                    console.log('Error en la solicitud:', error);
+                });
+            }
+
+            // Nº TELEFONO ALEATORIO
+            var inputTelefono = document.getElementById("numTel");
+            document.getElementById("usuarioAleatorio").addEventListener("click", telefono);
+
+            function telefono(){
+                fetch("https://api.generadordni.es/v2/misc/phonenumber")
+                .then(response => response.json())
+                .then(data => {
+                    inputTelefono.value=data[0];
+                })
+                .catch(error => {
+                    console.log('Error en la solicitud:', error);
+                });
+            }
+
+            // CODIGO POSTAL
+            var inputCp = document.getElementById("cp");
+            document.getElementById("usuarioAleatorio").addEventListener("click", cp);
+
+            function cp(){
+                fetch("https://api.generadordni.es/v2/misc/zipcode")
+                .then(response => response.json())
+                .then(data => {
+                    inputCp.value=data[0];
+                })
+                .catch(error => {
+                    console.log('Error en la solicitud:', error);
+                });
+            }
+
+            // CIUDAD
+            var inputCiudad = document.getElementById("ciudad");
+            document.getElementById("usuarioAleatorio").addEventListener("click", ciudad);
+
+            function ciudad(){
+                fetch("https://api.generadordni.es/v2/misc/city")
+                .then(response => response.json())
+                .then(data => {
+                    inputCiudad.value=data[0];
+                })
+                .catch(error => {
+                    console.log('Error en la solicitud:', error);
+                });
+            }
+
+            // DIRECCION
+            var inputDireccion = document.getElementById("direccion");
+            document.getElementById("usuarioAleatorio").addEventListener("click", direccion);
+            let numAleat = Math.floor(Math.random() * 45) + 1;
+
+            function direccion(){
+                fetch("https://api.generadordni.es/v2/text/characters?results=4&characters=16")
+                .then(response => response.json())
+                .then(data => {
+                    inputDireccion.value="Calle "+data[0]+" nº "+ numAleat;
+                })
+                .catch(error => {
+                    console.log('Error en la solicitud:', error);
+                });
+            }
+        </script>
     </body>
 </html>

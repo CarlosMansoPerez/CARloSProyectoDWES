@@ -202,7 +202,6 @@
                 function cambiarLogo() {
                     var marcaSeleccionada = marcaSelect.value;
 
-                    // Definir un objeto con las URL de los logos de las marcas
                     var logos = {
                     "Volkswagen": 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png',
                     "BMW":"https://cdn.icon-icons.com/icons2/1834/PNG/512/iconfinderbmwlogo4140436-115966_115915.png",
@@ -218,15 +217,14 @@
                     "Chevrolet":"https://1000marcas.net/wp-content/uploads/2020/01/Chevrolet-logo.png"                
                 };
 
-                    // Obtener la URL del logo correspondiente a la marca seleccionada
                     var urlLogo = logos[marcaSeleccionada];
 
-                    // Asignar la URL al atributo src del input de imagen
                     logoInput.value = urlLogo;
 
                     var changeEvent = new Event('change');
                     urlInput2.dispatchEvent(changeEvent);
                 }
+
             </script>
 
     </body>
