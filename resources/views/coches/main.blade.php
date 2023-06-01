@@ -18,7 +18,7 @@
 
     ?>
         {{-- FILTRO --}}
-        <div class="text-red-700 text-lg mt-3" style="margin-left:4rem;width:88%;height:3rem;background-color:#333333">
+        <div id="divFiltros" class="text-red-700 text-lg mt-3" style="margin-left:4rem;width:88%;height:3rem;background-color:#333333">
             <div class="flex justify-start">            
                 <p class="mt-2 ml-5 mt-4 font-semibold">Filtrar por</p>
                 {{-- MARCA --}}
@@ -43,7 +43,6 @@
                     <option value="25000">Menos de 25.000€</option>
                     <option value="50000">Menos de 50.000€</option>
                     <option value="100000">Menos de 100.000€</option>
-                    <option value="1000000">Más de 100.000€</option>
                 </select>
                 {{-- AÑO MATRICULACION --}}
                     <select id="anios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
