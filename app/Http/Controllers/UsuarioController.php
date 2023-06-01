@@ -8,7 +8,7 @@ use App\Models\CarritoCoche;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class UsuarioController extends Controller
 {
@@ -58,6 +58,8 @@ class UsuarioController extends Controller
         $usuario->provincia = $req->provincia;
 
         $usuario->save();
+
+        Session::flash('mensaje', 'Datos actualizados correctamente');
 
         return redirect(route("perfil"));
 

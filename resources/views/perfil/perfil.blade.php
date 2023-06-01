@@ -37,6 +37,19 @@
                     </form>
                 </nav>
 
+                @if (Session::has('mensaje'))
+                    <div id="mensaje-alerta" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4" style="position: absolute;left:15%;top:10%">
+                        {{ Session::get('mensaje') }}
+                    </div>
+
+                    <script>
+                        setTimeout(function() {
+                            document.getElementById('mensaje-alerta').style.display = 'none';
+                        }, 2000);
+                    </script>
+
+                @endif
+
                 <div style="height:665px;">
                     <div class="mt-12" style="float:left;width:50%">                
                         <p class="text-8xl text-red-700 font-sans mb-5" style="margin-left: 9%;margin-top:5%;margin-bottom:5%">Hola <b class="hover:text-white duration-700">{{auth()->user()->nombre}}</b></p><br>
