@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <title>{{ config('app.name', 'CARloS') }} @yield("section", "- Coches")</title>
 
         <!-- Fonts -->
@@ -80,7 +80,15 @@
 
                     <p class="text-red-700 font-bold hover:scale-105 hover:text-white duration-700 mt-5" style="font-size: 5rem;">{{$imagen->precio}}€</p>
 
-                    <a href="{{route('coches.listado')}}" class="bg-white hover:bg-black text-black hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="margin-top: 3rem">VOLVER</a>
+                    <form action="{{route('carrito.agregar')}}" method="POST">
+                        @csrf
+
+                            <input type="hidden" value="<?= $imagen->idCoc ?>" name="idCoche">
+                            <input type="hidden" value="<?= auth()->user()->idUsu ?>" name="idUsu">
+
+                            <button type="submit" class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1 mt-12 pb-2 pt-2 text-xl" style="width:200%; margin-left:-35%;">AÑADIR <i class="bi bi-cart3"></i></button>
+                        
+                        </form>
 
                 </div>
             </div>
