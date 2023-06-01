@@ -43,7 +43,9 @@
 
             <form action="{{asset('actions/pdf.php')}}" method="POST">
 
-                <b id="extras" class="extras text-lg bg-black hover:bg-white hover:text-red-700 text-white font-bold rounded px-2 py-1">VER EXTRAS</b>
+                @if (count($accesorios) != 0)
+                    <b id="extras" class="extras text-lg bg-black hover:bg-white hover:text-red-700 text-white font-bold rounded px-2 py-1">VER EXTRAS</b>
+                @endif
 
                 @foreach ($datos as $item)
                     <div id="cardsCarrito" class="m-1 bg-black flex justify-around align-center flex-row p-2 mt-5">
