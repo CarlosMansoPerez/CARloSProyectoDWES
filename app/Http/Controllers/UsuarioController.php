@@ -19,7 +19,7 @@ class UsuarioController extends Controller
 
     public function guardarUsuario(Request $req){
 
-        $contadorUsuarios = 3;
+        $contadorUsuarios = Usuario::count();
         $contadorUsuarios++;
         $contra = Hash::make($req->password);
 
