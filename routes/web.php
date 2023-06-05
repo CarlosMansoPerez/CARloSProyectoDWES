@@ -39,6 +39,7 @@ Route::get("/Inicio", function(){
     Route::post("coches",                   [CocheController::class, "actualizar"])->name("coches.actualizar")->middleware('logueado');
     Route::get("coches/accesorios/{idCoc}", [CocheController::class, "accesorios"])->name("coches.accesorios")->middleware('logueado');
     Route::get("coches/imagen/{idCoc}",     [CocheController::class, "imagen"])->name("coches.imagen")->middleware('logueado');
+    Route::get("coches/comparar",           [CocheController::class, "comparar"])->name("coches.comparar")->middleware('logueado');
 
 // RUTAS PARA ACCESORIO
 

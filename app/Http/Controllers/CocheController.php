@@ -116,5 +116,12 @@ class CocheController extends Controller
         return view("coches.imagen",  compact("imagen"));
     }
 
+    public function comparar(){
+        $datos = Coche::all();
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
+        
+        return view("coches.comparar", ["datos" => $datos, "productos" => $productos->count()]);
+    }
 
 }

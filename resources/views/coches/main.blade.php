@@ -70,7 +70,8 @@
 
     ?>
         {{-- FILTRO --}}
-        <div id="divFiltros" class="text-red-700 text-lg mt-3" style="margin-left:4rem;width:88%;height:3rem;background-color:#333333">
+        <div id="divFiltros" class="text-red-700 text-lg mt-3 flex justify-between flex-row items-center" style="margin-left:4rem;width:88%;height:auto;background-color:#333333">
+
             <div class="flex justify-start">            
                 {{-- SELECCIONA FILTRO --}}
                 <select name="filtrado" id="filtrado" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
@@ -141,6 +142,11 @@
                 </div>
 
             </div>
+
+            <div>
+                <a href="{{route("coches.comparar")}}" class="ml-5 mt-2 py-2 px-3 bg-black text-white hover:text-red-700 hover:bg-white hover:scale-110 duration-500 hover:font-bold hover:cursor-pointer" style="border:1px solid gray">Comparador de coches</a>
+            </div>
+
         </div>
 
         @if (auth()->user()->nombre != "Admin")
