@@ -16,6 +16,38 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
+        <style>
+            .widthInput{
+                width: 100% !important;
+            }
+            #cambioContraseña{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column; 
+                width:30%;
+                height:auto;
+                background-color:rgb(0, 0, 0, .6);
+                position:absolute;
+                top:20%;
+                left:60%;
+                border-radius: 20px;
+                color: white;
+                padding-top: 4%;
+                padding-bottom: 4%;
+            }
+            #cambioContraseña:hover{
+                background-color: black
+            }
+            .divContraseña{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                justify-content: center;
+                align-items:center; 
+                margin-top: 10%;
+            }
+        </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
@@ -38,7 +70,7 @@
                 </nav>
 
                 @if (Session::has('mensaje'))
-                    <div id="mensaje-alerta" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4" style="position: absolute;left:15%;top:10%">
+                    <div id="mensaje-alerta" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4" style="margin:auto; width:100%; position:absolute; z-index:999">
                         {{ Session::get('mensaje') }}
                     </div>
 
@@ -49,6 +81,46 @@
                     </script>
 
                 @endif
+
+                @if (Session::has('cambioCon'))
+                        <div id="cambioCon" class="bg-green-500 text-white px-4 py-2 rounded-md mb-4" style="margin:auto; width:100%; position:absolute; z-index:999">
+                            {{ Session::get('cambioCon') }}
+                        </div>
+    
+                        <script>
+                            setTimeout(function() {
+                                document.getElementById('cambioCon').style.display = 'none';
+                            }, 2000);
+                        </script>
+    
+                        @endif
+
+                        @if (Session::has('falloConRep'))
+                        <div id="falloConRep" class="bg-red-500 text-white px-4 py-2 rounded-md mb-4" style="margin:auto; width:100%; position:absolute; z-index:999">
+                            {{ Session::get('falloConRep') }}
+                        </div>
+    
+                        <script>
+                            setTimeout(function() {
+                                document.getElementById('falloConRep').style.display = 'none';
+                            }, 2000);
+                        </script>
+    
+                        @endif
+
+                        @if (Session::has('falloConActual'))
+                        <div id="falloConActual" class="bg-red-500 text-white px-4 py-2 rounded-md mb-4" style="margin:auto; width:100%; position:absolute; z-index:999">
+                            {{ Session::get('falloConActual') }}
+                        </div>
+    
+                        <script>
+                            setTimeout(function() {
+                                document.getElementById('falloConActual').style.display = 'none';
+                            }, 2000);
+                        </script>
+    
+                        @endif
+
 
                 <div style="height:665px;">
                     <div class="mt-12" style="float:left;width:50%">                
@@ -62,22 +134,22 @@
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Nombre</label>
-                                    <input type="text" name="nombre" value="{{auth()->user()->nombre}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="nombre" value="{{auth()->user()->nombre}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Correo electrónico</label>
-                                    <input type="text" name="email" value="{{auth()->user()->email}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="email" value="{{auth()->user()->email}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Nº de teléfono</label>
-                                    <input type="text" name="telefono" value="{{auth()->user()->numeroTelefono}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="telefono" value="{{auth()->user()->numeroTelefono}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Direccón de entrega</label>
-                                    <input type="text" name="direccion" value="{{auth()->user()->direccionEnvio}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="direccion" value="{{auth()->user()->direccionEnvio}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                             </div>
@@ -85,17 +157,17 @@
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Ciudad</label>
-                                    <input type="text" name="ciudad" value="{{auth()->user()->ciudad}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="ciudad" value="{{auth()->user()->ciudad}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Provincia</label>
-                                    <input type="text" name="provincia" value="{{auth()->user()->provincia}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="provincia" value="{{auth()->user()->provincia}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
                                     <label for="">Código Postal</label>
-                                    <input type="text" name="cp" value="{{auth()->user()->cp}}" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                    <input type="text" name="cp" value="{{auth()->user()->cp}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
@@ -111,7 +183,28 @@
 
                     </div>
                     <div style="float:right;width:50%">
-                        <img src="{{asset("/img/cochePerfil.jpg")}}" style="height:665px;">
+
+                        <img src="{{asset("/img/cochePerfil.jpg")}}" style="height:680px;opacity:.6">
+                        <div id="cambioContraseña" class="hover:scale-110 duration-500">
+                            <form action="{{route('usuarios.contraseña')}}" method="POST">
+                                @csrf
+                                <p class="text-3xl mb-5 font-bold" >Cambio Contraseña</p>
+                                <div class="divContraseña">
+                                    <label for="">Contraseña Actual</label>
+                                    <input type="text" name="conActual" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                </div>
+                                <div class="divContraseña">
+                                    <label for="">Nueva Contraseña</label>
+                                    <input type="text" name="conNueva" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                </div>
+                                <div class="divContraseña">
+                                    <label for="">Repita Nueva Contraseña</label>
+                                    <input type="text" name="conNuevaRep" class="rounded-lg text-red-700 hover:bg-gray-400">
+                                </div>
+
+                                <button class="text-lg bg-red-700 hover:bg-white hover:text-red-700 hover:scale-105 text-white font-bold rounded px-2 py-1" style="margin-top: 2rem">CAMBIAR CONTRASEÑA</button>
+                                </form>
+                        </div>
                     </div>
                 </div>
 

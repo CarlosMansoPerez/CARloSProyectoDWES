@@ -16,7 +16,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="{{asset('js/scripts.js')}}"></script>
-
+        
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 

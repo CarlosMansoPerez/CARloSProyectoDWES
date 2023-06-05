@@ -7,8 +7,11 @@ use App\Models\Carrito;
 use App\Models\CarritoCoche;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\VarDumper\VarDumper;
+use User;
 
 class UsuarioController extends Controller
 {
@@ -59,6 +62,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
+        // Método para crear mensaje en la sesión
         Session::flash('mensaje', 'Datos actualizados correctamente');
 
         return redirect(route("perfil"));
@@ -69,6 +73,36 @@ class UsuarioController extends Controller
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
         return view("perfil.perfil", ["productos"=>$productos->count()]);
+    }
+
+    public function cambioContraseña(Request $req){
+
+        $conActual   = $req->conActual;
+        $conNueva    = $req->conNueva;
+        $conNuevaRep = $req->conNuevaRep;
+
+        $conActualBBDD = auth()->user()->password;
+
+        // Metodo para comprobar si la contraseña encriptada en la base de datos es igual a la escrita por el usuario
+        if(Hash::check($conActual, $conActualBBDD)) {
+            
+            if($conNueva == $conNuevaRep){
+                $user = Auth::user();
+                $user->password = Hash::make($conNueva);
+                $user->save();
+
+                Session::flash('cambioCon', 'Contraseña actualizada');
+                return redirect(route("perfil"));
+
+            }else{
+                Session::flash('falloConRep', 'Las contraseñas no coinciden');
+                return redirect(route("perfil"));
+            }
+
+        }else{
+            Session::flash('falloConActual', 'Contraseña incorrecta');
+            return redirect(route("perfil"));
+        }
     }
 
 }
