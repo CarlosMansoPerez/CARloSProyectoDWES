@@ -72,23 +72,32 @@
         {{-- FILTRO --}}
         <div id="divFiltros" class="text-red-700 text-lg mt-3" style="margin-left:4rem;width:88%;height:3rem;background-color:#333333">
             <div class="flex justify-start">            
-                <p class="mt-2 ml-5 mt-4 font-semibold">Filtrar por</p>
+                {{-- SELECCIONA FILTRO --}}
+                <select name="filtrado" id="filtrado" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
+                    <option value="" selected disabled>Filtrar por</option>
+                    <option value="marcas">Marca</option>
+                    <option value="modelos">Modelo</option>
+                    <option value="precios">Precio</option>
+                    <option value="anios">Año Matriculacion</option>
+                    <option value="combustibles">Combustible</option>
+                    <option value="kilometros">Kilómetros</option>
+                </select>
                 {{-- MARCA --}}
-                <select id="marcas" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
-                    <option value=""selected disabled>Marca</option>
+                <select id="marcas" name="marca" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:10rem;height:3rem;display:none">
+                    <option value=""selected disabled>-</option>
                     @foreach ($marcas as $item)
                         <option value="{{$item->marca}}">{{$item->marca}}</option>
                     @endforeach
                 </select>
                 {{-- MODELO --}}
-                <select id="modelos" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                <select id="modelos" name="modelo"  class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
                     <option value=""selected disabled>Modelo</option>
                     @foreach ($modelos as $item)
                         <option value="{{$item->modelo}}">{{$item->modelo}}</option>
                     @endforeach 
                 </select>
                 {{-- PRECIO --}}
-                <select id="precios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:11rem;height:3rem;">
+                <select id="precios" name="precio" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:11rem;height:3rem;display:none">
                     <option value=""selected disabled>Precio</option>
                     <option value="5000">Menos de 5.000€</option>
                     <option value="10000">Menos de 10.000€</option>
@@ -97,36 +106,36 @@
                     <option value="100000">Menos de 100.000€</option>
                 </select>
                 {{-- AÑO MATRICULACION --}}
-                    <select id="anios" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                    <select id="anios" name="anio" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
                         <option value="" selected disabled>Año</option>
                             <?php for($i=2009;$i<2024;$i++){ ?>
                                 <option value="{{$i}}">{{$i}}</option>
                             <?php } ?>
                     </select>
                 {{-- COLOR --}}
-                {{-- <select id="colores" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:8rem;height:3rem;">
+                {{-- <select id="colores" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
                     <option value="">Color</option>
                     @foreach ($color as $item)
                         <option value="{{$item->color}}"><span><p  style="color:red">Hola</p></span></option>
                     @endforeach
                 </select> --}}
                 {{-- COMBUSTIBLE --}}
-                <select id="combustibles" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:10rem;height:3rem;">
+                <select id="combustibles" name="combustible" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:10rem;height:3rem;display:none">
                     <option value="" selected disabled>Combustible</option>
                             <option value="Diesel">Diésel</option>
                             <option value="Gasolina">Gasolina</option>
                 </select>
                 {{-- KILOMETROS --}}
-                <select id="kilometros" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer" style="width:11rem;height:3rem;">
+                <select id="kilometros" name="kilometros" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:11rem;height:3rem;display:none">
                     <option value=""selected disabled>Kilometros</option>
                     <option value="10000">Menos de 10.000</option>
                     <option value="25000">Menos de 25.000</option>
                     <option value="50000">Menos de 50.000</option>
                     <option value="100000">Menos de 100.000</option>
-                    <option value="200000">Menos de 200.000</option>
-                    <option value="1000000">Más de 200.000</option>
+                    <option value="150000">Menos de 150.000</option>
                 </select>
 
+                {{-- BORRAR FILTROS --}}
                 <div id="borrarFiltros" style="width:3rem;height:3rem;background-color:rgb(0, 0, 0);border:1px solid gray" class="ml-5 mt-2 flex justify-center items-center text-2xl hover:cursor-pointer hover:bg-red-700 hover:text-white">
                     <i class="bi bi-trash3-fill"></i>
                 </div>
@@ -227,8 +236,8 @@
                                 <a href="{{route('coches.editar', $coche->idCoc)}}" class="text-lg bg-black hover:bg-zinc-800 text-white font-bold rounded px-2 py-1 ">EDITAR</a>
                             </div>
 
+                            {{-- BORRAR --}}
                             <div class="m-1" style="">
-                                {{-- BORRAR --}}
                                 <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
                             </div>
 

@@ -1,5 +1,20 @@
 // SCRIPTS PARA CARloS
 
+document.getElementById("filtrado").addEventListener("change", tipoFiltrado);
+var filtroSeleccionado = document.getElementById("filtrado");
+
+var tipodeFiltrado = document.querySelectorAll(".tipoFiltrado");
+
+function tipoFiltrado() {
+    tipodeFiltrado.forEach(element => {
+    if (element.id == filtroSeleccionado.value) {
+        element.style.display = "flex";
+    } else {
+        element.style.display = "none";
+    }
+    });
+}
+
 
 // FILTROS DE BÚSQUEDA
 

@@ -108,7 +108,7 @@
                     <p class="mb-1">Direccion de envio: {{auth()->user()->direccionEnvio}}</p>
                     <p class="mb-1">Numero de telefono: {{auth()->user()->numeroTelefono}}</p>
                     <p class="mb-1">Codigo postal: {{auth()->user()->cp}}</p>
-                    <p class="mb-1">Ciudada: {{auth()->user()->ciudad}}</p>
+                    <p class="mb-1">Ciudad: {{auth()->user()->ciudad}}</p>
                     <p class="mb-5">Provincia: {{auth()->user()->provincia}}</p>
                     <?php if(isset($datos)){ ?>
                     <p class="mb-1 mt-5">Fecha estimada de entrega: <?= isset($datos)? date('d/m/Y', strtotime('+9 days')) : "" ?></p>
