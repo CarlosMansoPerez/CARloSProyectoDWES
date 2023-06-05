@@ -114,3 +114,19 @@ document.getElementById("borrarFiltros").addEventListener("click", borrarFiltros
 function borrarFiltros(){
     location.reload(true);
 }
+
+//TOOLTIP
+
+document.getElementById("compara").addEventListener("mouseover", aparece);
+document.getElementById("compara").addEventListener("mouseout", desaparece);
+var tooltip = document.getElementById("tooltip");
+
+function aparece(){
+    tooltip.style.display = "block";
+    tooltip.style.transition = "0.4s";
+}
+
+function desaparece(){
+    tooltip.style.display = "none";
+    tooltip.style.transition = "0.4s";
+} 

@@ -3,6 +3,18 @@
 @section("main")
 
 <style>
+    .tooltip-text {
+        display: none;
+        position: absolute;
+        top: 106%;
+        left: 83.5%;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
     @media (max-width: 1250px) {
         #divFiltros{
             display: none;
@@ -54,7 +66,7 @@
         }
     }
 </style>
-    <div id="saludo" class="mt-5" style="margin-left: 3%">
+    <div id="saludo" class="mt-5" style="margin-left: 5.5%">
         <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
     </div>
 
@@ -143,9 +155,16 @@
 
             </div>
 
-            <div>
-                <a href="{{route("coches.comparar")}}" class="ml-5 mt-2 py-2 px-3 bg-black text-white hover:text-red-700 hover:bg-white hover:scale-110 duration-500 hover:font-bold hover:cursor-pointer" style="border:1px solid gray">Comparador de coches</a>
-            </div>
+            <a  id="compara" href="{{route("coches.comparar")}}">
+                <div class="flex flex-row justify-center items-center flex-wrap bg-gray-200  hover:text-white hover:bg-red-700 hover:scale-110 duration-500 hover:font-bold hover:cursor-pointer" style="border: 2px solid black">
+                    <div class="flex flex-row justify-center items-center flex-wrap">
+                        <img style="width:3rem" src="{{asset("img/iconoCocheVolteado.png")}}" class="mx-1">
+                        <b>VS</b>
+                        <img style="width:3rem" src="{{asset("img/iconoCoche.png")}}" class="mx-1">
+                    </div>
+                </div>
+                <span id="tooltip" class="tooltip-text">¡COMPARA!</span>
+            </a>
 
         </div>
 
