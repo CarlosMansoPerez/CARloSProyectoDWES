@@ -66,7 +66,9 @@ class UsuarioController extends Controller
     }
 
     public function perfil(){
-        return view("perfil.perfil", ["productos" => CarritoCoche::count()]);
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
+        return view("perfil.perfil", ["productos"=>$productos->count()]);
     }
 
 }

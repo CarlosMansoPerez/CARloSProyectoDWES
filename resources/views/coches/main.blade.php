@@ -91,14 +91,14 @@
                 </select>
                 {{-- MODELO --}}
                 <select id="modelos" name="modelo"  class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
-                    <option value=""selected disabled>Modelo</option>
+                    <option value=""selected disabled>-</option>
                     @foreach ($modelos as $item)
                         <option value="{{$item->modelo}}">{{$item->modelo}}</option>
                     @endforeach 
                 </select>
                 {{-- PRECIO --}}
                 <select id="precios" name="precio" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:11rem;height:3rem;display:none">
-                    <option value=""selected disabled>Precio</option>
+                    <option value=""selected disabled>-</option>
                     <option value="5000">Menos de 5.000€</option>
                     <option value="10000">Menos de 10.000€</option>
                     <option value="25000">Menos de 25.000€</option>
@@ -107,7 +107,7 @@
                 </select>
                 {{-- AÑO MATRICULACION --}}
                     <select id="anios" name="anio" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
-                        <option value="" selected disabled>Año</option>
+                        <option value="" selected disabled>-</option>
                             <?php for($i=2009;$i<2024;$i++){ ?>
                                 <option value="{{$i}}">{{$i}}</option>
                             <?php } ?>
@@ -121,13 +121,13 @@
                 </select> --}}
                 {{-- COMBUSTIBLE --}}
                 <select id="combustibles" name="combustible" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:10rem;height:3rem;display:none">
-                    <option value="" selected disabled>Combustible</option>
+                    <option value="" selected disabled>-</option>
                             <option value="Diesel">Diésel</option>
                             <option value="Gasolina">Gasolina</option>
                 </select>
                 {{-- KILOMETROS --}}
                 <select id="kilometros" name="kilometros" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:11rem;height:3rem;display:none">
-                    <option value=""selected disabled>Kilometros</option>
+                    <option value=""selected disabled>-</option>
                     <option value="10000">Menos de 10.000</option>
                     <option value="25000">Menos de 25.000</option>
                     <option value="50000">Menos de 50.000</option>

@@ -11,8 +11,9 @@ use Illuminate\Http\Request;
 class AccesorioController extends Controller
 {
     public function listarAccesorios(Request $req){
-
-        return view("accesorios.main", ["datos" => Accesorio::all()],["productos"=>CarritoCoche::count()]);
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
+        return view("accesorios.main", ["datos" => Accesorio::all()],["productos"=>$productos->count()]);
         
     }
 

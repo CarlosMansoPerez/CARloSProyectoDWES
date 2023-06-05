@@ -3,7 +3,7 @@
 let botonExtra = document.getElementById("extras");
 let todos = document.getElementsByClassName("extras");
 let ventanaAccesorios = document.getElementsByClassName("ventanaAccesorios");
-let visibles = false; // Variable de control para alternar la visibilidad
+let visibles = false;
 
 Array.from(todos).forEach(element => {
     element.addEventListener("click", aparece);
@@ -52,5 +52,3 @@ function aniadirAccesorio(e){
     resumen.innerHTML += "<div class='flex flex-row justify-start items-start'><p style='width:15rem'>"+nombre+"</p><b>"+totalActual+"€</b></div>";
 
 }
-
-
