@@ -24,6 +24,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                text-align: center;
                 flex-direction: column; 
                 width:30%;
                 height:auto;
@@ -45,7 +46,7 @@
                 width: 100%;
                 justify-content: center;
                 align-items:center; 
-                margin-top: 10%;
+                margin-top: 10%
             }
         </style>
     </head>
@@ -188,7 +189,7 @@
                         <div id="cambioContraseña" class="hover:scale-110 duration-500">
                             <form action="{{route('usuarios.contraseña')}}" method="POST">
                                 @csrf
-                                <p class="text-3xl mb-5 font-bold" >Cambio Contraseña</p>
+                                <p class="text-3xl mb-5 font-bold">Cambio Contraseña</p>
                                 <div class="divContraseña">
                                     <label for="">Contraseña Actual</label>
                                     <input type="text" name="conActual" class="rounded-lg text-red-700 hover:bg-gray-400">
