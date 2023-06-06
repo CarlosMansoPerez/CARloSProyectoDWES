@@ -33,7 +33,7 @@
                     </form>                </nav>
             </div>
 
-            <div class="bg-zinc-800 flex flex-wrap justify-left items-center flex-row" style="width: 100%;padding-bottom:1.7rem">
+            <div class="flex flex-wrap justify-left items-center flex-row" style="width: 100%;padding-bottom:1.7rem;background: linear-gradient(#000000, #333333);">
 
                 {{-- FOTO --}}
                 <div class="w-7/12" style="margin-left: 5%; margin-top:2%">
@@ -96,12 +96,12 @@
 
             @if (count($valoraciones) != 0)
 
-            <div class="flex flex-row justify-around items-start flex-wrap py-5">
+            <div class="flex flex-row justify-around items-start flex-wrap py-5" style="background: linear-gradient(#333333, #000000);">
 
                 <div class="flex flex-col justify-center items-center flex-wrap py-5 mt-10" style="width: 50%">
 
                     @foreach ($valoraciones as $valoracion)
-                    <div class="flex flex-col justify-start items-start flex-wrap pt-3 bg-black text-white mb-10" style="width:100%;height:auto">
+                    <div class="flex flex-col justify-start items-start flex-wrap pt-3 bg-black text-white mb-10" style="width:100%;height:auto;box-shadow:1px 1px 4px rgb(79, 79, 79)">
 
                         <div class="flex flex-row justify-between items-start flex-wrap" style="width:100%">
 
@@ -140,7 +140,7 @@
                     @endforeach
                 </div>
 
-                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%">
+                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%;box-shadow:1px 1px 4px rgb(79, 79, 79)">
 
                     <p class="font-bold text-2xl">Danos tu valoración</p>
                     <hr style="background-color: black; width:100%;height:3px" class="mt-3">
@@ -177,7 +177,7 @@
             @else
 
             <div class="flex flex-col justify-end items-center flex-wrap mb-10">
-                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%">
+                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%;box-shadow:1px 1px 4px rgb(79, 79, 79)">
 
                     <p class="font-bold text-2xl">Danos tu valoración</p>
                     <hr style="background-color: black; width:100%;height:3px" class="mt-3">
