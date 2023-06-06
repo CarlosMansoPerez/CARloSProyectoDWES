@@ -34,7 +34,17 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Málaga",
             'cp' => "29605",
             'numeroTelefono' => "658452108",
-        ],];
+        ],        
+        [
+            'email'   => "pepe@gmail.com",
+            'nombre'   => "Pepe",
+            'password' => Hash::make("1234"),
+            'direccionEnvio' => "Calle Cita nº 22",
+            'ciudad' => "Sevilla",
+            'provincia' => "Sevilla",
+            'cp' => "23406",
+            'numeroTelefono' => "645787654",
+        ]];
 
         DB::table('usuario')->insert($usuarios);
     

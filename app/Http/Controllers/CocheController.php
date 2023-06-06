@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Accesorio;
 use App\Models\Carrito;
 use App\Models\Coche;
+use App\Models\Valoraciones;
 use App\Models\Usuario;
 use App\Models\CarritoCoche;
 use Illuminate\Http\Request;
@@ -112,8 +113,13 @@ class CocheController extends Controller
     public function imagen(Request $req){
 
         $imagen = Coche::find($req->idCoc);
+        $valoraciones = DB::table('valoraciones')->where('idCoc', $req->idCoc)->get();
+        $valoraciones = Valoraciones::select('valoraciones.idVal','valoraciones.idCoc', 'valoraciones.puntuacion', 'valoraciones.comentario', 'usuario.nombre', 'usuario.email')
+        ->leftJoin('usuario', 'valoraciones.idUsu', '=', 'usuario.idUsu')
+        ->where('valoraciones.idCoc', $req->idCoc)
+        ->get();
         
-        return view("coches.imagen",  compact("imagen"));
+        return view("coches.imagen", compact("imagen"), ["valoraciones" => $valoraciones]);
     }
 
     public function comparar(){
@@ -122,6 +128,26 @@ class CocheController extends Controller
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
         
         return view("coches.comparar", ["datos" => $datos, "productos" => $productos->count()]);
+    }
+
+    public function valoracion(Request $req){
+
+        $valoracion = new Valoraciones();
+
+        $valoracion->idCoc      = $req->idCoc;
+        $valoracion->idUsu      = auth()->user()->idUsu;
+        $valoracion->puntuacion = $req->puntuacion;
+        $valoracion->comentario = $req->comentario;
+
+        $valoracion->save();
+
+        return redirect(route("coches.imagen", $req->idCoc));
+    }
+
+    public function borrarValoracion(Request $req){
+        
+        Valoraciones::find($req->idVal)->delete();
+        return redirect(route("coches.imagen", $req->idCoc));
     }
 
 }

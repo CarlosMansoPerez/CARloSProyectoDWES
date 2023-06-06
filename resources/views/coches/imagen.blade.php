@@ -38,6 +38,7 @@
                 {{-- FOTO --}}
                 <div class="w-7/12" style="margin-left: 5%; margin-top:2%">
                     <img class="w-full" src="{{$imagen->foto}}">
+                    {{-- <button class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1 mt-12 pb-2 pt-2 text-xl" style="margin-left:40%;">VER VALORACIONES</button> --}}
                 </div>
 
                 {{-- DATOS --}}
@@ -93,5 +94,145 @@
                 </div>
             </div>
 
+            @if (count($valoraciones) != 0)
+
+            <div class="flex flex-row justify-around items-start flex-wrap py-5">
+
+                <div class="flex flex-col justify-center items-center flex-wrap py-5 mt-10" style="width: 50%">
+
+                    @foreach ($valoraciones as $valoracion)
+                    <div class="flex flex-col justify-start items-start flex-wrap pt-3 bg-black text-white mb-10" style="width:100%;height:auto">
+
+                        <div class="flex flex-row justify-between items-start flex-wrap" style="width:100%">
+
+                            <div class="flex flex-row justify-start items-start flex-wrap mb-2">
+                                <p class="ml-5">{{$valoracion->nombre}}</p>
+                                <p class="ml-2 text-red-700">{{$valoracion->email}}</p>
+                            </div>
+
+                            <div class="flex flex-row justify-start items-start flex-wrap mr-10">
+                                <?php
+                                    $maxPuntuacion = 5;
+                                    $puntuacion = $valoracion->puntuacion;
+                                ?>
+                                @for ($i = 1; $i <= $maxPuntuacion; $i++)
+                                    @if ($i <= $puntuacion)
+                                        <i class="bi bi-star-fill text-yellow-300" style="text-shadow:1px 1px 1px orange"></i>
+                                    @else
+                                        <i class="bi bi-star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <p class="ml-6 mt-5 mb-1" style="overflow-wrap: break-word;">{{$valoracion->comentario}}</p>
+                        </div>
+
+                        @if (auth()->user()->idUsu == 2 && auth()->user()->nombre == "Admin")
+                            <div class="flex flex-row justify-around items-center flex-wrap mt-2" style="width: 100%">
+                                <a href="{{route('coches.borrarValoracion',[$imagen->idCoc, $valoracion->idVal])}}" class="py-1 bg-red-700 hover:bg-white hover:text-red-700 duration-500 hover:font-bold text-center" style="width:100%">BORRAR <i class="bi bi-trash3-fill"></i></a>
+                            </div>
+                        @endif
+
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%">
+
+                    <p class="font-bold text-2xl">Danos tu valoración</p>
+                    <hr style="background-color: black; width:100%;height:3px" class="mt-3">
+                    <form action="{{route("coches.valoracion")}}" method="POST">
+                    @csrf
+                        <div class="flex flex-col justify-center items-center flex-wrap">
+                            <p class="text-red-700 font-bold text-xl mt-10 mb-3">Puntuación</p>
+                            <div id="puntuacionEstrellas" class="flex flex-row justify-center items-center flex-wrap text-2xl">
+                                <i class="bi bi-star star" data-value="1"></i>
+                                <i class="bi bi-star star" data-value="2"></i>
+                                <i class="bi bi-star star" data-value="3"></i>
+                                <i class="bi bi-star star" data-value="4"></i>
+                                <i class="bi bi-star star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" name="puntuacion" id="puntuacion" value="0">
+                        </div>
+
+                        <div class="flex flex-col justify-center items-center flex-wrap text-2xl mt-8">
+                            <p class="text-red-700 font-bold text-xl mb-3 ml-1">Comentario</p>
+                            <textarea class="text-black" name="comentario" id="comentario" cols="35" rows="1" placeholder="El {{$imagen->marca}} {{$imagen->modelo}} ..."></textarea>
+                        </div>
+
+                        <input type="hidden" name="idCoc" value="{{$imagen->idCoc}}">
+
+                        <div class="flex flex-col justify-center items-center flex-wrap">
+                            <button type="submit" class="bg-red-700 hover:bg-white duration-700 hover:scale-105 text-white hover:text-red-700 font-bold rounded px-3 py-1 mt-12 pb-2 pt-2 text-xl">ENVIAR</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            @else
+
+            <div class="flex flex-col justify-end items-center flex-wrap mb-10">
+                <div class="flex flex-col justify-start items-center flex-wrap py-5 mt-10 bg-black text-white" style="width: 30%;height:auto;border-radius:2%">
+
+                    <p class="font-bold text-2xl">Danos tu valoración</p>
+                    <hr style="background-color: black; width:100%;height:3px" class="mt-3">
+                    <form action="{{route("coches.valoracion")}}" method="POST">
+                    @csrf
+                        <div class="flex flex-col justify-center items-center flex-wrap">
+                            <p class="text-red-700 font-bold text-xl mt-10 mb-3">Puntuación</p>
+                            <div id="puntuacionEstrellas" class="flex flex-row justify-center items-center flex-wrap text-2xl">
+                                <i class="bi bi-star star" data-value="1"></i>
+                                <i class="bi bi-star star" data-value="2"></i>
+                                <i class="bi bi-star star" data-value="3"></i>
+                                <i class="bi bi-star star" data-value="4"></i>
+                                <i class="bi bi-star star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" name="puntuacion" id="puntuacion">
+                        </div>
+
+                        <div class="flex flex-col justify-center items-center flex-wrap text-2xl mt-8">
+                            <p class="text-red-700 font-bold text-xl mb-3 ml-1">Comentario</p>
+                            <textarea class="text-black" name="comentario" id="comentario" cols="35" rows="5" placeholder="El {{$imagen->marca}} {{$imagen->modelo}} ..."></textarea>
+                        </div>
+
+                        <input type="hidden" name="idCoc" value="{{$imagen->idCoc}}">
+
+                        <div class="flex flex-col justify-center items-center flex-wrap">
+                            <button type="submit" class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1 mt-12 pb-2 pt-2 text-xl">ENVIAR</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            @endif
+
+            <script>
+                var stars = document.querySelectorAll('.star');
+                var puntuacionInput = document.querySelector('#puntuacion');
+            
+                stars.forEach(star => {
+                    star.addEventListener('click', function () {
+                        var value = this.dataset.value;
+            
+                        stars.forEach(star => {
+                            if (star.dataset.value <= value) {
+                                star.classList.remove('bi-star');
+                                star.classList.add('bi-star-fill', 'text-yellow-300', 'star-filled');
+                            } else {
+                                star.classList.remove('bi-star-fill', 'text-yellow-300', 'star-filled');
+                                star.classList.add('bi-star', 'star');
+                            }
+                        });
+            
+                        puntuacionInput.value = value;
+                    });
+                });
+            </script>
     </body>
 </html>

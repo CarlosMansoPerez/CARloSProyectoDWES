@@ -31,15 +31,17 @@ Route::get("/Inicio", function(){
 
 // RUTAS PARA COCHE
 
-    Route::get("coches",                    [CocheController::class, "listar"])->name("coches.listado")->middleware('logueado');
-    Route::get("coches/insertar",           [CocheController::class, "insertarCoche"])->name("coches.insertar")->middleware('logueado');
-    Route::post("coches/guardar",           [CocheController::class, "guardar"])->name("coches.guardar")->middleware('logueado');
-    Route::get("coches/borrar/{id}",        [CocheController::class, "borrar"])->name("coches.borrar")->middleware('logueado');
-    Route::get("coches/editar/{id}",        [CocheController::class, "editar"])->name("coches.editar")->middleware('logueado');
-    Route::post("coches",                   [CocheController::class, "actualizar"])->name("coches.actualizar")->middleware('logueado');
-    Route::get("coches/accesorios/{idCoc}", [CocheController::class, "accesorios"])->name("coches.accesorios")->middleware('logueado');
-    Route::get("coches/imagen/{idCoc}",     [CocheController::class, "imagen"])->name("coches.imagen")->middleware('logueado');
-    Route::get("coches/comparar",           [CocheController::class, "comparar"])->name("coches.comparar")->middleware('logueado');
+    Route::get("coches",                           [CocheController::class, "listar"])->name("coches.listado")->middleware('logueado');
+    Route::get("coches/insertar",                  [CocheController::class, "insertarCoche"])->name("coches.insertar")->middleware('logueado');
+    Route::post("coches/guardar",                  [CocheController::class, "guardar"])->name("coches.guardar")->middleware('logueado');
+    Route::get("coches/borrar/{id}",               [CocheController::class, "borrar"])->name("coches.borrar")->middleware('logueado');
+    Route::get("coches/editar/{id}",               [CocheController::class, "editar"])->name("coches.editar")->middleware('logueado');
+    Route::post("coches",                          [CocheController::class, "actualizar"])->name("coches.actualizar")->middleware('logueado');
+    Route::get("coches/accesorios/{idCoc}",        [CocheController::class, "accesorios"])->name("coches.accesorios")->middleware('logueado');
+    Route::get("coches/imagen/{idCoc}",            [CocheController::class, "imagen"])->name("coches.imagen")->middleware('logueado');
+    Route::get("coches/comparar",                  [CocheController::class, "comparar"])->name("coches.comparar")->middleware('logueado');
+    Route::post("coches/valoracion",               [CocheController::class, "valoracion"])->name("coches.valoracion")->middleware('logueado');
+    Route::get("coches/Valoracion/{idCoc}/{idVal}", [CocheController::class, "borrarValoracion"])->name("coches.borrarValoracion")->middleware('logueado');
 
 // RUTAS PARA ACCESORIO
 
@@ -64,8 +66,8 @@ Route::get("/Inicio", function(){
 
 // RUTAS PARA REGISTRO
 
-Route::get("usuario/registrar", [UsuarioController::class, "insertarUsuario"])->name("usuarios.insertar")->middleware('logueado');
-Route::post("usuario/guardar",  [UsuarioController::class, "guardarUsuario"])->name("usuarios.guardar")->middleware('logueado');
+Route::get("usuario/registrar", [UsuarioController::class, "insertarUsuario"])->name("usuarios.insertar");
+Route::post("usuario/guardar",  [UsuarioController::class, "guardarUsuario"])->name("usuarios.guardar");
 
 
 Route::get('/dashboard', function () {
