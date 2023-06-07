@@ -77,7 +77,7 @@ class UsuarioController extends Controller
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
-        $ventas = Ventas::select('ventas.idVen', 'ventas.idUsu', 'ventas.idCoc', 'usuario.email', 'ventas.marca', 'ventas.modelo', 'ventas.importe', 'ventas.fechaCompra')
+        $ventas = Ventas::select("*")
         ->leftJoin('coche', 'coche.idCoc', '=', 'ventas.idCoc')
         ->leftJoin('usuario', 'usuario.idUsu', '=', 'ventas.idUsu')
         ->get();

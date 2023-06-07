@@ -54,6 +54,24 @@
                 transition: .1s;
                 cursor: pointer;
             }
+            .informacion {
+                display: none;
+                position: absolute;
+                left: 38%;
+                margin-top: -5%;
+                background-color: rgb(0, 0, 0);
+                color: white;
+                text-align: left;
+                width: 25rem;
+                padding: .5%;
+                border: 4px solid rgb(157, 0, 0);
+                z-index: 999;
+            }
+
+
+
+
+
         </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
@@ -217,13 +235,13 @@
 
             </div>
 
-            <div class="mt-12 flex flex-col justify-center items-center flex-wrap pb-10" style=" background: rgb(51,51,51);background: linear-gradient(180deg, rgba(51,51,51,1) 42%, rgba(0,0,0,1) 100%); ">
+            <div class="mt-12 flex flex-col justify-center items-center flex-wrap pt-5" style="padding-bottom:10%;background: rgb(51,51,51);background: linear-gradient(180deg, rgba(51,51,51,1) 42%, rgba(0,0,0,1) 100%); ">
                 
                 <p class="text-3xl text-white font-bold">Resumen de ventas</p>
 
                 <div class="flex flex-row justify-center items-center flex-wrap" style="width: 100%">
 
-                    <table class="mt-5 border-2 text-center text-white text-xl" style="width: 90%; background-color:gray;">
+                    <table class="mt-5 border-2 text-center text-white text-xl mt-12" style="width: 90%; background-color:gray;">
                         <thead class="border-2 bg-black font-bold text-white">
                             <tr id="cabecera">
                                 <th class="border-2 py-2">Nº de Venta</th>
@@ -236,15 +254,27 @@
                             </thead>
                             <tbody class="border-2">
                                 @foreach ($ventas as $venta)
-                                    <tr>
-                                        <td class="border-2">{{$venta->idVen}}</td>
-                                        <td class="border-2">{{$venta->email}}</td>
-                                        <td class="border-2">{{$venta->marca}}</td>
-                                        <td class="border-2">{{$venta->modelo}}</td>
-                                        <td class="border-2">{{$venta->importe}}€</td>
-                                        <td class="border-2">{{$venta->fechaCompra}}</td>
-                                    </tr>
-                                @endforeach
+                                <tr>
+                                    <td class="border-2">{{$venta->idVen}}</td>
+                                    <td style="width:18rem;" class="border-2">
+                                        {{$venta->email}}
+                                        <i style="float: right;" class="bi bi-info-circle-fill text-red-700 pr-5 infoUsu"></i>
+                                        <div class="informacion">
+                                            <p>{{ $venta->nombre }}</p>
+                                            <p>{{ $venta->email }}</p>
+                                            <p>{{ $venta->numeroTelefono }}</p>
+                                            <p>{{ $venta->ciudad }}</p>
+                                            <p>{{ $venta->direccionEnvio }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="border-2">{{$venta->marca}}</td>
+                                    <td class="border-2">{{$venta->modelo}}</td>
+                                    <td class="border-2">{{$venta->importe}}€</td>
+                                    <td class="border-2">{{$venta->fechaCompra}}</td>
+                                </tr>
+                            @endforeach
+                            
+                            
                             </tbody>
                     </table>
 
@@ -252,5 +282,23 @@
 
             </div>
 
+            <script>
+
+                var infoUsuElements = document.querySelectorAll('.infoUsu');
+
+                infoUsuElements.forEach(function(element) {
+
+                element.addEventListener('mouseover', function() {
+                    var informacion = this.nextElementSibling;
+                    informacion.style.display = 'block';
+                });
+
+                element.addEventListener('mouseout', function() {
+                    var informacion = this.nextElementSibling;
+                    informacion.style.display = 'none';
+                });
+                });
+
+            </script>
     </body>
 </html>
