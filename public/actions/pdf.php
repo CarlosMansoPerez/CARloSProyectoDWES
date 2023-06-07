@@ -11,7 +11,7 @@
 </head>
 <body id="content" style="border: 4px solid black;background-color:#f7f7f7;min-height:153.4vh">
     <h1 class="text-8xl text-red-700 font-bold ml-12 mt-12">CAR<b class="font-serif text-black text-6xl">lo</b><b class="font-bold text-red-700">S<b></h1>
-    <p class="mt-8 ml-12 text-black font-normal text-lg mb-4">Nº Factura: <?= $_COOKIE["numFac"] ?></p>
+    <p class="mt-8 ml-12 text-black font-normal text-lg mb-4">Nº Factura: <?php $numeroFactura =  isset($_COOKIE["numFac"])? $_COOKIE["numFac"] : "230600"; echo $numeroFactura; ?></p>
 
     <div  class="flex flex-row justify-start items-start text-black" >
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cookie) {
     cookie = parseInt(cookie) + 1;
     } else {
-    cookie = 230600;
+    cookie = 230601;
     }
 
     document.cookie = 'numFac=' + cookie;
