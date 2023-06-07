@@ -48,11 +48,17 @@
                 align-items:center; 
                 margin-top: 10%
             }
+            tr:hover:not(#cabecera){
+                background-color: black;
+                color: red;
+                transition: .1s;
+                cursor: pointer;
+            }
         </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
-            <div class="" style="width:100%; background-color: #333333;">
+            <div class="" style="width:100%; background: rgb(0,0,0);background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(51,51,51,1) 57%);">
                 <nav class="bg-black text-stone-50 font-bold font-sans text-center flex justify-center items-center" style="height: 3rem;">
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('coches.listado')}}">INICIO</a>
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100" href="{{route('coches.listado')}}#perfil">COCHES</a>
@@ -149,7 +155,7 @@
                                 </div>
 
                                 <div class="flex flex-col justify-start align-center mb-3">
-                                    <label for="">Direccón de entrega</label>
+                                    <label for="">Dirección de entrega</label>
                                     <input type="text" name="direccion" value="{{auth()->user()->direccionEnvio}}" class="rounded-lg text-red-700 hover:bg-gray-400 widthInput">
                                 </div>
 
@@ -211,6 +217,40 @@
 
             </div>
 
+            <div class="mt-12 flex flex-col justify-center items-center flex-wrap pb-10" style=" background: rgb(51,51,51);background: linear-gradient(180deg, rgba(51,51,51,1) 42%, rgba(0,0,0,1) 100%); ">
+                
+                <p class="text-3xl text-white font-bold">Resumen de ventas</p>
+
+                <div class="flex flex-row justify-center items-center flex-wrap" style="width: 100%">
+
+                    <table class="mt-5 border-2 text-center text-white text-xl" style="width: 90%; background-color:gray;">
+                        <thead class="border-2 bg-black font-bold text-white">
+                            <tr id="cabecera">
+                                <th class="border-2 py-2">Nº de Venta</th>
+                                <th class="border-2 py-2">Usuario</th>
+                                <th class="border-2 py-2">Marca</th>
+                                <th class="border-2 py-2">Modelo</th>
+                                <th class="border-2 py-2">Importe</th>
+                                <th class="border-2 py-2">Fecha</th>
+                            </tr>
+                            </thead>
+                            <tbody class="border-2">
+                                @foreach ($ventas as $venta)
+                                    <tr>
+                                        <td class="border-2">{{$venta->idVen}}</td>
+                                        <td class="border-2">{{$venta->email}}</td>
+                                        <td class="border-2">{{$venta->marca}}</td>
+                                        <td class="border-2">{{$venta->modelo}}</td>
+                                        <td class="border-2">{{$venta->importe}}€</td>
+                                        <td class="border-2">{{$venta->fechaCompra}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                    </table>
+
+                </div>
+
+            </div>
 
     </body>
 </html>

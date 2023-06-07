@@ -41,7 +41,8 @@
                 if(isset($datos)){
             ?>
 
-            <form action="{{asset('actions/pdf.php')}}" method="POST">
+            <form action="{{route('carrito.insertarVenta')}}" method="POST">
+            @csrf
 
                 @if (count($accesorios) != 0)
                     <b id="extras" class="extras text-lg bg-black hover:bg-white hover:text-red-700 text-white font-bold rounded px-2 py-1">VER EXTRAS</b>
@@ -139,7 +140,11 @@
                     <input type="hidden" name="nombre" value="{{auth()->user()->nombre}}">
                     <input type="hidden" name="email" value="{{auth()->user()->email}}">
                     <input type="hidden" name="direccion" value="{{auth()->user()->direccionEnvio}}">
-
+                    <?php if(isset($datos)){ ?>
+                    <input type="hidden" name="idCoc" value="{{$datos[0]["idCoc"]}}">
+                    <input type="hidden" name="marca" value="{{$datos[0]["marca"]}}">
+                    <input type="hidden" name="modelo" value="{{$datos[0]["modelo"]}}">
+                    <?php } ?>
                         <button type="submit"  style="width:15rem;" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1">PAGAR</button>
                     </form>
                     </div>

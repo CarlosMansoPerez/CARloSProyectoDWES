@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Carrito;
 use App\Models\CarritoCoche;
+use App\Models\Ventas;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\VarDumper\VarDumper;
 use User;
+use Illuminate\Support\Facades\DB;
+
 
 class UsuarioController extends Controller
 {
@@ -70,9 +73,16 @@ class UsuarioController extends Controller
     }
 
     public function perfil(){
+
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
-        return view("perfil.perfil", ["productos"=>$productos->count()]);
+
+        $ventas = Ventas::select('ventas.idVen', 'ventas.idUsu', 'ventas.idCoc', 'usuario.email', 'ventas.marca', 'ventas.modelo', 'ventas.importe', 'ventas.fechaCompra')
+        ->leftJoin('coche', 'coche.idCoc', '=', 'ventas.idCoc')
+        ->leftJoin('usuario', 'usuario.idUsu', '=', 'ventas.idUsu')
+        ->get();
+
+        return view("perfil.perfil", ["productos"=>$productos->count(), "ventas" => $ventas]);
     }
 
     public function cambioContraseña(Request $req){

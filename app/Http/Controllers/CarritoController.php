@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Carrito;
 use App\Models\CarritoCoche;
 use App\Models\Coche;
+use App\Models\Ventas;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -74,5 +75,30 @@ class CarritoController extends Controller
 
     public function factura(Request $req){
         return view("pdf.plantilla", ["datos" => $req->prueba]);
+    }
+
+    public function insertarVenta(Request $req){
+
+        $email = $req->email;
+        $marca = $req->marca;
+        $modelo = $req->modelo;
+        $total = $req->total;
+        $direccion = auth()->user()->direccionEnvio;
+        $nombre = auth()->user()->nombre;
+
+        $venta = new Ventas();
+
+        $venta->idUsu       = auth()->user()->idUsu;
+        $venta->idCoc       = $req->idCoc;
+        $venta->marca       = $marca;
+        $venta->modelo      = $modelo;
+        $venta->importe     = $total;
+        $venta->fechaCompra = date("Y-m-d");
+
+        $venta->save();
+
+
+        include public_path()."/actions/pdf.php";
+
     }
 }

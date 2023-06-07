@@ -17,9 +17,9 @@
 
         <div class="flex flex-col justify-center items-start text-black" style="height: 20rem;margin-left:10%">
             <p class="mt-2 ml-4 text-black font-normal text-xl">Facturar a: </p>
-            <p id="nombre" class="mt-2 ml-4 text-black font-normal"><?= $_POST["nombre"] ?></p>
-            <p id="correo" class="mt-2 ml-4 text-black font-normal"><?= $_POST["email"] ?></p>
-            <p id="direccion" class="mt-2 ml-4 text-black font-normal"><?= $_POST["direccion"] ?></p>
+            <p id="nombre" class="mt-2 ml-4 text-black font-normal"><?= $nombre ?></p>
+            <p id="correo" class="mt-2 ml-4 text-black font-normal"><?= $email ?></p>
+            <p id="direccion" class="mt-2 ml-4 text-black font-normal"><?= $direccion ?></p>
         </div>
 
         <div class="flex flex-col justify-center items-start text-black" style="height: 20rem;margin-left:20%">
@@ -35,7 +35,7 @@
 
 
     <div class="bg-gray-400 text-black font-normal text-3xl p-4" style="margin-top: 16rem;">
-        <p class="ml-10 text-right mr-12">Total a pagar: <b id="total"><?=$_POST["total"]?></b>€</p>
+        <p class="ml-10 text-right mr-12">Total a pagar: <b id="total"><?=$total?></b>€</p>
     </div>
 
     <p class="text-center mt-5 text-black font-normal"  style="margin-top: 6rem;">Gracias por confiar en CARloS</p>
