@@ -57,6 +57,7 @@ Route::get("/Inicio", function(){
     Route::get("perfil",              [UsuarioController::class, "perfil"])->name("perfil")->middleware('logueado');
     Route::post("perfil",             [UsuarioController::class, "actualizarUsuario"])->name("usuarios.actualizar")->middleware('logueado');
     Route::post("perfil/contraseña",  [UsuarioController::class, "cambioContraseña"])->name("usuarios.contraseña")->middleware('logueado');
+    Route::get("perfil/panelAdmin",  [UsuarioController::class, "panelAdmin"])->name("perfil.panelAdmin")->middleware('logueado');
     
 // RUTAS PARA EL CARRITO
 

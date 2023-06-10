@@ -78,6 +78,41 @@ class UsuarioController extends Controller
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
+        return view("perfil.perfil", ["productos"=>$productos->count()]);
+    }
+
+    public function cambioContraseña(Request $req){
+
+        $conActual   = $req->conActual;
+        $conNueva    = $req->conNueva;
+        $conNuevaRep = $req->conNuevaRep;
+
+        $conActualBBDD = auth()->user()->password;
+
+        // Metodo para comprobar si la contraseña encriptada en la base de datos es igual a la escrita por el usuario
+        if(Hash::check($conActual, $conActualBBDD)) {
+            
+            if($conNueva == $conNuevaRep){
+                $user = Auth::user();
+                $user->password = Hash::make($conNueva);
+                $user->save();
+
+                Session::flash('cambioCon', 'Contraseña actualizada');
+                return redirect(route("perfil"));
+
+            }else{
+                Session::flash('falloConRep', 'Las contraseñas no coinciden');
+                return redirect(route("perfil"));
+            }
+
+        }else{
+            Session::flash('falloConActual', 'Contraseña incorrecta');
+            return redirect(route("perfil"));
+        }
+    }
+
+    public function panelAdmin(){
+
         /* TRAER REGISTROS DE VENTAS Y PAGINARLOS */
         $ventas = Ventas::select("*")
         ->leftJoin('coche', 'coche.idCoc', '=', 'ventas.idCoc')
@@ -148,37 +183,11 @@ class UsuarioController extends Controller
         ->select('email')
         ->where('idUsu', $idUsuarioMasFiel->idUsu)->first();
 
-        return view("perfil.perfil", ["productos"=>$productos->count(), "ventas" => $ventas, "ventasMes" => $ventasMes, "marcaMasVendida" => $marcaMasVendida, "modeloMasVendido" => $modeloMasVendido, "totalVentas" => $totalVentas, "idUsuarioMasFiel" => $idUsuarioMasFiel, "usuarioMasFiel" => $usuarioMasFiel],  compact('resultadosVentas'));
-    }
+        /* SABER NÚMERO DE PRODUCTOS EN CARRITO */
+        $carritoCoche = CarritoCoche::all();
+        $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
-    public function cambioContraseña(Request $req){
-
-        $conActual   = $req->conActual;
-        $conNueva    = $req->conNueva;
-        $conNuevaRep = $req->conNuevaRep;
-
-        $conActualBBDD = auth()->user()->password;
-
-        // Metodo para comprobar si la contraseña encriptada en la base de datos es igual a la escrita por el usuario
-        if(Hash::check($conActual, $conActualBBDD)) {
-            
-            if($conNueva == $conNuevaRep){
-                $user = Auth::user();
-                $user->password = Hash::make($conNueva);
-                $user->save();
-
-                Session::flash('cambioCon', 'Contraseña actualizada');
-                return redirect(route("perfil"));
-
-            }else{
-                Session::flash('falloConRep', 'Las contraseñas no coinciden');
-                return redirect(route("perfil"));
-            }
-
-        }else{
-            Session::flash('falloConActual', 'Contraseña incorrecta');
-            return redirect(route("perfil"));
-        }
+        return view("perfil.datosEmpresa", ["ventas" => $ventas, "ventasMes" => $ventasMes, "marcaMasVendida" => $marcaMasVendida, "modeloMasVendido" => $modeloMasVendido, "totalVentas" => $totalVentas, "idUsuarioMasFiel" => $idUsuarioMasFiel, "usuarioMasFiel" => $usuarioMasFiel, "productos" => $productos->count()],  compact('resultadosVentas'));
     }
 
 }

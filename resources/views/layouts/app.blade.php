@@ -17,6 +17,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="{{asset('js/scripts.js')}}"></script>
         
+        <style>
+            #panelAdmin:hover{
+                transition: .4s;
+                background-color: black;
+                cursor: pointer;
+            }
+
+        </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
@@ -46,6 +54,14 @@
                         </x-dropdown-link>
                     </form>
                 </nav>
+
+                @if (auth()->user()->idUsu == 2 && auth()->user()->nombre == "Admin")
+
+                    <a href="{{route("perfil.panelAdmin")}}"><div id="panelAdmin" class="bg-red-700 flex justify-center items-center" style="border-radius: 50%; position:fixed; width:70px; height:70px;z-index:999; left:90%; top:5%">
+                        <p class="text-white text-5xl font-bold"><i class="bi bi-person-fill-gear"></i></p>
+                    </div></a>
+
+                @endif
 
                 <!-- Page Content -->
                 <main>
