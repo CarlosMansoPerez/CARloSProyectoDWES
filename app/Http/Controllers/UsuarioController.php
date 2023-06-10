@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Symfony\Component\VarDumper\VarDumper;
 use User;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 
 class UsuarioController extends Controller
 {
@@ -74,15 +74,81 @@ class UsuarioController extends Controller
 
     public function perfil(){
 
+        /* SABER NÚMERO DE PRODUCTOS EN CARRITO */
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
+        /* TRAER REGISTROS DE VENTAS Y PAGINARLOS */
         $ventas = Ventas::select("*")
         ->leftJoin('coche', 'coche.idCoc', '=', 'ventas.idCoc')
         ->leftJoin('usuario', 'usuario.idUsu', '=', 'ventas.idUsu')
+        ->paginate(5);
+
+        /* SABER NÚMERO DE VENTAS EN EL MES ACTUAL */
+        $ventasMes = Ventas::whereMonth('fechaCompra', Carbon::now()->month)
+        ->whereYear('fechaCompra', Carbon::now()->year)
         ->get();
 
-        return view("perfil.perfil", ["productos"=>$productos->count(), "ventas" => $ventas]);
+        /* SABER MARCA MÁS VENDIDA */
+        $marcaMasVendida = DB::table('ventas')
+        ->select('marca', DB::raw('COUNT(*) AS cantidad_registros')) //raw para poder escribir sql directamente
+        ->groupBy('marca')
+        ->orderBy('cantidad_registros', 'desc')
+        ->first();
+
+        // ESTADÍSTICAS DE MESES PASADOS
+
+        $resultadosVentas = [];
+
+        $resultadosVentas['VentasMes4'] = Ventas::where('fechaCompra', '>=', Carbon::now()->subMonths(4))
+                                            ->where('fechaCompra', '<', Carbon::now()->subMonths(3))
+                                            ->count();
+        
+        $resultadosVentas['VentasMes3'] = Ventas::where('fechaCompra', '>=', Carbon::now()->subMonths(3))
+                                            ->where('fechaCompra', '<', Carbon::now()->subMonths(2))
+                                            ->count();
+        
+        $resultadosVentas['VentasMes2'] = Ventas::where('fechaCompra', '>=', Carbon::now()->subMonths(2))
+                                            ->where('fechaCompra', '<', Carbon::now()->subMonths(1))
+                                            ->count();
+        
+        $resultadosVentas['VentasMesPasado'] = Ventas::where('fechaCompra', '>=', Carbon::now()->subMonth())
+                                            ->where('fechaCompra', '<', Carbon::now())
+                                            ->count();
+        
+        $resultadosVentas['VentasMesActual'] = Ventas::where('fechaCompra', '>=', Carbon::now()->startOfMonth())
+                                            ->where('fechaCompra', '<', Carbon::now()->endOfMonth())
+                                            ->count();
+
+        //MARCA MAS VENDIDA
+        $marcaMasVendida = DB::table('ventas')
+        ->select('marca', DB::raw('COUNT(*) AS cantidad_registros'))
+        ->groupBy('marca')
+        ->orderBy('cantidad_registros', 'desc')
+        ->first();
+
+        //MODELO MAS VENDIDO
+        $modeloMasVendido = DB::table('ventas')
+        ->select('modelo', DB::raw('COUNT(*) AS cantidad_registros'))
+        ->groupBy('modelo')
+        ->orderBy('cantidad_registros', 'desc')
+        ->first();
+
+        //TOTAL DE VENTAS
+        $totalVentas = DB::table('ventas')->sum('importe');
+
+        //USUARIO MAS FIEL
+        $idUsuarioMasFiel = DB::table('ventas')
+        ->select('idUsu', DB::raw('COUNT(*) AS cantidad_registros'))
+        ->groupBy('idUsu')
+        ->orderBy('cantidad_registros', 'desc')
+        ->first();
+
+        $usuarioMasFiel = DB::table('usuario')
+        ->select('email')
+        ->where('idUsu', $idUsuarioMasFiel->idUsu)->first();
+
+        return view("perfil.perfil", ["productos"=>$productos->count(), "ventas" => $ventas, "ventasMes" => $ventasMes, "marcaMasVendida" => $marcaMasVendida, "modeloMasVendido" => $modeloMasVendido, "totalVentas" => $totalVentas, "idUsuarioMasFiel" => $idUsuarioMasFiel, "usuarioMasFiel" => $usuarioMasFiel],  compact('resultadosVentas'));
     }
 
     public function cambioContraseña(Request $req){
