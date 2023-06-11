@@ -56,7 +56,7 @@
 </style>
 <div class="mt-12 flex flex-col justify-center items-center flex-wrap pt-5 bg-white" style="padding-bottom:10%;background: rgb(51,51,51);background: linear-gradient(180deg, rgba(51,51,51,1) 42%, rgba(0,0,0,1) 100%); ">
                 
-    <div style="width: 100%;margin-top:-4%" class="p-5 mb-8 flex justify-center items-center">
+    <div id="resumenVentas" style="width: 100%;margin-top:-4%" class="p-5 mb-8 flex justify-center items-center">
         <p class="text-3xl text-white font-bold">Resumen de ventas</p>
     </div>
 

@@ -16,7 +16,7 @@
         <a href="{{route('accesorios.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-1 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;position:absolute;left:38%;">INSERTAR NUEVO ACCESORIO</a>
     @endif
 
-    <p class="text-white font-bold font-sans text-2xl" style="margin-left: 6%;margin-top:2%">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
+    <p id="listaAccesorios" class="text-white font-bold font-sans text-2xl" style="margin-left: 6%;margin-top:2%">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
         
     <div class="flex justify-start flex-wrap items-center flex-row">
     @foreach($datos as $accesorio)

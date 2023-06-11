@@ -118,8 +118,12 @@ class CocheController extends Controller
         ->leftJoin('usuario', 'valoraciones.idUsu', '=', 'usuario.idUsu')
         ->where('valoraciones.idCoc', $req->idCoc)
         ->get();
+
+        $mediaValoraciones = Valoraciones::select(DB::raw('AVG(puntuacion) as mediaValoraciones'), DB::raw('COUNT(*) as totalRegistros'))
+        ->where('idCoc', $req->idCoc)
+        ->first();
         
-        return view("coches.imagen", compact("imagen"), ["valoraciones" => $valoraciones]);
+        return view("coches.imagen", compact("imagen"), ["valoraciones" => $valoraciones, "mediaValoraciones" => $mediaValoraciones]);
     }
 
     public function comparar(){

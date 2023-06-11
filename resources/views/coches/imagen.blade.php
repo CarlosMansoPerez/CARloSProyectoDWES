@@ -33,12 +33,29 @@
                     </form>                </nav>
             </div>
 
-            <div class="flex flex-wrap justify-left items-center flex-row" style="width: 100%;padding-bottom:1.7rem;background: linear-gradient(#000000, #333333);">
+            <div id="datosCoche" class="flex flex-wrap justify-left items-center flex-row" style="width: 100%;padding-bottom:1.7rem;background: linear-gradient(#000000, #333333);">
 
                 {{-- FOTO --}}
-                <div class="w-7/12" style="margin-left: 5%; margin-top:2%">
-                    <img class="w-full" src="{{$imagen->foto}}">
-                    {{-- <button class="bg-red-700 hover:bg-black duration-700 hover:scale-105 text-white font-bold rounded px-3 py-1 mt-12 pb-2 pt-2 text-xl" style="margin-left:40%;">VER VALORACIONES</button> --}}
+                <div class="w-7/12" style="margin-left: 5%; margin-top:2%;">
+                    <img class="w-full" style="height: 30rem" src="{{$imagen->foto}}">
+                    <?php
+                        $mediaRedondeada = round($mediaValoraciones->mediaValoraciones);
+                        if($mediaRedondeada != 0){
+                        $estrellas = "";
+
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $mediaRedondeada) {
+                                // Estrella amarilla
+                                $estrellas .= '<i class="bi bi-star-fill text-yellow-300" style="text-shadow:1px 1px 1px orange"></i>';
+                            } else {
+                                // Estrella vacia
+                                $estrellas .= '<i class="bi bi-star"></i>';
+                            }
+                        }
+
+                    ?>
+                    <p style="margin-top:8%" class="text-3xl text-center text-white font-bold"><?php echo $estrellas ?> <b class="font-normal">( {{$mediaValoraciones->totalRegistros}} )</b></p>
+                    <?php } ?>
                 </div>
 
                 {{-- DATOS --}}
@@ -95,6 +112,8 @@
             </div>
 
             @if (count($valoraciones) != 0)
+
+            
 
             <div class="flex flex-row justify-around items-start flex-wrap py-5" style="background: linear-gradient(#333333, #000000);">
 
@@ -218,6 +237,24 @@
             
                 stars.forEach(star => {
                     star.addEventListener('click', function () {
+                        var value = this.dataset.value;
+            
+                        stars.forEach(star => {
+                            if (star.dataset.value <= value) {
+                                star.classList.remove('bi-star');
+                                star.classList.add('bi-star-fill', 'text-yellow-300', 'star-filled');
+                            } else {
+                                star.classList.remove('bi-star-fill', 'text-yellow-300', 'star-filled');
+                                star.classList.add('bi-star', 'star');
+                            }
+                        });
+            
+                        puntuacionInput.value = value;
+                    });
+                });
+
+                stars.forEach(star => {
+                    star.addEventListener('mouseover', function () {
                         var value = this.dataset.value;
             
                         stars.forEach(star => {

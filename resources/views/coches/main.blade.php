@@ -179,6 +179,8 @@
     @foreach($datos as $coche)
 
             {{-- CARDS --}}
+            <a href="{{route('coches.imagen', $coche->idCoc)}}#datosCoche">
+
             <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black cards" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
 
                 {{-- CABECERA --}}
@@ -193,7 +195,7 @@
                     </div>
 
                     {{-- IMAGEN --}}
-                        <a href="{{route('coches.imagen', $coche->idCoc)}}"><img src="{{$coche->foto}}" class="mt-7 m-auto" style="width: 23rem; height: 15rem;"></a>
+                        <img src="{{$coche->foto}}" class="mt-7 m-auto" style="width: 23rem; height: 15rem;">
 
                     {{-- DATOS --}}
                     <div class="flex flex-col flex-wrap justify-center items-center h-auto pb-3 pt-5">
@@ -273,6 +275,8 @@
                     </div>
 
             </div>
+
+            </a>
 
         @endforeach
 
