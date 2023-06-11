@@ -24,6 +24,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Málaga",
             'cp' => "29603",
             'numeroTelefono' => "640727752",
+            "esAdmin" => 0
         ],
         [
             'email'   => "admin@gmail.com",
@@ -34,6 +35,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Málaga",
             'cp' => "29605",
             'numeroTelefono' => "658452108",
+            "esAdmin" => 1
         ],        
         [
             'email'   => "pepe@gmail.com",
@@ -44,6 +46,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ],        
         [
             'email'   => "juan@gmail.com",
@@ -54,6 +57,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ],        
         [
             'email'   => "alberto@gmail.com",
@@ -64,6 +68,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ],        
         [
             'email'   => "alvaro@gmail.com",
@@ -74,6 +79,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ],        
         [
             'email'   => "sara@gmail.com",
@@ -84,6 +90,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ],        
         [
             'email'   => "julia@gmail.com",
@@ -94,6 +101,7 @@ class UsuarioTableSeeder extends Seeder
             'provincia' => "Sevilla",
             'cp' => "23406",
             'numeroTelefono' => "645787654",
+            "esAdmin" => 0
         ]];
 
         DB::table('usuario')->insert($usuarios);

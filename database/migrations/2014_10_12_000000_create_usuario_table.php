@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('ciudad')->nullable();
             $table->string('cp')->nullable();
             $table->string('provincia')->nullable();
+            $table->integer('esAdmin');
             $table->timestamps();
         });
     }

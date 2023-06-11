@@ -168,7 +168,7 @@
 
         </div>
 
-        @if (auth()->user()->nombre != "Admin")
+        @if (auth()->user()->esAdmin != 1)
         
         @else
 

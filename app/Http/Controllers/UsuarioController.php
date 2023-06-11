@@ -39,6 +39,7 @@ class UsuarioController extends Controller
         $usuario->ciudad = $req->ciudad;
         $usuario->cp = $req->cp;
         $usuario->provincia = $req->provincia;
+        $usuario->esAdmin = 0;
 
         $usuario->save();
 
