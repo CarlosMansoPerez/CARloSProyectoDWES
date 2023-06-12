@@ -94,7 +94,6 @@
         Toast.fire({
         icon: 'success',
         title: 'Vehículo insertado en la base de datos',
-        background: "black"
         })
     </script>
     @endif
