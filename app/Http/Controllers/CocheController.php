@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\VarDumper;
+use Illuminate\Support\Facades\Session;
+
 
 class CocheController extends Controller
 {
@@ -61,11 +63,20 @@ class CocheController extends Controller
 
         $coche->save();
 
+        Session::flash('mensajeCocheInsertado', 'Vehículo insertado correctamente en la base de datos');
+
         return redirect(route("coches.listado"));
     }
 
     public function borrar(Request $req){
         
+        $token = isset($_GET["_token"])? $_GET["_token"] : "";
+
+        if ($token == "") {
+            Session::flash('borrarDenegado', 'Acceso denegado');
+            return redirect()->route("coches.listado");
+        }
+
         Coche::find($req->id)->delete();
 
         return redirect()->route("coches.listado");

@@ -34,7 +34,7 @@ Route::get("/Inicio", function(){
     Route::get("coches",                            [CocheController::class, "listar"])->name("coches.listado")->middleware('logueado');
     Route::get("coches/insertar",                   [CocheController::class, "insertarCoche"])->name("coches.insertar")->middleware('logueado');
     Route::post("coches/guardar",                   [CocheController::class, "guardar"])->name("coches.guardar")->middleware('logueado');
-    Route::get("coches/borrar/{id}",                [CocheController::class, "borrar"])->name("coches.borrar")->middleware('logueado')->middleware('checkBorrado');
+    Route::get("coches/borrar/{id}",                [CocheController::class, "borrar"])->name("coches.borrar")->middleware('logueado');
     Route::get("coches/editar/{id}",                [CocheController::class, "editar"])->name("coches.editar")->middleware('logueado');
     Route::post("coches",                           [CocheController::class, "actualizar"])->name("coches.actualizar")->middleware('logueado');
     Route::get("coches/accesorios/{idCoc}",         [CocheController::class, "accesorios"])->name("coches.accesorios")->middleware('logueado');

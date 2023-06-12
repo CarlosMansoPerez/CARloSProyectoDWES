@@ -145,6 +145,16 @@ function desaparece(){
 } 
 
 
+function generarToken(longitud = 32) {
+    const caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let token = '';
+
+    for (let i = 0; i < longitud; i++) {
+        token += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+
+    return token;
+}
 
 
 var todosBorrar = document.getElementsByClassName("borrarCoche");
@@ -174,12 +184,15 @@ function borrarSeguro(e){
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-        window.location.href = "coches/borrar/"+idCoc+"";
-        swalWithBootstrapButtons.fire(
-            'Vehículo borrado',
-            'El vehículo ha sido eliminado de la base de datos.',
-            'success'
-        )
+            var csrfToken = generarToken();
+
+            window.location.href = "coches/borrar/"+idCoc+"?_token=" + csrfToken;
+
+            swalWithBootstrapButtons.fire(
+                'Vehículo borrado',
+                'El vehículo ha sido eliminado de la base de datos.',
+                'success'
+            )
         } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel

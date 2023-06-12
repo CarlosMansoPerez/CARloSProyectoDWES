@@ -49,14 +49,14 @@ class UsuarioController extends Controller
             return redirect(route("usuarios.insertar"));
         }
 
-        // $usuario->save();
+        $usuario->save();
 
-        // $carrito = new Carrito();
-        // $carrito->idCar = $contadorUsuarios;
-        // $carrito->idUsu = $contadorUsuarios;
-        // $carrito->save();
+        $carrito = new Carrito();
+        $carrito->idCar = $contadorUsuarios;
+        $carrito->idUsu = $contadorUsuarios;
+        $carrito->save();
 
-        // return redirect(route("login"));
+        return redirect(route("login"));
     }
 
 

@@ -86,15 +86,15 @@
                                 <input class="mt-6 text-center w-60" name="potencia"  style="width: 18rem" type="number" min="100" max="700" placeholder="Potencia CV">
                             </div>
 
-                            <div class="flex flex-col justify-center align-center" style="width: 30%;height:27rem">
-                                <div>
+                            <div class="flex flex-col justify-center items-center" style="width: 30%;height:26rem">
+                                <div style="margin-top:-5%">
                                     <input type="text" id="url1" placeholder="URL Foto" name="foto" style="margin-top: 3rem;width:17rem">
                                     <div class="image-container" id="image1" style="width: 17rem">
                                         <img src="{{asset('img/siluetaCoche.png')}}" alt="Imagen predeterminada" style="width:40rem">
                                     </div>
                                 </div>
-                                <div>
-                                    <input type="text" id="logoInput" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem">
+                                <div style="margin-top: -20%">
+                                    <input type="text" id="logoInput" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem; opacity:0;">
                                     <div class="image-container" id="image2" style="width: 17rem">
                                         <img src="{{asset('img/siluetaLogo.png')}}" alt="Imagen predeterminada" style="width:40rem">
                                     </div>
@@ -204,7 +204,7 @@
 
                     var logos = {
                     "Volkswagen": 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png',
-                    "BMW":"https://cdn.icon-icons.com/icons2/1834/PNG/512/iconfinderbmwlogo4140436-115966_115915.png",
+                    "BMW":"https://stick-attack.fr/23926-large_default/stickers-logo-bmw-couleurs.jpg",
                     "Mercedes-Benz":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/2048px-Mercedes-Logo.svg.png",
                     "Audi":"https://www.rentacarfloridacars.com/wp-content/uploads/2016/12/Audi-Logo-2013.png",
                     "Ford":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ford_Motor_Company_Logo.svg/2560px-Ford_Motor_Company_Logo.svg.png",

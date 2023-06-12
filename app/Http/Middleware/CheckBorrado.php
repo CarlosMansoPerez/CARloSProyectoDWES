@@ -19,6 +19,7 @@ class CheckBorrado
             // Si el botón no está presente en la solicitud, redirige al usuario
             return redirect()->back()->with('error', 'Acceso no autorizado.');
         }
+
     
         // Si el botón está presente, continúa con la ejecución de la función.
         return $next($request);
