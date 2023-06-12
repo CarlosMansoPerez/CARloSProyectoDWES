@@ -12,16 +12,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
         
         <style>
-            #password-error{
-                width: auto;
-                height: auto;
-                padding: 4% 4% 2% 2%;
-                position: absolute;
-                top: 55%;
-                left: 5%;
-            }
+
             @media (max-width: 1250px) { 
                 .divRegistro{
                     width: 100% !important;
@@ -51,19 +48,19 @@
                         <div id="formRegistro" class="flex flex-wrap flex-row justify-center items-center gap-12 ">
 
                             <div class="flex flex-wrap flex-col justify-center items-center">
-                                <input id="nombre" class="mt-6 text-center w-60 mb-4" name="nombre"         type="text"     placeholder="Nombre">
-                                <input id="email" class="mt-6 text-center w-60 mb-4" name="email"          type="email"    placeholder="Correo electrónico">
-                                <input id="password" class="mt-6 text-center w-60 mb-4" name="password" type="password" placeholder="Contraseña" minlength="4" required>
-                                <span id="password-error" class="text-red-500"></span>
-                                <i id="iconoOjo" class="bi bi-eye text-black" style="position: absolute;top:58%;left:16%"></i>
-                                <input id="numTel" class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text"     placeholder="Nº teléfono">
+                                <input id="nombre"        class="mt-6 text-center w-60 mb-4" name="nombre"   type="text"     placeholder="Nombre" required>
+                                <input id="email"         class="mt-6 text-center w-60 mb-4" name="email"    type="email"    placeholder="Correo electrónico" required>
+                                <input id="password"      class="mt-6 text-center w-60 mb-4" name="password" type="password" placeholder="Contraseña" minlength="4" required>
+                                <span id="password-error" class="text-red-500 bg-white" style="height: 5px"></span>
+                                <i id="iconoOjo"          class="bi bi-eye text-black" style="position: absolute;top:58%;left:16%"></i>
+                                <input id="numTel"        class="mt-6 text-center w-60 mb-4" name="numeroTelefono" type="text" placeholder="Nº teléfono" maxlength="9" minlength="9" required >
                             </div>
 
                             <div class="flex flex-wrap flex-col justify-center items-center">
-                                <input id="direccion" class="mt-6 text-center w-60 mb-4" name="direccionEnvio" type="text" placeholder="Direccion de Envio">
-                                <input id="provincia" class="mt-6 text-center w-60 mb-4" name="provincia"      type="text" placeholder="Provincia">
-                                <input id="ciudad" class="mt-6 text-center w-60 mb-4" name="ciudad"         type="text" placeholder="Ciudad">
-                                <input id="cp" class="mt-6 text-center w-60 mb-4" name="cp"             type="text" placeholder="Código Postal">
+                                <input id="direccion" class="mt-6 text-center w-60 mb-4" name="direccionEnvio" type="text" placeholder="Direccion de Envio" required>
+                                <input id="provincia" class="mt-6 text-center w-60 mb-4" name="provincia" type="text" placeholder="Provincia" required>
+                                <input id="ciudad" class="mt-6 text-center w-60 mb-4" name="ciudad" type="text" placeholder="Ciudad" required>
+                                <input id="cp" class="mt-6 text-center w-60 mb-4" name="cp" type="text" placeholder="Código Postal" required maxlength="5" minlength="5">
                             </div>
 
                         
@@ -162,27 +159,6 @@
                 });
             }
 
-
-            // VALIDACIONES CONTRASEÑA
-
-            document.getElementById('password').addEventListener('input', function () {
-            var password = this.value;
-            var errorSpan = document.getElementById('password-error');
-            errorSpan.textContent = '';
-
-            var regexLength = /.{4,}/;
-            var regexUppercase = /[A-Z]/;
-            var regexNumber = /[0-9]/;
-
-            if (!regexLength.test(password)) {
-                errorSpan.textContent = 'La contraseña debe tener al menos 4 caracteres.';
-            } else if (!regexUppercase.test(password)) {
-                errorSpan.textContent = 'La contraseña debe contener al menos 1 letra mayúscula.';
-            } else if (!regexNumber.test(password)) {
-                errorSpan.textContent = 'La contraseña debe contener al menos 1 número.';
-            }
-            });
-
             //VISIBILIDAD CONTRASEÑA
 
             document.getElementById("iconoOjo").addEventListener("click", verPassword)
@@ -196,6 +172,86 @@
                     inputPassword.type = "password";
                 }
             }
+
+            // VALIDACIÓN CONTRASEÑA
+            var inputPassword = document.getElementById("password");
+            document.getElementById("password").addEventListener("change", validarInputPassword);
+
+            function validarInputPassword() {
+                var patron = /^(?=.*\d)(?=.*[A-Z]).{6,}$/;  // Expresión regular para verificar que solo haya 5 números
+
+                if (!patron.test(inputPassword.value)) {
+                    inputPassword.value = "";
+
+                    Swal.fire({ // librería para alerta de errores importada en la cabecera
+                        title: 'Error',
+                        text: 'La contraseña debe tener al menos 6 caracteres, 1 número y 1 mayúscula',
+                        icon: 'error',
+                        background: 'white',
+                    });
+                }
+            }
+
+            // VALIDACIONES INPUTS
+
+            // Código postal
+            var inputCp = document.getElementById("cp");
+            document.getElementById("cp").addEventListener("change", validarInput);
+
+            function validarInput() {
+                var patron = /^\d{5}$/;  // Expresión regular para verificar que solo haya 5 números
+
+                if (!patron.test(inputCp.value)) {
+                    inputCp.value = "";
+
+                    Swal.fire({ // librería para alerta de errores importada en la cabecera
+                        title: 'Error',
+                        text: 'El código postal debe ser un número de 5 dígitos',
+                        icon: 'error',
+                        timer: "2000"
+                    });
+                }
+            }
+
+
+            // Número teléfono
+            var inputNumTel = document.getElementById("numTel");
+            document.getElementById("numTel").addEventListener("change", validarInput2);
+
+            function validarInput2() {
+                var patron = /^\d{9}$/;  // Expresión regular para verificar que solo haya 5 números
+
+                if (!patron.test(inputNumTel.value)) {
+                    inputNumTel.value = "";
+
+                    Swal.fire({ // librería para alerta de errores importada en la cabecera
+                        title: 'Error',
+                        text: 'El número de teléfono debe ser un número de 9 dígitos',
+                        icon: 'error',
+                        timer: "2000"
+                    });
+                }
+            }
+
+            // Email
+            var inputEmail = document.getElementById("email");
+            document.getElementById("email").addEventListener("change", validarInput3);
+
+            function validarInput3() {
+                var patron = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expresión regular para verificar que solo haya 5 números
+
+                if (!patron.test(inputEmail.value)) {
+                    inputEmail.value = "";
+
+                    Swal.fire({ // librería para alerta de errores importada en la cabecera
+                        title: 'Error',
+                        text: 'Introduce un correo electrónico válido',
+                        icon: 'error',
+                        timer: "2000"
+                    });
+                }
+            }
+
 
         </script>
     </body>
