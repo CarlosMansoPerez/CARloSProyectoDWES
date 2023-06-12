@@ -21,7 +21,7 @@
                 <select name="coche1" id="coche1" class="mt-10 mb-6 bg-black text-white">
                     <option value="" selected disabled>Selecciona coche</option>
                     @foreach ($datos as $item)
-                        <option value="{{$item->foto}}" data-marca="{{$item->marca}}" data-modelo="{{$item->modelo}}" data-precio="{{$item->precio}}" data-anio="{{$item->anio_matriculacion}}" data-combustible="{{$item->combustible}}" data-kilometros="{{$item->kilometros}}">{{$item->marca}} {{$item->modelo}}</option>
+                        <option value="{{$item->foto}}" data-marca="{{$item->marca}}" data-modelo="{{$item->modelo}}" data-precio="{{$item->precio}}" data-anio="{{$item->anio_matriculacion}}" data-combustible="{{$item->combustible}}" data-kilometros="{{$item->kilometros}}" data-potencia="{{$item->potencia}}">{{$item->marca}} {{$item->modelo}} ({{$item->potencia}}cv)</option>
                     @endforeach
                 </select>
                 <img id="imagen-coche" style="width:30rem;" class="mb-5">
@@ -33,6 +33,7 @@
                     <p id="anio" class="text-2xl py-2" ></p>
                     <p id="combustible" class="text-2xl py-2" ></p>
                     <p id="kilometros" class="text-2xl py-2" ></p>
+                    <p id="potencia" class="text-2xl py-2" ></p>
                 </div>
 
             </div>
@@ -43,7 +44,7 @@
                 <select name="coche2" id="coche2" class="mt-10 mb-6 bg-black text-white">
                     <option value="" selected disabled>Selecciona coche</option>
                     @foreach ($datos as $item)
-                        <option value="{{$item->foto}}" data-marca="{{$item->marca}}" data-modelo="{{$item->modelo}}" data-precio="{{$item->precio}}" data-anio="{{$item->anio_matriculacion}}" data-combustible="{{$item->combustible}}" data-kilometros="{{$item->kilometros}}">{{$item->marca}} {{$item->modelo}}</option>                    @endforeach
+                        <option value="{{$item->foto}}" data-marca="{{$item->marca}}" data-modelo="{{$item->modelo}}" data-precio="{{$item->precio}}" data-anio="{{$item->anio_matriculacion}}" data-combustible="{{$item->combustible}}" data-kilometros="{{$item->kilometros}}" data-potencia="{{$item->potencia}}">{{$item->marca}} {{$item->modelo}} ({{$item->potencia}}cv)</option>                    @endforeach
                 </select>
                 <img id="imagen-coche2" style="width:30rem;" src="">
 
@@ -54,6 +55,7 @@
                     <p id="anio2" class="text-2xl py-2" ></p>
                     <p id="combustible2" class="text-2xl py-2" ></p>
                     <p id="kilometros2" class="text-2xl py-2" ></p>
+                    <p id="potencia2" class="text-2xl py-2" ></p>
                 </div>
             </div>
 
@@ -75,6 +77,7 @@
     var anio = document.getElementById("anio");
     var combustible = document.getElementById("combustible");
     var kilometros = document.getElementById("kilometros");
+    var potencia = document.getElementById("potencia");
 
     selectCoche.addEventListener("change", function() {
         var selectedOption = this.options[this.selectedIndex];
@@ -85,6 +88,7 @@
         var selectedAnio = selectedOption.getAttribute("data-anio");
         var selectedCombustible = selectedOption.getAttribute("data-combustible");
         var selectedKilometros = selectedOption.getAttribute("data-kilometros");
+        var selectedPotencia = selectedOption.getAttribute("data-potencia");
 
         imagenCoche.src = foto;
         imagenCoche.style.height = "20rem";
@@ -94,6 +98,7 @@
         anio.textContent = selectedAnio;
         combustible.textContent = selectedCombustible;
         kilometros.textContent = selectedKilometros + " kms";
+        potencia.textContent = selectedPotencia + " CV";
     });
 
     //Coche 2
@@ -105,6 +110,8 @@
     var anio2 = document.getElementById("anio2");
     var combustible2 = document.getElementById("combustible2");
     var kilometros2 = document.getElementById("kilometros2");
+    var potencia2 = document.getElementById("potencia2");
+
 
     selectCoche2.addEventListener("change", function() {
         var selectedOption = this.options[this.selectedIndex];
@@ -115,6 +122,7 @@
         var selectedAnio = selectedOption.getAttribute("data-anio");
         var selectedCombustible = selectedOption.getAttribute("data-combustible");
         var selectedKilometros = selectedOption.getAttribute("data-kilometros");
+        var selectedPotencia = selectedOption.getAttribute("data-potencia");
 
         imagenCoche2.src = foto;
         imagenCoche2.style.height = "20rem";
@@ -124,6 +132,8 @@
         anio2.textContent = selectedAnio;
         combustible2.textContent = selectedCombustible;
         kilometros2.textContent = selectedKilometros + " kms";
+        potencia2.textContent = selectedPotencia + " CV";
+
     });
 </script>
     @endempty
