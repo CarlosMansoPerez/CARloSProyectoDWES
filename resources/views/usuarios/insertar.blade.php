@@ -35,6 +35,19 @@
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333;">
 
+        @if (Session::has('usuarioConMismoEmail'))
+        <div id="mensaje-usuario2" class="bg-red-500 text-center text-white px-4 py-2 rounded-md mb-4 text-xl flex justify-center itemscenter" style="margin:auto; width:100%; height: 4.5rem; position:absolute; z-index:999">
+            <p class="mt-3">{{ Session::get('usuarioConMismoEmail') }}</p>
+        </div>
+
+        <script>
+            setTimeout(function() {
+                document.getElementById('mensaje-usuario2').style.display = 'none';
+            }, 4000);
+        </script>
+
+    @endif
+
         <div style="width:100%;height:100vh;background-image:url('{{asset("img/cocheRegistro.jpg")}}');background-size:cover;" class="fotoFondoRegistro">
 
             <div class="divRegistro shadow-lg bg-black shadow-black" style="width:40%;height:100%;float:left;" >

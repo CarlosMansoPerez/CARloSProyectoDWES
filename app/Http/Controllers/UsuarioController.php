@@ -41,14 +41,22 @@ class UsuarioController extends Controller
         $usuario->provincia = $req->provincia;
         $usuario->esAdmin = 0;
 
-        $usuario->save();
 
-        $carrito = new Carrito();
-        $carrito->idCar = $contadorUsuarios;
-        $carrito->idUsu = $contadorUsuarios;
-        $carrito->save();
+        $comprobacionEmailBBDD = Usuario::where("email", $req->email)->get();
 
-        return redirect(route("login"));
+        if(count($comprobacionEmailBBDD) == 1){
+            Session::flash('usuarioConMismoEmail', 'Ya hay un usuario registrado con ese correo electrónico');
+            return redirect(route("usuarios.insertar"));
+        }
+
+        // $usuario->save();
+
+        // $carrito = new Carrito();
+        // $carrito->idCar = $contadorUsuarios;
+        // $carrito->idUsu = $contadorUsuarios;
+        // $carrito->save();
+
+        // return redirect(route("login"));
     }
 
 
