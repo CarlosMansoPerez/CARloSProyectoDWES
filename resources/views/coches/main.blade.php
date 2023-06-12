@@ -265,7 +265,8 @@
 
                             {{-- BORRAR --}}
                             <div class="m-1" style="">
-                                <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
+                                <a data-idCoc="{{$coche->idCoc}}" class="borrarCoche text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
+                                {{-- <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a> --}}
                             </div>
 
                         </div>

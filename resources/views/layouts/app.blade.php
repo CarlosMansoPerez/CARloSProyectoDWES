@@ -16,6 +16,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="{{asset('js/scripts.js')}}"></script>
+
+        {{-- Sweetalert2 --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
         
         <style>
             #panelAdmin:hover{
