@@ -66,6 +66,16 @@
         }
     }
 </style>
+@if (session('error'))
+    <script>
+        Swal.fire({ // librería para alerta de errores importada en la cabecera
+            title: 'Error',
+            text: 'Acceso denegado',
+            icon: 'error',
+            background: 'white',
+        });
+    </script>
+@endif
     <div id="saludo" class="mt-5" style="margin-left: 5.5%">
         <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
     </div>

@@ -52,7 +52,7 @@
                                 <input class="mt-6 text-center w-60" name="anio"          value="{{$coche->anio_matriculacion}}" type="number" min="1990" max="2023" placeholder="Año matriculacion">
                                 <input class="mt-6 text-center w-60" name="kilometros"    value="{{$coche->kilometros}}" type="number" placeholder="kilometros">
                                 <input class="mt-6 text-center w-60" name="combustible"   value="{{$coche->combustible}}" type="text" placeholder="combustible">
-                                <input class="mt-6 text-center w-60" name="color"         value="{{$coche->color}}" type="color" value="#ffffff"><label for="">Color</label>
+                                <input class="mt-6 text-center w-60" name="potencia"      value="{{$coche->potencia}}" type="number" placeholder="Potencia CV">
                             </div>
 
                             <div class="flex flex-col justify-center align-center" style="width: 40%;height:27rem">
