@@ -21,7 +21,7 @@ class CocheController extends Controller
         $carritoCoche = CarritoCoche::all();
         $productos = $carritoCoche->where("idCar", auth()->user()->idUsu);
 
-        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::distinct()->select('marca')->get(),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion")->get(), "color" => Coche::all("color"), "usuario" => Usuario::find(1),],["productos"=>$productos->count()]);
+        return view("coches.main", ["datos" => Coche::all() ,"marcas" => Coche::distinct()->select('marca')->get(),"modelos" => Coche::all("modelo"),"precios" => Coche::all("precio"), "anios" => Coche::orderBy("anio_matriculacion")->get(), "potencia" => Coche::all("potencia"), "usuario" => Usuario::find(1),],["productos"=>$productos->count()]);
         
     }
 
@@ -55,7 +55,7 @@ class CocheController extends Controller
         $coche->anio_matriculacion = $req->anio;
         $coche->foto               = $req->foto;
         $coche->logo               = $req->logo;
-        $coche->color              = $req->color;
+        $coche->potencia              = $req->potencia;
         $coche->kilometros         = $req->kilometros;
         $coche->combustible        = $req->combustible;
 
@@ -89,7 +89,7 @@ class CocheController extends Controller
         $coche->modelo = $req->modelo;
         $coche->precio = $req->precio;
         $coche->anio_matriculacion = $req->anio;
-        $coche->color = $req->color;
+        $coche->potencia = $req->potencia;
         $coche->kilometros = $req->kilometros;
         $coche->combustible = $req->combustible;
         $coche->foto = $req->foto;

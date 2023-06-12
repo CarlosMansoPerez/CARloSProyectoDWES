@@ -94,6 +94,7 @@
                     <option value="anios">Año Matriculacion</option>
                     <option value="combustibles">Combustible</option>
                     <option value="kilometros">Kilómetros</option>
+                    <option value="potencia">Potencia CV</option>
                 </select>
                 {{-- MARCA --}}
                 <select id="marcas" name="marca" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:10rem;height:3rem;display:none">
@@ -125,13 +126,6 @@
                                 <option value="{{$i}}">{{$i}}</option>
                             <?php } ?>
                     </select>
-                {{-- COLOR --}}
-                {{-- <select id="colores" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:8rem;height:3rem;display:none">
-                    <option value="">Color</option>
-                    @foreach ($color as $item)
-                        <option value="{{$item->color}}"><span><p  style="color:red">Hola</p></span></option>
-                    @endforeach
-                </select> --}}
                 {{-- COMBUSTIBLE --}}
                 <select id="combustibles" name="combustible" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:10rem;height:3rem;display:none">
                     <option value="" selected disabled>-</option>
@@ -146,6 +140,16 @@
                     <option value="50000">Menos de 50.000</option>
                     <option value="100000">Menos de 100.000</option>
                     <option value="150000">Menos de 150.000</option>
+                </select>
+
+                {{-- POTENCIA --}}
+                <select id="potencia" name="potencia" class="ml-5 mt-2 bg-black text-white hover:cursor-pointer tipoFiltrado" style="width:11rem;height:3rem;display:none">
+                    <option value=""selected disabled>-</option>
+                    <option value="150">Más de 150 CV</option>
+                    <option value="250">Más de 250 CV</option>
+                    <option value="300">Más de 300 CV</option>
+                    <option value="350">Más de 350 CV</option>
+                    <option value="400">Más de 400 CV</option>
                 </select>
 
                 {{-- BORRAR FILTROS --}}
@@ -214,11 +218,6 @@
 
                             <b class="mr-2">|</b>
 
-                            {{-- COLOR --}}
-                            {{-- <div class="flex flex-row flex-wrap justify-center items-center text-sm font-bold text-black">
-                                <div class="font-bold text-black text-lg ml-1" style="background-color: {{$coche->color}}; border: 3px solid black; width:1.5rem; height:1.5rem;">&nbsp;</div>
-                            </div> --}}
-
                             {{-- KILOMETRAJE --}}
                             <div class="text-lg text-center font-bold text-black mr-2 flex felx-wrap justify-center items-center flex-row">
                                 <img style="width:1.5rem" class="mr-1" src="{{asset('img/iconoKilometros.png')}}" alt=""><b>{{$coche->kilometros}} kms</b>
@@ -226,6 +225,7 @@
 
                             <b class="mr-2">|</b>
 
+                            <p style="opacity: 0; position: absolute;">{{$coche->potencia}}</p>
 
                             {{-- COMBUSTIBLE --}}
                             <div class="text-lg text-center font-bold text-black mr-2">

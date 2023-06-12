@@ -83,7 +83,7 @@
                                     <option value="Gasolina">Gasolina</option>
                                 </select>
 
-                                <input class="mt-6 text-center w-60" name="color"       style="width: 18rem" type="color" value="#ffffff"><label for="">Color</label>
+                                <input class="mt-6 text-center w-60" name="potencia"  style="width: 18rem" type="number" min="100" max="700" placeholder="Potencia CV">
                             </div>
 
                             <div class="flex flex-col justify-center align-center" style="width: 30%;height:27rem">

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("modelo");
             $table->integer("precio");
             $table->string("anio_matriculacion", 4);
-            $table->string("color", 7);
+            $table->string("potencia", 3);
             $table->string("kilometros");
             $table->string("combustible");
             $table->text("foto");

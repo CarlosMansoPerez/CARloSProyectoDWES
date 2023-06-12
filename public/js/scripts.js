@@ -24,6 +24,7 @@ document.getElementById("precios").addEventListener("change", filtroPrecio);
 document.getElementById("anios").addEventListener("change", filtroAnio);
 document.getElementById("combustibles").addEventListener("change", filtroCombustible);
 document.getElementById("kilometros").addEventListener("change", filtroKilometros);
+document.getElementById("potencia").addEventListener("change", filtroPotencia);
 
 var registros = 0;
 
@@ -90,7 +91,7 @@ function filtroCombustible(e){
         element.style.display = "block";
     });
     cards.forEach(element => {
-        var combustibles = element.innerText.split("\n")[12].trim();
+        var combustibles = element.innerText.split("\n")[14].trim();
         if(combustibles != valor) element.style.display="none";
     });
 }
@@ -104,6 +105,18 @@ function filtroKilometros(e){
     cards.forEach(element => {
         var kilometros = parseInt(element.innerText.split("\n")[9]);
         if(kilometros > valor) element.style.display="none";
+    });
+}
+
+function filtroPotencia(e){
+    var valor  = parseInt(e.srcElement.value);
+    let cards = document.querySelectorAll(".filtro");
+    cards.forEach((element) => {
+        element.style.display = "block";
+    });
+    cards.forEach(element => {
+        var potencia = parseInt(element.innerText.split("\n")[12]);
+        if(potencia < valor) element.style.display="none";
     });
 }
 

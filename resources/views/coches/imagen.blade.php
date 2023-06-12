@@ -63,7 +63,7 @@
 
                     <div class="flex flex-wrap justify-center items-center flex-row mb-5" style="margin-left: -4rem; margin-top:4rem;">
                         <div class="mr-3">
-                            <img src="{{$imagen->logo}}" style="width:4rem;margin-bottom:2rem">
+                            <img src="{{$imagen->logo}}" style="width:6rem;height: 4rem;margin-bottom:2rem">
                         </div>
                         <div>
                             <p class="text-5xl text-white font-bold">{{$imagen->marca}}</p>
@@ -72,26 +72,24 @@
                     </div>
                     
 
-                    <div class="flex flex-row justify-center items-center" style="margin-top: 2rem">
+                    <div class="flex flex-row justify-center items-center" style="margin-top: 3rem">
 
                         <div class="flex flex-col justify-center items-center mr-5" style="width: 12rem; min-height:12rem;">
                             <p class="text-white text-2xl mb-1">Matriculado en</p> 
                             <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->anio_matriculacion}}</p>
 
-                            <p class="text-white text-2xl mb-1">Color disponible</p>
-                            <div class="text-sm font-bold text-black">
-                                <div class="text-sm font-bold text-black text-lg" style="background-color: {{$imagen->color}}; width:2.2rem; height: 2.2rem; border: 3px solid black">&nbsp;</div>
-                            </div>
+                            <p class="text-white text-2xl mb-1">Potencia CV</p> 
+                            <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->potencia}}</p>
 
                         </div>
 
                         <div class="flex flex-col justify-center items-center ml-5" style="width: 12rem; min-height:12rem;">
-
                             <p class="text-white text-2xl mb-1">Kilómetros</p> 
                             <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->kilometros}}</p>
 
                             <p class="text-white text-2xl mb-1">Combustible</p> 
-                            <p class="text-3xl text-white font-bold">{{$imagen->combustible}}</p>
+                            <p class="text-3xl text-white font-bold" style="margin-bottom: 2rem">{{$imagen->combustible}}</p>
+
                         </div>
 
                     </div>
