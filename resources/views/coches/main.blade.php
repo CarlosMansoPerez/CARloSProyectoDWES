@@ -221,7 +221,7 @@
 
                             {{-- KILOMETRAJE --}}
                             <div class="text-lg text-center font-bold text-black mr-2 flex felx-wrap justify-center items-center flex-row">
-                                <img style="width:1.5rem" class="mr-1" src="{{asset('img/iconoKilometros.png')}}" alt=""><b>{{$coche->kilometros}}</b>
+                                <img style="width:1.5rem" class="mr-1" src="{{asset('img/iconoKilometros.png')}}" alt=""><b>{{$coche->kilometros}} kms</b>
                             </div>
 
                             <b class="mr-2">|</b>
