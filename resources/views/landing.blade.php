@@ -86,7 +86,7 @@
         <div class="card">
             <p><span><a href="https://www.tiktok.com"><img class="redes" src="{{asset('img/tiktok.png')}}" alt=""></a></span></p>
             <p><span><a href="https://www.twitter.com"><img class="redes" src="{{asset('img/twitter.png')}}" alt=""></a></span></p>
-            <p><span><a href="https://www.youtube.com"><img class="redes" src="{{asset('img/yt.svg')}}" alt=""></a></span></p>
+            <p><span><a href="https://www.youtube.com"><img class="redes" src="{{asset('img/youtubeLogo.png')}}" alt=""></a></span></p>
             <p><span><a href="https://www.instagram.com"><img class="redes" src="{{asset('img/ig.png')}}" alt=""></a></span></p>
         </div>
 

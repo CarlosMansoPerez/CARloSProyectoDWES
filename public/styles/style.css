@@ -400,7 +400,24 @@ article:hover img:last-child{
     width: 20%;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 850px) {
+    #ventana{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 80vh;
+    background-color: black;
+    text-align: center;
+    color: white;
+    z-index: 1;
+    padding: 2%;
+    font-size: 2rem;
+    }
+    #ventana p{
+        margin-top: 8rem;
+    }
     *{
         max-width: 100%;
     }
@@ -525,23 +542,4 @@ article:hover img:last-child{
     background-color: #6c6c6c;
     margin-top: 1rem;
     width: 100%;
-}
-
-
-@media (max-width: 1250px) {
-    #divFiltros{
-        display: none;
-    }
-    #videoFondo{
-        display: none;
-    }
-    #divArriba{
-        display: none;
-    }
-    #ventana{
-        height: 30vh !important;
-        width: 60% !important;
-        font-size: 2rem !important;
-        left: 40% !important;
-    }
 }

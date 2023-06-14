@@ -2,6 +2,26 @@
 
 @section("main")
 
+    <style>
+        @media (max-width: 850px) {
+
+            #divAccesorios{
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            #divAccesorios div{
+                width: 80% !important;
+                margin-left: 0 !important;
+                display: flex;
+                flex-direction: column;
+                justify-content: center !important;
+            }
+            #divAccesorios div>div{
+                margin-left: 10% !important;
+            }
+        }
+    </style>
+
     @empty($datos)
 
         <div class="bg-red-300">
@@ -18,7 +38,7 @@
 
     <p id="listaAccesorios" class="text-white font-bold font-sans text-2xl" style="margin-left: 6%;margin-top:2%">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
         
-    <div class="flex justify-start flex-wrap items-center flex-row">
+    <div id="divAccesorios" class="flex justify-start flex-wrap items-center flex-row">
     @foreach($datos as $accesorio)
 
     {{-- CARDS --}}

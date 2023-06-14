@@ -15,7 +15,6 @@
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script defer src="{{asset('js/scripts.js')}}"></script>
 
         {{-- Sweetalert2 --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -28,20 +27,67 @@
                 cursor: pointer;
             }
 
+            @media (max-width: 850px) {
+                #panelAdmin{
+                    left: 80% !important;
+                }
+                #tituloArriba{
+            font-size: 5rem !important;
+            margin-left: -5% !important;
+            margin-top: -85% !important;
+        }
+        #loTitulo{
+            font-size: 4rem !important;
+        }
+        #vermasMain{
+            display: none;
+        }
+        .navBar{
+            margin-top: -25px;
+        }
+        nav{
+            margin-top: 14.5rem !important;
+            width:100% !important;
+            font-size: .6rem !important;
+        }
+        nav>a{
+            margin: 2% !important;
+            margin-left: 4% !important;
+        }
+        #divSalir{
+            width:5% !important;
+        }
+        .pequeño{
+            width: 10%;
+            font-size: .6rem !important;
+            margin-left: 1%;
+        }
+        .cards{
+            width: 85% !important;
+            margin-left: 7% !important;
+        }
+        #saludo{
+            display: none;
+        }
+        #carrito{
+            font-size: 1rem; 
+        }
+
+            }
         </style>
     </head>
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
-            <div id="divArriba" style="height: 45rem; width: 100%; position:absolute; top:-255px;z-index:-1;">
+            <div id="divArriba" style="height: auto; width: 100%; position:absolute; top:0;z-index:-1;">
                 {{-- <video src="https://cdn.pixabay.com/vimeo/764361710/Coche%20-%20135728.mp4?width=1170&hash=99150cab80a5ed636bcf82ca0433c0da35b5d542" autoplay muted loop style="height:68rem;width:300rem; margin:auto;opacity:0.7;"></video> --}}
-                <video id="videoFondo" src="{{asset('video/videoCoches.mp4')}}" autoplay muted loop style="height:68rem;width:300rem; margin:auto;opacity:0.7;"></video>
+                <video id="videoFondo" src="{{asset('video/videoCoches.mp4')}}" autoplay muted loop style="height:auto;width:300rem; margin:auto;opacity:0.7;"></video>
                 {{-- <img src="../video/audi-r8-4721217_1920.jpg" style="height:73rem ; width:300rem; margin:auto;"> --}}
-                <h1 id="tituloArriba" class="hover:scale-105 duration-700 text-center text-red-700" style="position:absolute; top: 50%;left:27%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b id="loTitulo" class="font-serif text-black" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>
+                <h1 id="tituloArriba" class="hover:scale-105 duration-700 text-center text-red-700" style="position:absolute; top: 25%;left:27%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b id="loTitulo" class="font-serif text-black" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>
                 <a id="vermasMain" href="#perfil" class="text-white hover:scale-105 hover:bg-red-700 hover:text-white duration-700 font-bold py-2 px-4 rounded text-center text-red-700 text-xl" style="border:3px solid black;text-shadow:2px 2px 2px black; width:12rem; position:absolute; left:44%; top:120%;">VER MÁS</a>
             </div>
 
 
-            <div class="mb-4" style="width:100%; background-color: #333333;">
+            <div class="mb-4 navBar" style="width:100%; background-color: #333333;">
                 <nav class="bg-black text-stone-50 font-bold font-sans text-center flex justify-center items-center" style="height: 3rem; margin-top:44.5rem;">
                     {{-- <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('coches.listado')}}">INICIO</a> --}}
                     <a class="mx-10  hover:text-red-700 hover:scale-105 duration-100"         href="{{route('coches.listado')}}#perfil">COCHES</a>

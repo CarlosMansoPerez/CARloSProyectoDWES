@@ -64,8 +64,8 @@
                                     </div>
                                     <div>
                                         <input type="text" id="url2" placeholder="URL Logo" name="logo" class="mt-5" style="width: 17rem" value="{{$coche->logo}}">
-                                        <div class="image-container" id="image2" style="width: 17rem">
-                                            <img src="{{$coche->logo}}" alt="Imagen predeterminada" style="width:40rem">
+                                        <div class="image-container flex justify-center items-center" id="image2" style="width: 17rem">
+                                            <img src="{{$coche->logo}}" alt="Imagen predeterminada" style="width:auto; height:10rem">
                                         </div>
                                     </div>
                             </div>

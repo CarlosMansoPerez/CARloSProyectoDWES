@@ -24,17 +24,71 @@
 
         <script defer src="{{asset('js/carrito.js')}}"></script>
         
+        <style>
+            @media (max-width: 850px) {
+                .titulocarrito{
+                    margin-top: 2%;
+                }
+                .titulocarrito p{
+                    font-size: 1.3rem;
+                }
+                .titulocarrito a{
+                    font-size: 0.9rem;
+                }
+                .divTodoCarrito{
+                    flex-direction: column !important;
+                }
+                .divTodoCarrito div{
+                    width: 100% !important;
+                    justify-content: flex-start !important;
+                    min-height: 0 !important;
+                }
+                .divProductos{
+                    margin-top: 2% !important;
+                }
+                .divResumenPedido{
+                    justify-content: flex-start !important;
+                }
+                .divResumenPedido p{
+                    margin-left: 5%; 
+                    text-align: start !important;
+                }
+                .divTotalPedido {
+                    margin-top: 5% !important;
+                }
+                .divTotalPedido p{
+                    margin-left: 0 !important;
+                }
+                .divTotalPedido div{
+                    margin-left: 0 !important;
+                }
+                .tituloResumem{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+                #ventanaAccesorios div{
+                    display: flex;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                    text-align: center;
+                    margin-bottom: 0.5%;
+                }
+            }
+        </style>
     </head>
 
     <body class="font-sans" style="margin:0; padding:0; background-color: #333333; z-index:0;">
 
-        <a style="position:absolute; top:2%;left:2%" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="{{route('coches.listado')}}">VOLVER</a>
+        <div class="titulocarrito">
+            <a style="position:absolute; top:2%;left:2%" class="bg-black hover:bg-red-700 duration-700 hover:scale-105 text-white hover:text-white font-bold rounded px-3 py-1" href="{{route('coches.listado')}}">VOLVER</a>
 
-        <p class="text-center text-red-700 mt-2 text-4xl font-bold">Carrito de {{auth()->user()->nombre}}</p>
+            <p class="text-center text-red-700 mt-2 text-4xl font-bold">Carrito de {{auth()->user()->nombre}}</p>
+        </div>
 
-        <div style="width: 100%; height:auto;" class="h-auto px-5 py-3 text-center text-xl flex flex-row m-auto flex-wrap justify-start items-start">
+        <div style="width: 100%; height:auto;" class="divTodoCarrito h-auto px-5 py-3 text-center text-xl flex flex-row m-auto flex-wrap justify-start items-start">
 
-            <div class="mt-3 p-5 flex flex-col align-center justify-center" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
+            <div class="mt-3 p-5 flex flex-col align-center justify-center divProductos" style="width:50%;height:auto;min-height:40rem;background-color:#a9a9a9">
             
             <?php
                 $productosFactura = [];
@@ -104,7 +158,7 @@
 
             <div class="flex flex-wrap flex-row justify-around items-center my-3 py-2" style="width: 50%;height:auto;min-height:40rem;background-color:#a9a9a9">
 
-                <div class="flex flex-wrap flex-col justify-center items-start" style="text-shadow:1px 1px 1px black">
+                <div class="divResumenPedido flex flex-wrap flex-col justify-center items-start" style="text-shadow:1px 1px 1px black">
                     <p class="mb-5 font-bold">Datos de envío</p>
                     <p class="mb-1">Direccion de envio: {{auth()->user()->direccionEnvio}}</p>
                     <p class="mb-1">Numero de telefono: {{auth()->user()->numeroTelefono}}</p>
@@ -116,12 +170,14 @@
                     <?php } ?>
                 </div>
 
-                <div class="flex flex-wrap flex-col justify-center items-center" style="width:40rem">
+                <div class="divTotalPedido flex flex-wrap flex-col justify-center items-center" style="width:30rem; margin-left:5%">
                     
                     <?php if(isset($datos)){ ?>
-                    <p style="text-shadow:1px 1px 1px black;margin-left:-50%" class="font-bold mb-5">Resumen del pedido:</p>
+                        <div class="tituloResumem">
+                            <p style="text-shadow:1px 1px 1px black;margin-left:-50%" class="font-bold mb-5">Resumen del pedido:</p>
+                        </div>
                     <?php } ?>
-                    <div id="resumen" class="flex flex-wrap flex-col justify-start items-start text-left mb-5" style="text-shadow:1px 1px 1px black; margin-left:-35%">
+                    <div id="resumen" class="flex flex-wrap flex-col justify-start items-start text-left mb-5" style="text-shadow:1px 1px 1px black; margin-left:-28%">
                         <?php if(isset($datos)){ ?>
                         @foreach ($datos as $productos)
                         <div class="flex flex-row justify-start items-start">

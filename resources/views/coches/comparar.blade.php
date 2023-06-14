@@ -2,6 +2,23 @@
 
 @section("main")
 
+    <style>
+        @media (max-width: 850px) {
+            .tituloComparador{
+                font-size: 1.2rem;
+            }
+            .divComparador{
+                width: 100%;
+                justify-content: center !important;
+            }
+            .divComparador div{
+                width: 80% !important;
+                text-align: center;
+                margin-bottom: 4% !important;
+            }
+        }
+    </style>
+
     @empty($datos)
 
         <div class="bg-red-300">
@@ -12,10 +29,10 @@
 
     <div class="flex flex-col justify-center items-center flex-wrap pb-12">
         <div>
-            <p class="text-3xl mt-5 font-bold text-white">Comparador de coches</p>
+            <p class="text-3xl mt-5 font-bold text-white tituloComparador">Comparador de coches</p>
         </div>
 
-        <div class="flex flex-row justify-around items-center flex-wrap mt-12" style="width:100%">
+        <div class="flex flex-row justify-around items-center flex-wrap mt-12 divComparador" style="width:100%">
 
             <div class="flex flex-col justify-start items-center flex-wrap bg-gray-200 pb-5" style="width:30rem;height:auto;border-radius:2%">
                 <select name="coche1" id="coche1" class="mt-10 mb-6 bg-black text-white">

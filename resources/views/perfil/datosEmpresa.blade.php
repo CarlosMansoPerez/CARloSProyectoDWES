@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-                tr:hover:not(#cabecera){
+            tr:hover:not(#cabecera){
                 background-color: black;
                 color: red;
                 transition: .1s;
@@ -14,7 +14,7 @@
             .informacion {
                 display: none;
                 position: absolute;
-                left: 38%;
+                left: 35%;
                 margin-top: -5%;
                 background-color: rgb(0, 0, 0);
                 color: white;
@@ -53,6 +53,39 @@
             color: white;
         }
 
+        @media (max-width: 850px) {
+            table{
+                max-width: 80% !important; 
+                font-size: 0.75rem !important;
+            }
+            table th,.table td {
+                padding: 5px;
+                font-size: 12px;
+            } 
+            #tituloArriba{
+                top: 165% !important;
+                left: 30% !important;
+            }
+            .bi-info-circle-fill{
+                display: none;
+            }
+            .paginador{
+                margin-top: -45% !important;
+            }
+            .divDatosInteres{
+                height: 13rem !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .divDatosInteres p{
+                font-size: 1.3rem !important;
+                text-align: center !important;
+            }
+            .ultimoDiv{
+                padding: 1% !important;
+            }
+        }
 </style>
 <div class="mt-12 flex flex-col justify-center items-center flex-wrap pt-5 bg-white" style="padding-bottom:10%;background: rgb(51,51,51);background: linear-gradient(180deg, rgba(51,51,51,1) 42%, rgba(0,0,0,1) 100%); ">
                 
@@ -69,12 +102,12 @@
         <table class="mt-5 border-2 text-center text-white text-xl mt-12" style="width: 90%; background-color:gray;">
             <thead class="border-2 bg-black font-bold text-white">
                 <tr id="cabecera">
-                    <th class="border-2 py-2">Nº de Venta</th>
-                    <th class="border-2 py-2">Usuario</th>
-                    <th class="border-2 py-2">Marca</th>
-                    <th class="border-2 py-2">Modelo</th>
-                    <th class="border-2 py-2">Importe</th>
-                    <th class="border-2 py-2">Fecha</th>
+                    <th style="width: 10rem" class="border-2 py-2">Nº de Venta</th>
+                    <th style="width: 25rem" class="border-2 py-2">Usuario</th>
+                    <th style="width: 20rem" class="border-2 py-2">Marca</th>
+                    <th style="width: 25rem" class="border-2 py-2">Modelo</th>
+                    <th style="width: 15rem" class="border-2 py-2">Importe</th>
+                    <th style="width: 20rem" class="border-2 py-2">Fecha</th>
                 </tr>
                 </thead>
                 <tbody class="border-2">
@@ -124,22 +157,22 @@
         <div class="mt-12 flex justify-center items-center flex-col" style="width: 80%;">
 
             <div class="flex justify-center items-center flex-row" style="border:2px solid white;width:100%">
-                <div class="flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
+                <div class="divDatosInteres flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
                     <p class="text-white text-2xl">MARCA MAS VENDIDA</p>
                     <p class="text-red-700 text-3xl mt-2">{{$marcaMasVendida->marca}} ( {{$marcaMasVendida->cantidad_registros}} )</p>
                 </div>
-                <div class="flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
+                <div class="divDatosInteres flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
                     <p class="text-white text-2xl">COCHE MÁS VENDIDO</p>
                     <p class="text-red-700 text-3xl mt-2">{{$modeloMasVendido->modelo}} ( {{$modeloMasVendido->cantidad_registros}} )</p>
                 </div>
             </div>
 
             <div class="flex justify-center items-center flex-row" style="border:2px solid white;width:100%">
-                <div class="flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
+                <div class="divDatosInteres flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
                     <p class="text-white text-2xl">TOTAL GENERADO EN VENTAS</p>
                     <p class="text-red-700 text-3xl mt-2">{{$totalVentas}} €</p>
                 </div>
-                <div class="flex justify-center items-center flex-col p-3" style="border: 2px solid white; width:100%">
+                <div class="divDatosInteres flex justify-center items-center flex-col p-3 ultimoDiv" style="border: 2px solid white; width:100%">
                     <p class="text-white text-2xl">USUARIO MÁS FIEL</p>
                     <p class="text-red-700 text-3xl mt-2">{{$usuarioMasFiel->email}} ( {{$idUsuarioMasFiel->cantidad_registros}} compras )</p>
                 </div>
@@ -153,8 +186,23 @@
 </div>
 
 <script>
-            // GRAFICA
-            var ctx = document.getElementById('canvas').getContext('2d');
+
+        // INFORMACION ADICIONAL DE USUARIOS
+        var infoUsuarios = document.getElementsByClassName("infoUsu");
+        var informacion = document.getElementsByClassName("informacion");
+
+        Array.from(infoUsuarios).forEach((element, index) => {
+            element.addEventListener("mouseover", function(){
+                informacion[index].style.display = "block";
+            });
+
+            element.addEventListener("mouseout", function(){
+                informacion[index].style.display = "none";
+            });
+        });
+        
+        // GRAFICA
+        var ctx = document.getElementById('canvas').getContext('2d');
         
         var chart = new Chart(ctx, {
             type: 'bar',

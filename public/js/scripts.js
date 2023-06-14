@@ -145,58 +145,58 @@ function desaparece(){
 } 
 
 
-function generarToken(longitud = 32) {
-    const caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let token = '';
+// function generarToken(longitud = 32) {
+//     const caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//     let token = '';
 
-    for (let i = 0; i < longitud; i++) {
-        token += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-    }
+//     for (let i = 0; i < longitud; i++) {
+//         token += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+//     }
 
-    return token;
-}
+//     return token;
+// }
 
 
-var todosBorrar = document.getElementsByClassName("borrarCoche");
-Array.from(todosBorrar).forEach(element => {
-    element.addEventListener("click", borrarSeguro)
-});
+// var todosBorrar = document.getElementsByClassName("borrarCoche");
+// Array.from(todosBorrar).forEach(element => {
+//     element.addEventListener("click", borrarSeguro)
+// });
 
-function borrarSeguro(e){
+// function borrarSeguro(e){
 
-    var idCoc = e.explicitOriginalTarget.dataset.idcoc; // Obtengo el id del coche mediante un dataset en el enlace
+//     var idCoc = e.explicitOriginalTarget.dataset.idcoc; // Obtengo el id del coche mediante un dataset en el enlace
 
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-        confirmButton: 'bg-black py-2 px-4 font-bold text-white',
-        cancelButton: 'bg-red-700 py-2 px-4 font-bold text-white'
-        },
-        buttonsStyling: false
-    })
+//     const swalWithBootstrapButtons = Swal.mixin({
+//         customClass: {
+//         confirmButton: 'bg-black py-2 px-4 font-bold text-white',
+//         cancelButton: 'bg-red-700 py-2 px-4 font-bold text-white'
+//         },
+//         buttonsStyling: false
+//     })
     
-    swalWithBootstrapButtons.fire({
-        title: '¿Estás seguro?',
-        text: "No podrás revertir esta acción",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'BORRAR',
-        cancelButtonText: 'CANCELAR',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var csrfToken = generarToken();
+//     swalWithBootstrapButtons.fire({
+//         title: '¿Estás seguro?',
+//         text: "No podrás revertir esta acción",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonText: 'BORRAR',
+//         cancelButtonText: 'CANCELAR',
+//         reverseButtons: true
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             var csrfToken = generarToken();
 
-            window.location.href = "coches/borrar/"+idCoc+"?_token=" + csrfToken;
+//             window.location.href = "coches/borrar/"+idCoc+"?_token=" + csrfToken;
 
-            swalWithBootstrapButtons.fire(
-                'Vehículo borrado',
-                'El vehículo ha sido eliminado de la base de datos.',
-                'success'
-            )
-        } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-        ) {
-        }
-    })
-}
+//             swalWithBootstrapButtons.fire(
+//                 'Vehículo borrado',
+//                 'El vehículo ha sido eliminado de la base de datos.',
+//                 'success'
+//             )
+//         } else if (
+//         /* Read more about handling dismissals below */
+//         result.dismiss === Swal.DismissReason.cancel
+//         ) {
+//         }
+//     })
+// }

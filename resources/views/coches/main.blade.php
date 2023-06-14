@@ -2,6 +2,8 @@
 
 @section("main")
 
+<script defer src="{{asset('js/scripts.js')}}"></script>
+
 <style>
     .tooltip-text {
         display: none;
@@ -17,10 +19,24 @@
 
     @media (max-width: 1250px) {
         #divFiltros{
-            display: none;
+            width: 70% !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 2%;
+            backj
         }
-        #videoFondo{
-            margin-top:-42% !important; 
+        .filtrado{
+            width: 10% !important;
+            height: 20% !important;
+        }
+        .tipoFiltrado{
+            width: 20% !important;
+            height: 20% !important;
+        }
+        #compara{
+            margin-top: 3% !important;
         }
         #tituloArriba{
             font-size: 5rem !important;
@@ -31,11 +47,10 @@
             font-size: 4rem !important;
         }
         #vermasMain{
-            margin-top: -108%;
-            margin-left: -4%;
-            width: 30% !important;
-            height: auto !important;
-            font-size: 1rem !important;
+            display: none;
+        }
+        .navBar{
+            margin-top: -25px;
         }
         nav{
             margin-top: 14.5rem !important;
@@ -66,7 +81,10 @@
         }
     }
 </style>
-    @if (session('borrarDenegado'))
+
+{{------------------------------------------- MENSAJES DE ALERTA ----------------------------------------------}}
+
+    {{-- @if (session('borrarDenegado'))
     <script>
         Swal.fire({ // librería para alerta de errores importada en la cabecera
             title: 'Error',
@@ -74,6 +92,27 @@
             icon: 'error',
             background: 'white',
         });
+    </script>
+    @endif --}}
+
+    @if (session('cocheBorrado'))
+    <script>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+        icon: 'success',
+        title: 'Vehículo eliminado de la base de datos',
+        })
     </script>
     @endif
 
@@ -97,6 +136,9 @@
         })
     </script>
     @endif
+
+{{--------------------------------------------- FIN MENSAJES DE ALERTA --------------------------------------------}}
+
     <div id="saludo" class="mt-5" style="margin-left: 5.5%">
         <p class="text-white font-bold font-sans text-2xl">Hola <b class="text-red-700">{{auth()->user()->nombre;}}</b></p>
     </div>
@@ -109,9 +151,13 @@
 
     @else
 
-    <?php
 
-    ?>
+    @if (auth()->user()->esAdmin == 1)
+        <div class="flex justify-center items-center">
+            <a href="{{route('coches.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;">INSERTAR NUEVO COCHE</a>
+        </div>
+    @endif
+
         {{-- FILTRO --}}
         <div id="divFiltros" class="text-red-700 text-lg mt-3 flex justify-between flex-row items-center" style="margin-left:4rem;width:88%;height:auto;background-color:#333333">
 
@@ -203,20 +249,12 @@
 
         </div>
 
-        @if (auth()->user()->esAdmin != 1)
-        
-        @else
-
-        <a href="{{route('coches.insertar')}}" class="bg-white hover:bg-black text-black ml-6 mt-4 hover:text-white hover:scale-105 duration-500 font-bold py-2 px-4 text-center rounded" style="width:20rem;position:absolute;left:38%;top:104%">INSERTAR NUEVO COCHE</a>
-        
-        @endif
-
     @foreach($datos as $coche)
 
             {{-- CARDS --}}
             <a href="{{route('coches.imagen', $coche->idCoc)}}#datosCoche">
 
-            <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black cards" style="width: 25rem;height:32rem; margin-left: 5.5%;z-index:0;" >
+            <div class="filtro rounded float-left shadow-lg mt-12 my-8 bg-gray-200 hover:bg-zinc-300 hover:cursor-pointer hover:scale-105 duration-300 shadow-black cards" style="width: 25rem;height:auto; margin-left: 5.5%;z-index:0;" >
 
                 {{-- CABECERA --}}
                     <div class="font-bold text-2xl mb-1">
@@ -296,8 +334,8 @@
 
                             {{-- BORRAR --}}
                             <div class="m-1" style="">
-                                <a data-idCoc="{{$coche->idCoc}}" class="borrarCoche text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
-                                {{-- <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a> --}}
+                                {{-- <a data-idCoc="{{$coche->idCoc}}" class="borrarCoche text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a> --}}
+                                <a href="{{route('coches.borrar', $coche->idCoc)}}" class="text-lg bg-red-700 hover:bg-black hover:text-red-700 text-white font-bold rounded px-2 py-1 ">BORRAR</a>
                             </div>
 
                         </div>

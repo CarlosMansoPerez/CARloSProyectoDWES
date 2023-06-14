@@ -48,6 +48,75 @@
                 align-items:center; 
                 margin-top: 10%
             }
+            @media (max-width: 850px) {
+                nav{
+                    width:100% !important;
+                    font-size: .6rem !important;
+                }
+                nav>a{
+                    margin: 2% !important;
+                    margin-left: 4% !important;
+                }
+                #divSalir{
+                    width:5% !important;
+                }
+                .pequeño{
+                    width: 10%;
+                    font-size: .6rem !important;
+                    margin-left: 1%;
+                }
+                .cards{
+                    width: 85% !important;
+                    margin-left: 7% !important;
+                }
+                #saludo{
+                    display: none;
+                }
+                #carrito{
+                    font-size: 1rem; 
+                }
+                .divPerfil{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 100%;
+                }
+                .divPerfil>div>p{
+                    display: none !important;
+                }
+                .divPerfil div{
+                    float: none !important;
+                }
+                .divDatosUsu{
+                    width: 100% !important;
+                    justify-content: center !important;
+                    padding: 2%;
+                }
+                .divDatosUsu div{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .divDatosUsu input{
+                    width: 80% !important;
+                }
+                .divDatosUsu button{
+                    width: 100% !important;
+                }
+                .divCambioContraseña{
+                    width: 100% !important;
+                }
+                .divCambioContraseña img{
+                    width: 100%;
+                    height: 35rem !important;
+                }
+                #cambioContraseña{
+                    top: 65% !important;
+                    left: 10% !important;
+                    width: 80% !important;
+                }
+            }
 
         </style>
     </head>
@@ -124,8 +193,8 @@
                         @endif
 
 
-                <div style="height:665px;">
-                    <div class="mt-12" style="float:left;width:50%">                
+                <div class="divPerfil" style="height:auto;">
+                    <div class="mt-12 divDatosUsu" style="float:left;width:50%">                
                         <p class="text-8xl text-red-700 font-sans mb-5" style="margin-left: 9%;margin-top:5%;margin-bottom:5%">Hola <b class="hover:text-white duration-700">{{auth()->user()->nombre}}</b></p><br>
                         
                         <form action="{{route('usuarios.actualizar')}}" method="post">
@@ -184,7 +253,7 @@
                         </form>
 
                     </div>
-                    <div style="float:right;width:50%">
+                    <div class="divCambioContraseña" style="float:right;width:50%">
 
                         <img src="{{asset("/img/cochePerfil.jpg")}}" style="height:680px;opacity:.6">
                         <div id="cambioContraseña" class="hover:scale-110 duration-500">

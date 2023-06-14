@@ -70,12 +70,14 @@ class CocheController extends Controller
 
     public function borrar(Request $req){
         
-        $token = isset($_GET["_token"])? $_GET["_token"] : "";
+        // $token = isset($_GET["_token"])? $_GET["_token"] : "";
 
-        if ($token == "") {
-            Session::flash('borrarDenegado', 'Acceso denegado');
-            return redirect()->route("coches.listado");
-        }
+        // if ($token == "") {
+        //     Session::flash('borrarDenegado', 'Acceso denegado');
+        //     return redirect()->route("coches.listado");
+        // }
+
+        Session::flash('cocheBorrado', 'vehículo eliminado de la base de datos');
 
         Coche::find($req->id)->delete();
 
@@ -145,19 +147,24 @@ class CocheController extends Controller
         return view("coches.comparar", ["datos" => $datos, "productos" => $productos->count()]);
     }
 
-    public function valoracion(Request $req){
-
+    public function valoracion(Request $req)
+    {
         $valoracion = new Valoraciones();
-
+    
         $valoracion->idCoc      = $req->idCoc;
         $valoracion->idUsu      = auth()->user()->idUsu;
         $valoracion->puntuacion = $req->puntuacion;
         $valoracion->comentario = $req->comentario;
-
+    
         $valoracion->save();
-
-        return redirect(route("coches.imagen", $req->idCoc));
+    
+        $valoracionActualizada = Valoraciones::find($valoracion->idVal);
+        $valoracionActualizada->nombre = auth()->user()->nombre;
+        $valoracionActualizada->email = auth()->user()->email;
+    
+        return response()->json(['valoracion' => $valoracionActualizada]);
     }
+    
 
     public function borrarValoracion(Request $req){
         
