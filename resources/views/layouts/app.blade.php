@@ -83,7 +83,6 @@
                 <video id="videoFondo" src="{{asset('video/videoCoches.mp4')}}" autoplay muted loop style="height:auto;width:300rem; margin:auto;opacity:0.7;"></video>
                 {{-- <img src="../video/audi-r8-4721217_1920.jpg" style="height:73rem ; width:300rem; margin:auto;"> --}}
                 <h1 id="tituloArriba" class="hover:scale-105 duration-700 text-center text-red-700" style="position:absolute; top: 25%;left:27%;font-size:13rem;text-shadow:12px 12px 12px black;font-family:impact;">CAR<b id="loTitulo" class="font-serif text-black" style="font-size:9rem;text-shadow: 1px 1px 1px rgb(64, 64, 64)">lo</b>S</h1>
-                <a id="vermasMain" href="#perfil" class="text-white hover:scale-105 hover:bg-red-700 hover:text-white duration-700 font-bold py-2 px-4 rounded text-center text-red-700 text-xl" style="border:3px solid black;text-shadow:2px 2px 2px black; width:12rem; position:absolute; left:44%; top:120%;">VER MÁS</a>
             </div>
 
 
