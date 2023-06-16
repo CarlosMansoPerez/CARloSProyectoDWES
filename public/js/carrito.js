@@ -27,28 +27,31 @@ function aparece() {
 
 
 //AÑADIR PRECIO DE ACCESORIO AL TOTAL DEL CARRITO
-let aniadirAcc = document.getElementsByClassName("aniadir");
-Array.from(aniadirAcc).forEach(element => {
-    element.addEventListener("click", aniadirAccesorio);
-    element.addEventListener("click", function(){
-        element.style.backgroundColor="green"
-        element.innerText="AÑADIDO"
-        element.disabled = true;
+    var aniadirAcc = document.getElementsByClassName("aniadir");
+
+    Array.prototype.forEach.call(aniadirAcc, function(element) {
+        element.addEventListener("click", aniadirAccesorio);
+        element.addEventListener("click", function() {
+            element.style.backgroundColor = "green";
+            element.innerText = "AÑADIDO";
+            element.disabled = true;
+        });
     });
-});
 
-let precioTotal = document.getElementById("total");
-let resumen = document.getElementById("resumen");
-function aniadirAccesorio(e){
+    var precioTotal = document.getElementById("total");
+    var resumen = document.getElementById("resumen");
 
-    let totalActual = e.explicitOriginalTarget.dataset.precio;
-    let nombre = e.explicitOriginalTarget.dataset.nombre;
-    let valor = parseInt(precioTotal.innerText);
+    function aniadirAccesorio(e) {
+        var totalActual = e.target.getAttribute("data-precio");
+        var nombre = e.target.getAttribute("data-nombre");
+        var valor = parseInt(precioTotal.innerText);
 
-    valor += parseInt(totalActual)
-    
-    precioTotal.innerText=valor
+        valor += parseInt(totalActual);
+        precioTotal.innerText = valor;
 
-    resumen.innerHTML += "<div class='flex flex-row justify-start items-start'><p style='width:15rem'>"+nombre+"</p><b>"+totalActual+"€</b></div>";
-
-}
+        var nuevoElemento = document.createElement("div");
+        nuevoElemento.className = "flex flex-row justify-start items-start";
+        nuevoElemento.innerHTML = "<p style='width:15rem'>" + nombre + "</p><b>" + totalActual + "€</b>";
+        
+        resumen.appendChild(nuevoElemento);
+    }

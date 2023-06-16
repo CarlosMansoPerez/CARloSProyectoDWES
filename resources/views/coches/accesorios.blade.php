@@ -12,7 +12,7 @@
 
     @else
 
-    <p id="accesoriosCoches" class="text-center mt-6 text-white text-2xl">Accesorios <br> <b>{{$coche->marca}} {{$coche->modelo}}</b></p>
+    <p id="accesoriosCoches" class="text-center mt-6 text-white text-2xl pb-4">Accesorios <br> <b>{{$coche->marca}} {{$coche->modelo}}</b></p>
 
     @foreach($accesorios as $accesorio)
 
